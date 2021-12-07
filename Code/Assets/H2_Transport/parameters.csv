@@ -1,0 +1,4 @@
+Type,sizing_constant_1,sizing_constant_1_unit,usage_constant_1,usage_constant_1_unit,conversion_factor_1,sizing_constant_2,sizing_constant_2_unit,usage_constant_2,usage_constant_2_unit,conversion_factor_2,conversion_factor_2_unit
+0,1.00E-03,G$/Ggp,1.00E-04,G$/Gg,0.001,0,G$/(Gg*Mm),1.00E-04,G$/(Gg*Mm),0.02,(Mm)^-1
+1,8.00E-04,G$/Ggp,8.00E-05,G$/Gg,0.002,0,G$/(Gg*Mm),8.00E-05,G$/(Gg*Mm),0.025,(Mm)^-1
+2,1.20E-03,G$/Ggp,1.20E-04,G$/Gg,0.0008,0,G$/(Gg*Mm),1.20E-04,G$/(Gg*Mm),0.015,(Mm)^-1
