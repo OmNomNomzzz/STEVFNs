@@ -27,8 +27,6 @@ asset_parameters_filename_2 = os.path.join( scenario_folder, r"Asset_Parameters"
 location_parameters_filename_2 = os.path.join( scenario_folder, r"Location_Parameters", r"Parameters_2.csv")
 
 
-
-
 ### Read Input Files ###
 
 network_structure_df = pd.read_csv(asset_parameters_filename)
