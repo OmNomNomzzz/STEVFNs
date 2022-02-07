@@ -14,7 +14,6 @@ import os
 from Code.Network.Network import Network_STEVFNs
 
 
-
 #### Define Input Files ####
 base_folder = os.path.dirname(__file__)
 data_folder = os.path.join(base_folder, "Data")
