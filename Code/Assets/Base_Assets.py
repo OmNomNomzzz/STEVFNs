@@ -106,6 +106,24 @@ class Asset_STEVFNs:
         plt.plot(self.flows.value)
         plt.show()
         return
+    
+    def component_size(self):
+        # Returns size of component (i.e. asset) #
+        return self.flows.value.max()
+    
+    def get_component_size(self):
+        # Returns the size of component as a dict #
+        component_size = self.component_size()
+        component_identity = self.asset_name + r"_location_" + str(self.source_node_location)
+        return {component_identity: component_size}
+    
+    def get_component_sizes(self):
+        # Returns the size of components of the asset as a dict #
+        return self.get_component_size()
+    
+    def get_asset_size(self):
+        # Returns the size of asset as a dict #
+        return self.get_component_size()
 
             
 class Multi_Asset(Asset_STEVFNs):
@@ -185,3 +203,21 @@ class Multi_Asset(Asset_STEVFNs):
             new_asset_identity = self.asset_name + r"_" + asset_identity
             new_assets_sizes_dict[new_asset_identity] = asset_size
         return new_assets_sizes_dict
+    
+    def get_component_sizes(self):
+        # Returns the size of components of the asset as a dict #
+        component_sizes_dict = dict()
+        for component_name, component in self.assets_dictionary.items():
+            component_sizes_dict.update(component.get_component_size())
+        new_component_sizes_dict = dict()
+        for component_identity, component_size in component_sizes_dict.items():
+            new_component_identity = self.asset_name + r"_" + component_identity
+            new_component_sizes_dict[new_component_identity] = component_size
+        return new_component_sizes_dict
+    
+    def get_asset_size(self):
+        # Returns the size of asset as a dict #
+        asset_identity = self.asset_name + r"_location_" + str(self.source_node_location)
+        component_size_df = self.get_component_sizes()
+        asset_size = np.array(list(component_size_df.values())).max()
+        return {asset_identity : asset_size}
