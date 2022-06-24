@@ -111,6 +111,10 @@ class Asset_STEVFNs:
         # Returns size of component (i.e. asset) #
         return self.flows.value.max()
     
+    def asset_size(self):
+        # Returns size of asset #
+        return self.component_size()
+    
     def get_component_size(self):
         # Returns the size of component as a dict #
         component_size = self.component_size()
@@ -123,7 +127,9 @@ class Asset_STEVFNs:
     
     def get_asset_size(self):
         # Returns the size of asset as a dict #
-        return self.get_component_size()
+        asset_size = self.asset_size()
+        asset_identity = self.asset_name
+        return {asset_identity: asset_size}
 
             
 class Multi_Asset(Asset_STEVFNs):
@@ -215,9 +221,14 @@ class Multi_Asset(Asset_STEVFNs):
             new_component_sizes_dict[new_component_identity] = component_size
         return new_component_sizes_dict
     
+    def asset_size(self):
+        # Returns size of asset #
+        component_size_df = self.get_component_sizes()
+        asset_size = np.array(list(component_size_df.values())).max()
+        return asset_size
+    
     def get_asset_size(self):
         # Returns the size of asset as a dict #
         asset_identity = self.asset_name
-        component_size_df = self.get_component_sizes()
-        asset_size = np.array(list(component_size_df.values())).max()
+        asset_size = self.asset_size()
         return {asset_identity : asset_size}
