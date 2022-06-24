@@ -70,3 +70,13 @@ class EL_Demand_Asset(Asset_STEVFNs):
         asset_size = self.size()
         asset_identity = self.asset_name + r"_location_" + str(self.node_location)
         return {asset_identity: asset_size}
+    
+    def component_size(self):
+        # Returns size of component (i.e. asset) #
+        return self.flows.value.max()
+    
+    def get_component_size(self):
+        # Returns the size of component as a dict #
+        component_size = self.component_size()
+        component_identity = self.asset_name + r"_location_" + str(self.node_location)
+        return {component_identity: component_size}
