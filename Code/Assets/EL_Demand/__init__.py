@@ -74,5 +74,5 @@ class EL_Demand_Asset(Asset_STEVFNs):
     def get_component_size(self):
         # Returns the size of component as a dict #
         component_size = self.component_size()
-        component_identity = self.asset_name + r"_location_" + str(self.node_location)
+        component_identity = self.asset_name
         return {component_identity: component_size}

@@ -114,7 +114,7 @@ class Asset_STEVFNs:
     def get_component_size(self):
         # Returns the size of component as a dict #
         component_size = self.component_size()
-        component_identity = self.asset_name + r"_location_" + str(self.source_node_location)
+        component_identity = self.asset_name
         return {component_identity: component_size}
     
     def get_component_sizes(self):
@@ -217,7 +217,7 @@ class Multi_Asset(Asset_STEVFNs):
     
     def get_asset_size(self):
         # Returns the size of asset as a dict #
-        asset_identity = self.asset_name + r"_location_" + str(self.source_node_location)
+        asset_identity = self.asset_name
         component_size_df = self.get_component_sizes()
         asset_size = np.array(list(component_size_df.values())).max()
         return {asset_identity : asset_size}
