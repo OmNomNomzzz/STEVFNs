@@ -7,6 +7,7 @@ Created on Mon Nov  1 16:36:27 2021
 """
 
 import cvxpy as cp
+import numpy as np
 from ..Base_Assets import Asset_STEVFNs
 from ..Base_Assets import Multi_Asset
 
@@ -153,6 +154,18 @@ class BESS_Asset(Multi_Asset):
             asset.update(self.parameters_df)
         return
     
+    def asset_size(self):
+        # Returns size of asset #
+        effective_component_sizes = np.zeros(3)
+        effective_component_sizes[0] = (self.assets_dictionary["Charging"].component_size() * 
+                                        self.parameters_df["charging_sizing_constant"] / 
+                                        self.parameters_df["storage_sizing_constant"])
+        effective_component_sizes[1] = (self.assets_dictionary["Discharging"].component_size() * 
+                                        self.parameters_df["discharging_sizing_constant"] / 
+                                        self.parameters_df["storage_sizing_constant"])
+        effective_component_sizes[2] = self.assets_dictionary["Storage"].component_size()
+        asset_size = effective_component_sizes.max()
+        return asset_size
     
     
     
