@@ -101,6 +101,8 @@ class Network_STEVFNs:
         return
     
     def build(self, network_structure_df):
+        #Set System Structure#
+        self.system_structure_df = network_structure_df[["Asset_Number", "Asset_Class", "Location_1", "Location_2"]]
         #Generate Assets#
         for counter1 in range(len(network_structure_df)):
             self.generate_asset(network_structure_df.iloc[counter1])
