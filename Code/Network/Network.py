@@ -160,7 +160,9 @@ class Network_STEVFNs:
             asset.plot_asset_usage()
         return
     
-    def asset_list_by_loc(self):
-        # Returns a dataframe of assets by location #
-        assets_df = pd.DataFrame(columns = ["Name", "Size", "Cost", "Loc_1", "Loc_2"])
-        return
+    def get_asset_number_by_locations(self, loc_1, loc_2):
+        # Returns list of Asset_Number of assets at the specific loc_1 and loc_2 #
+        con_1 = self.system_structure_df["Location_1"] == loc_1
+        con_2 = self.system_structure_df["Location_2"] == loc_2
+        t_con = con_1 & con_2
+        return list(self.system_structure_df[t_con]["Asset_Number"])
