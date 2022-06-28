@@ -11,6 +11,7 @@ Created on Thu Nov  4 10:19:15 2021
 import os
 import pandas as pd
 import cvxpy as cp
+import numpy as np
 from . import Node_STEVFNs
 from ..Assets.Assets_Dictionary import ASSET_DICT
 from ..Plotting import bar_chart_artist
@@ -142,7 +143,7 @@ class Network_STEVFNs:
             asset_sizes_dict.update(asset.get_asset_sizes())
         return asset_sizes_dict
     
-    def plot_asset_sizes(self):
+    def plot_asset_sizes2(self):
         # Make Bar Chart of Asset Sizes #
         my_artist = bar_chart_artist()
         my_artist.add_group("Base")
@@ -166,3 +167,60 @@ class Network_STEVFNs:
         con_2 = self.system_structure_df["Location_2"] == loc_2
         t_con = con_1 & con_2
         return list(self.system_structure_df[t_con]["Asset_Number"])
+    
+    def plot_asset_sizes(self, bar_width = 1.0, bar_spacing = 3.0):
+        # Plots the size of assets in the system #
+        # initialize bar data dictionary for plotting assets of a system#
+        bar_data_dict = dict()
+        asset_class_list = np.sort(self.system_structure_df["Asset_Class"].unique())
+        for counter1 in range(len(asset_class_list)):
+            bar_data = dict({
+                "x" : [],
+                "height" : [],
+                })
+            bar_data_dict.update({
+                asset_class_list[counter1] : bar_data
+                })
+        # Initialize x ticks dictionary
+        x_ticks_data_dict = dict({
+            "ticks" : [],
+            "labels" : []
+            })
+        
+        #fill bar data dictionary
+        loc_1_array = np.sort(self.system_structure_df["Location_1"].unique())
+        x_current = 0.0
+        for counter1 in range(len(loc_1_array)):
+            loc_1 = loc_1_array[counter1]
+            con1 = self.system_structure_df["Location_1"] == loc_1
+            t_df1 = self.system_structure_df[con1]
+            loc_2_array = np.sort(t_df1["Location_2"].unique())
+            for counter2 in range(len(loc_2_array)):
+                loc_2 = loc_2_array[counter2]
+                con2 = t_df1["Location_2"] == loc_2
+                t_df2 = t_df1[con2]
+                #add entry to x_ticks
+                x_ticks_data_dict["labels"] += ["(" + str(loc_1) + "," + str(loc_2) + ")"]
+                x_ticks_data_dict["ticks"] += [x_current + t_df2.shape[0] * bar_width / 2]
+                for counter3 in range(t_df2.shape[0]):
+                    asset_data = t_df2.iloc[counter3]
+                    #add x location of asset in bar_data
+                    bar_data_dict[asset_data["Asset_Class"]]["x"] += [x_current + bar_width/2]
+                    #add size of asset in bar_data
+                    asset_number = asset_data["Asset_Number"]
+                    asset_size = self.assets[asset_number].asset_size()
+                    bar_data_dict[asset_data["Asset_Class"]]["height"] += [asset_size]
+                    #move to next asset
+                    x_current += bar_width
+                #move to next location
+                x_current += bar_spacing
+        
+        #Make a bar chart artist and plot
+        my_artist = bar_chart_artist()
+        my_artist.bar_data_dict = bar_data_dict
+        my_artist.x_ticks_data_dict = x_ticks_data_dict
+        my_artist.plot(bar_width = bar_width, bar_spacing = bar_spacing)
+        return
+    
+        
+        
