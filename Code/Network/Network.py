@@ -170,9 +170,23 @@ class Network_STEVFNs:
     
     def plot_asset_sizes(self, bar_width = 1.0, bar_spacing = 3.0):
         # Plots the size of assets in the system #
+        
+        # Find maximum asset size so that we can remove assets that are too small, i.e. size zero.
+        og_df = self.system_structure_df.copy()
+        asset_sizes_array = np.zeros(og_df.shape[0])
+        for counter1 in range(len(asset_sizes_array)):
+            asset_sizes_array[counter1] = self.assets[counter1].asset_size()
+        og_df["Asset_Size"] = asset_sizes_array
+        max_asset_size = np.max(asset_sizes_array)
+        # Set minimum asset size to plot
+        min_asset_size = max_asset_size * 1E-2
+        # Remove all assets that are too small
+        con1 = og_df["Asset_Size"] >= min_asset_size
+        og_df = og_df[con1]
+        
         # initialize bar data dictionary for plotting assets of a system#
         bar_data_dict = dict()
-        asset_class_list = np.sort(self.system_structure_df["Asset_Class"].unique())
+        asset_class_list = np.sort(og_df["Asset_Class"].unique())
         for counter1 in range(len(asset_class_list)):
             bar_data = dict({
                 "x" : [],
@@ -187,31 +201,39 @@ class Network_STEVFNs:
             "labels" : []
             })
         
+        
         #fill bar data dictionary
-        loc_1_array = np.sort(self.system_structure_df["Location_1"].unique())
+        loc_1_array = np.sort(og_df["Location_1"].unique())
         x_current = 0.0
         for counter1 in range(len(loc_1_array)):
             loc_1 = loc_1_array[counter1]
-            con1 = self.system_structure_df["Location_1"] == loc_1
-            t_df1 = self.system_structure_df[con1]
+            con1 = og_df["Location_1"] == loc_1
+            t_df1 = og_df[con1]
             loc_2_array = np.sort(t_df1["Location_2"].unique())
             for counter2 in range(len(loc_2_array)):
                 loc_2 = loc_2_array[counter2]
                 con2 = t_df1["Location_2"] == loc_2
                 t_df2 = t_df1[con2]
-                #add entry to x_ticks
-                x_ticks_data_dict["labels"] += ["(" + str(loc_1) + "," + str(loc_2) + ")"]
-                x_ticks_data_dict["ticks"] += [x_current + t_df2.shape[0] * bar_width / 2]
+                x_tick_0 = x_current
                 for counter3 in range(t_df2.shape[0]):
                     asset_data = t_df2.iloc[counter3]
-                    #add x location of asset in bar_data
-                    bar_data_dict[asset_data["Asset_Class"]]["x"] += [x_current + bar_width/2]
                     #add size of asset in bar_data
                     asset_number = asset_data["Asset_Number"]
                     asset_size = self.assets[asset_number].asset_size()
+                    # check if asset is too small
+                    if asset_size < min_asset_size:
+                        continue
                     bar_data_dict[asset_data["Asset_Class"]]["height"] += [asset_size]
+                    #add x location of asset in bar_data
+                    bar_data_dict[asset_data["Asset_Class"]]["x"] += [x_current + bar_width/2]
                     #move to next asset
                     x_current += bar_width
+                #check if any asset was added to that location pair
+                if x_current == x_tick_0:
+                    continue
+                #add entry to x_ticks
+                x_ticks_data_dict["labels"] += ["(" + str(loc_1) + "," + str(loc_2) + ")"]
+                x_ticks_data_dict["ticks"] += [(x_tick_0 + x_current)/2]
                 #move to next location
                 x_current += bar_spacing
         

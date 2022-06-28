@@ -177,7 +177,7 @@ class bar_chart_artist:
             self.ax.set_title(self.title)
         self.ax.set_xticks(self.x_ticks_data_dict["ticks"])
         self.ax.set_xticklabels(self.x_ticks_data_dict["labels"])
-        self.ax.set_ylabel("Size of Assets")
+        self.ax.set_ylabel("Size of Assets (GWh)")
         self.ax.legend(ncol = 2)
         self.fig.tight_layout()
         plt.show()
