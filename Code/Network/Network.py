@@ -179,7 +179,7 @@ class Network_STEVFNs:
         og_df["Asset_Size"] = asset_sizes_array
         max_asset_size = np.max(asset_sizes_array)
         # Set minimum asset size to plot
-        min_asset_size = max_asset_size * 1E-2
+        min_asset_size = max_asset_size * 1E-3
         # Remove all assets that are too small
         con1 = og_df["Asset_Size"] >= min_asset_size
         og_df = og_df[con1]
