@@ -201,10 +201,43 @@ class Network_STEVFNs:
             "labels" : []
             })
         
-        
-        #fill bar data dictionary
+        #fill bar data dictionary for assets at a location i.e. loc_1 = loc_2
         loc_1_array = np.sort(og_df["Location_1"].unique())
         x_current = 0.0
+        
+        for counter1 in range(len(loc_1_array)):
+            loc_1 = loc_1_array[counter1]
+            loc_2 = loc_1
+            con1 = og_df["Location_1"] == loc_1
+            t_df1 = og_df[con1]
+            con2 = t_df1["Location_1"] == loc_2
+            t_df2 = t_df1[con2]
+            x_tick_0 = x_current
+            for counter2 in range(t_df2.shape[0]):
+                asset_data = t_df2.iloc[counter2]
+                #add size of asset in bar_data
+                asset_number = asset_data["Asset_Number"]
+                asset_size = self.assets[asset_number].asset_size()
+                # check if asset is too small
+                if asset_size < min_asset_size:
+                    continue
+                bar_data_dict[asset_data["Asset_Class"]]["height"] += [asset_size]
+                #add x location of asset in bar_data
+                bar_data_dict[asset_data["Asset_Class"]]["x"] += [x_current + bar_width/2]
+                #move to next asset
+                x_current += bar_width
+            #check if any asset was added to that location pair
+            if x_current == x_tick_0:
+                continue
+            #add entry to x_ticks
+            x_ticks_data_dict["labels"] += ["(" + str(loc_1) + ")"]
+            x_ticks_data_dict["ticks"] += [(x_tick_0 + x_current)/2]
+            #move to next location
+            x_current += bar_spacing
+        
+        
+        #fill bar data dictionary for assets between locations
+        
         for counter1 in range(len(loc_1_array)):
             loc_1 = loc_1_array[counter1]
             con1 = og_df["Location_1"] == loc_1
@@ -212,6 +245,9 @@ class Network_STEVFNs:
             loc_2_array = np.sort(t_df1["Location_2"].unique())
             for counter2 in range(len(loc_2_array)):
                 loc_2 = loc_2_array[counter2]
+                #check if asset is between locations
+                if loc_2 == loc_1:
+                    continue
                 con2 = t_df1["Location_2"] == loc_2
                 t_df2 = t_df1[con2]
                 x_tick_0 = x_current
