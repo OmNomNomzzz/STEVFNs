@@ -266,6 +266,8 @@ class Network_STEVFNs:
         my_artist = bar_chart_artist()
         my_artist.bar_data_dict = bar_data_dict
         my_artist.x_ticks_data_dict = x_ticks_data_dict
+        my_artist.ylabel = "Asset Size (GWh)"
+        my_artist.title = "Size of Assets in the System by Location and Location Pair"
         my_artist.plot(bar_width = bar_width, bar_spacing = bar_spacing)
         return
     
@@ -378,6 +380,8 @@ class Network_STEVFNs:
         my_artist = bar_chart_artist()
         my_artist.bar_data_dict = bar_data_dict
         my_artist.x_ticks_data_dict = x_ticks_data_dict
+        my_artist.ylabel = "Asset Cost (Billion USD)"
+        my_artist.title = "Cost of Assets in the System by Location and Location Pair"
         my_artist.plot(bar_width = bar_width, bar_spacing = bar_spacing)
         return
         

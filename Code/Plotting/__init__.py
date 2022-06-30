@@ -153,11 +153,12 @@ class bar_chart_artist:
                                 "ticks" : [],
                                 "labels" : []
                                 })
+        self.ylabel = ""
         if title != None:
             self.title = title
         return
     
-    def plot(self, bar_width = 1.0, bar_spacing = 3.0, show =1, show_legend = 1):
+    def plot(self, bar_width = 1.0, bar_spacing = 3.0):
         if not(hasattr(self, "fig")) or not(hasattr(self, "ax")):
             self.fig, self.ax = plt.subplots()
         #add bar charts
@@ -177,7 +178,8 @@ class bar_chart_artist:
             self.ax.set_title(self.title)
         self.ax.set_xticks(self.x_ticks_data_dict["ticks"])
         self.ax.set_xticklabels(self.x_ticks_data_dict["labels"])
-        self.ax.set_ylabel("Size of Assets (GWh)")
+        # self.ax.set_ylabel("Size of Assets (GWh)")
+        self.ax.set_ylabel(self.ylabel)
         self.ax.legend(ncol = 2)
         self.fig.tight_layout()
         plt.show()
