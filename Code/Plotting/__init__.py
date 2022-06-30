@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 ####### Define Classes #######
 
 
-class stackplot_artist:
+class stackplot_artist2:
     """Class that takes assets and draws a stackplot """
     def __init__(self):
         self.flows_dictionary = dict()
@@ -183,4 +183,21 @@ class bar_chart_artist:
         self.ax.legend(ncol = 2)
         self.fig.tight_layout()
         plt.show()
+        return
+
+class stackplot_artist:
+    """Class that takes assets and draws a stackplot """
+    def __init__(self):
+        self.flows_dictionary = dict()
+        return
+    
+    def plot(self, show = 1):
+        if not(hasattr(self, "fig")) or not(hasattr(self, "ax")):
+            self.fig, self.ax = plt.subplots()
+        if not(hasattr(self, "times")):
+            self.times = np.arange(self.flows_dictionary[list(self.flows_dictionary)[0]].size)
+        self.ax.stackplot(self.times, self.flows_dictionary.values(), labels = self.flows_dictionary.keys())
+        self.ax.legend()
+        if show == 1:
+            plt.show()
         return

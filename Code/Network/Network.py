@@ -15,6 +15,7 @@ import numpy as np
 from . import Node_STEVFNs
 from ..Assets.Assets_Dictionary import ASSET_DICT
 from ..Plotting import bar_chart_artist
+from ..Plotting import stackplot_artist
 
 class Network_STEVFNs:
     """This is the NETWORK class of STEVFNs"""
@@ -384,5 +385,41 @@ class Network_STEVFNs:
         my_artist.title = "Cost of Assets in the System by Location and Location Pair"
         my_artist.plot(bar_width = bar_width, bar_spacing = bar_spacing)
         return
+    
+    def plot_SG_EL_output_flows(self):
+        #Plots the EL flows for loc_0, i.e. Singapore. This is only for SG case study for my DPhil Thesis
+        #Initialize dictionary to store flows and times
+        flows_dictionary = dict()
+        times_dictionary = dict()
         
+        #Add flows and times for EL Transport assets
+        con1 = self.system_structure_df["Location_1"] == 0
+        tdf1 = self.system_structure_df[con1]
+        con2 = tdf1["Asset_Class"] == "EL_Transport"
+        tdf2 = tdf1[con2]
+        for counter1 in range(3):
+            component_name = "EL_Transport_" + str(counter1 + 1)
+            con3 = tdf2["Location_2"] == counter1 + 1
+            asset_number = tdf2[con3]["Asset_Number"].iloc[0]
+            total_component_flows = self.assets[asset_number].flows.value
+            total_length = len(total_component_flows)
+            component_flows = total_component_flows[:int(total_length/2)]
+            flows_dictionary[component_name] = component_flows
+            component_times = self.assets[asset_number].source_node_times
+            times_dictionary[component_name] = component_times
+            
         
+        #Add flows and times for EL demand
+        component_name = "EL_Demand"
+        con2 = tdf1["Asset_Class"] == "EL_Demand"
+        asset_number = tdf1[con2]["Asset_Number"].iloc[0]
+        component_flows = self.assets[asset_number].flows.value
+        flows_dictionary[component_name] = component_flows
+        component_times = self.assets[asset_number].node_times
+        times_dictionary[component_name] = component_times
+        
+        my_artist = stackplot_artist()
+        my_artist.flows_dictionary = flows_dictionary
+        my_artist.times = times_dictionary["EL_Demand"]
+        my_artist.plot()
+        return
