@@ -37,7 +37,7 @@ class stackplot_artist:
         return
 
 
-class bar_chart_artist:
+class bar_chart_artist2:
     """Class that takes assets and draws a bar graph"""
     def __init__(self, title = None):
         self.bars_dictionary = dict()
@@ -144,3 +144,41 @@ class multiple_artists:
         plt.show()
         return
 
+
+class bar_chart_artist:
+    """Class that takes assets and draws a bar graph"""
+    def __init__(self, title = None):
+        self.bar_data_dict = dict()
+        self.x_ticks_data_dict = dict({
+                                "ticks" : [],
+                                "labels" : []
+                                })
+        if title != None:
+            self.title = title
+        return
+    
+    def plot(self, bar_width = 1.0, bar_spacing = 3.0, show =1, show_legend = 1):
+        if not(hasattr(self, "fig")) or not(hasattr(self, "ax")):
+            self.fig, self.ax = plt.subplots()
+        #add bar charts
+        bar_charts_list = []
+        bar_names = list(self.bar_data_dict.keys())
+        for counter1 in range(len(bar_names)):
+            bar_name = bar_names[counter1]
+            bar_data = self.bar_data_dict[bar_name]
+            bar_charts_list += [self.ax.bar(
+                            x = bar_data["x"],
+                            height = bar_data["height"],
+                            width = bar_width,
+                            label = bar_name
+                            )]
+        ### add some labels ###
+        if hasattr(self, "title"):
+            self.ax.set_title(self.title)
+        self.ax.set_xticks(self.x_ticks_data_dict["ticks"])
+        self.ax.set_xticklabels(self.x_ticks_data_dict["labels"])
+        self.ax.set_ylabel("Size of Assets (GWh)")
+        self.ax.legend(ncol = 2)
+        self.fig.tight_layout()
+        plt.show()
+        return
