@@ -143,17 +143,6 @@ class Network_STEVFNs:
             asset_sizes_dict.update(asset.get_asset_sizes())
         return asset_sizes_dict
     
-    def plot_asset_sizes2(self):
-        # Make Bar Chart of Asset Sizes #
-        my_artist = bar_chart_artist()
-        my_artist.add_group("Base")
-        for counter1 in range(len(self.assets)):
-            asset = self.assets[counter1]
-            asset_name = str(counter1) + r"_" + asset.asset_name
-            my_artist.add_asset(asset_name, asset)
-        my_artist.plot()
-        return
-    
     def plot_asset_usage(self):
         # Plot the flows in each asset #
         for counter1 in range(len(self.assets)):
