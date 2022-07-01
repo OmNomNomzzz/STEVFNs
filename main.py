@@ -101,5 +101,7 @@ print("Total cost to satisfy all demand = ", my_network.problem.value, " Billion
 my_network.plot_asset_sizes()
 my_network.plot_asset_costs()
 
-
+my_network.plot_SG_EL_output_flows()
+my_network.plot_SG_EL_input_flows()
+my_network.plot_single_RE_EL_output_flows(1)
 
