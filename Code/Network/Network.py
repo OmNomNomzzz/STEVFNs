@@ -585,3 +585,9 @@ class Network_STEVFNs:
         my_artist.times = times_dictionary["BESS_Charging"]
         my_artist.plot()
         return
+    
+    def plot_RE_EL_output_flows(self):
+        for counter1 in range(3):
+            self.plot_single_RE_EL_output_flows(counter1+1)
+        return
+        
