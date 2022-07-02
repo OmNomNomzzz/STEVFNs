@@ -7,7 +7,7 @@ Created on Sat Jul  2 17:41:01 2022
 
 # from __init__.py import *
 import numpy as np
-from ..Plotting import *
+from ..Plotting import bar_chart_artist, stackplot_artist
 
 
 
