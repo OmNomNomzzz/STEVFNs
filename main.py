@@ -76,13 +76,12 @@ end_time = time.time()
 ### Plot Results ############
 print("Time taken to solve problem = ", end_time - start_time, "s")
 print("Total cost to satisfy all demand = ", my_network.problem.value, " Billion USD")
-# my_network.print_asset_sizes()
 DPhil_Plotting.plot_asset_sizes(my_network)
 DPhil_Plotting.plot_asset_costs(my_network)
-my_network.plot_SG_EL_output_flows()
-my_network.plot_SG_EL_input_flows()
-my_network.plot_RE_EL_output_flows()
-my_network.plot_RE_EL_input_flows()
+DPhil_Plotting.plot_SG_EL_output_flows(my_network)
+DPhil_Plotting.plot_SG_EL_input_flows(my_network)
+DPhil_Plotting.plot_RE_EL_output_flows(my_network)
+DPhil_Plotting.plot_RE_EL_input_flows(my_network)
 
 
 ### Update Network Parameters ###
@@ -106,12 +105,11 @@ end_time = time.time()
 ### Plot Results ############
 print("Time taken to resolve problem = ", end_time - start_time, "s")
 print("Total cost to satisfy all demand = ", my_network.problem.value, " Billion USD")
-# my_network.print_asset_sizes()
 DPhil_Plotting.plot_asset_sizes(my_network)
 DPhil_Plotting.plot_asset_costs(my_network)
-my_network.plot_SG_EL_output_flows()
-my_network.plot_SG_EL_input_flows()
-my_network.plot_RE_EL_output_flows()
-my_network.plot_RE_EL_input_flows()
+DPhil_Plotting.plot_SG_EL_output_flows(my_network)
+DPhil_Plotting.plot_SG_EL_input_flows(my_network)
+DPhil_Plotting.plot_RE_EL_output_flows(my_network)
+DPhil_Plotting.plot_RE_EL_input_flows(my_network)
 
 
