@@ -187,8 +187,13 @@ class bar_chart_artist:
 
 class stackplot_artist:
     """Class that takes assets and draws a stackplot """
-    def __init__(self):
+    def __init__(self, title=None):
         self.flows_dictionary = dict()
+        self.ylabel = ""
+        self.xlabel = ""
+        self.xticks = None
+        if title != None:
+            self.title = title
         return
     
     def plot(self, show = 1):
@@ -197,6 +202,13 @@ class stackplot_artist:
         if not(hasattr(self, "times")):
             self.times = np.arange(self.flows_dictionary[list(self.flows_dictionary)[0]].size)
         self.ax.stackplot(self.times, self.flows_dictionary.values(), labels = self.flows_dictionary.keys())
+        ### add some labels ###
+        if hasattr(self, "title"):
+            self.ax.set_title(self.title)
+        self.ax.set_ylabel(self.ylabel)
+        self.ax.set_xlabel(self.xlabel)
+        if self.xticks != None:
+            self.ax.set_xticks(self.xticks)
         self.ax.legend()
         if show == 1:
             plt.show()

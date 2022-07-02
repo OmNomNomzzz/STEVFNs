@@ -452,7 +452,10 @@ class Network_STEVFNs:
         
         my_artist = stackplot_artist()
         my_artist.flows_dictionary = flows_dictionary
-        my_artist.times = times_dictionary["EL_Demand"]
+        my_artist.times = times_dictionary["EL_Demand"]/24
+        my_artist.ylabel = "Electricity Flow (GWh)"
+        my_artist.xlabel = "Time (Days)"
+        my_artist.title = "Flow of Electrical Energy out of EL node at Singapore"
         my_artist.plot()
         return
     
@@ -512,7 +515,10 @@ class Network_STEVFNs:
         
         my_artist = stackplot_artist()
         my_artist.flows_dictionary = flows_dictionary
-        my_artist.times = times_dictionary["BESS_Discharging"]
+        my_artist.times = times_dictionary["BESS_Discharging"]/24
+        my_artist.ylabel = "Electricity Flow (GWh)"
+        my_artist.xlabel = "Time (Days)"
+        my_artist.title = "Flow of Electrical Energy into EL node at Singapore"
         my_artist.plot()
         return
     
@@ -582,7 +588,10 @@ class Network_STEVFNs:
         
         my_artist = stackplot_artist()
         my_artist.flows_dictionary = flows_dictionary
-        my_artist.times = times_dictionary["BESS_Charging"]
+        my_artist.times = times_dictionary["BESS_Charging"]/24
+        my_artist.ylabel = "Electricity Flow (GWh)"
+        my_artist.xlabel = "Time (Days)"
+        my_artist.title = "Flow of Electrical Energy out of EL node at RE Location " + str(RE_loc)
         my_artist.plot()
         return
     
@@ -687,7 +696,10 @@ class Network_STEVFNs:
         
         my_artist = stackplot_artist()
         my_artist.flows_dictionary = flows_dictionary
-        my_artist.times = times_dictionary["BESS_Disharging"]
+        my_artist.times = times_dictionary["BESS_Disharging"]/24
+        my_artist.ylabel = "Electricity Flow (GWh)"
+        my_artist.xlabel = "Time (Days)"
+        my_artist.title = "Flow of Electrical Energy into EL node at RE Location " + str(RE_loc)
         my_artist.plot()
         return
     
