@@ -517,7 +517,7 @@ class Network_STEVFNs:
         return
     
     def plot_single_RE_EL_output_flows(self, RE_loc):
-        #Plots the EL flows for loc_0, i.e. Singapore. This is only for SG case study for my DPhil Thesis
+        #Plots the EL output flows for RE_loc. This is only for SG case study for my DPhil Thesis
         #Initialize dictionary to store flows and times
         flows_dictionary = dict()
         times_dictionary = dict()
@@ -587,12 +587,13 @@ class Network_STEVFNs:
         return
     
     def plot_RE_EL_output_flows(self):
+        #Plots the output EL flows for all RE locations. This is only for SG case study for my DPhil Thesis
         for counter1 in range(3):
             self.plot_single_RE_EL_output_flows(counter1+1)
         return
     
     def plot_single_RE_EL_input_flows(self, RE_loc):
-        #Plots the EL flows for loc_0, i.e. Singapore. This is only for SG case study for my DPhil Thesis
+        #Plots the input EL flows for RE_loc. This is only for SG case study for my DPhil Thesis
         #Initialize dictionary to store flows and times
         flows_dictionary = dict()
         times_dictionary = dict()
@@ -607,9 +608,11 @@ class Network_STEVFNs:
             con3 = tdf2["Location_1"] == counter1
             asset_number = tdf2[con3]["Asset_Number"].iloc[0]
             my_component = self.assets[asset_number]
-            total_component_flows = my_component.flows.value
+            total_component_flows = my_component.conversion_fun(
+                my_component.flows, 
+                my_component.conversion_fun_params).value
             total_length = len(total_component_flows)
-            component_flows = total_component_flows[int(total_length/2):]
+            component_flows = total_component_flows[:int(total_length/2)]
             flows_dictionary[component_name] = component_flows
             component_times = my_component.source_node_times
             times_dictionary[component_name] = component_times
@@ -624,39 +627,72 @@ class Network_STEVFNs:
             con3 = tdf2["Location_2"] == counter1 + RE_loc + 1
             asset_number = tdf2[con3]["Asset_Number"].iloc[0]
             my_component = self.assets[asset_number]
-            total_component_flows = my_component.flows.value
+            total_component_flows = my_component.conversion_fun(
+                my_component.flows, 
+                my_component.conversion_fun_params).value
             total_length = len(total_component_flows)
-            component_flows = total_component_flows[:int(total_length/2)]
+            component_flows = total_component_flows[int(total_length/2):]
             flows_dictionary[component_name] = component_flows
             component_times = my_component.source_node_times
             times_dictionary[component_name] = component_times
         
         
-        #Add flows and times for BESS Charging
+        #Add flows and times for BESS Discharging
         asset_name = "BESS"
-        component_name = "BESS_Charging"
+        component_name = "BESS_Disharging"
         con2 = tdf1["Asset_Class"] == asset_name
         asset_number = tdf1[con2]["Asset_Number"].iloc[0]
-        my_component = self.assets[asset_number]
-        component_flows = my_component.assets_dictionary["Charging"].flows.value
-        flows_dictionary[component_name] = component_flows
-        component_times = my_component.assets_dictionary["Charging"].source_node_times
-        times_dictionary[component_name] = component_times
-        
-        
-        #Add flows and times for EL to H2
-        component_name = "EL_to_H2"
-        con2 = tdf1["Asset_Class"] == component_name
-        asset_number = tdf1[con2]["Asset_Number"].iloc[0]
-        my_component = self.assets[asset_number]
-        component_flows = my_component.flows.value
+        my_component = self.assets[asset_number].assets_dictionary["Discharging"]
+        component_flows = my_component.conversion_fun(
+            my_component.flows, 
+            my_component.conversion_fun_params).value
         flows_dictionary[component_name] = component_flows
         component_times = my_component.source_node_times
         times_dictionary[component_name] = component_times
         
         
+        #Add flows and times for H2 to EL
+        component_name = "H2_to_EL"
+        con2 = tdf1["Asset_Class"] == component_name
+        asset_number = tdf1[con2]["Asset_Number"].iloc[0]
+        my_component = self.assets[asset_number]
+        component_flows = my_component.conversion_fun(
+            my_component.flows, 
+            my_component.conversion_fun_params).value
+        flows_dictionary[component_name] = component_flows
+        component_times = my_component.source_node_times
+        times_dictionary[component_name] = component_times
+        
+        
+        ### Add flows and times for RE(Solar) ####
+        component_name = "RE(Solar)"
+        con2 = tdf1["Asset_Class"] == "RE"
+        asset_number = tdf1[con2]["Asset_Number"].iloc[0]
+        my_component = self.assets[asset_number]
+        component_flows = (my_component.flows * my_component.gen_profile).value
+        flows_dictionary[component_name] = component_flows
+        component_times = my_component.node_times
+        times_dictionary[component_name] = component_times
+        
+        
+        ### Add flows and times for RE(Solar) ####
+        component_name = "RE(Wind)"
+        asset_number = tdf1[con2]["Asset_Number"].iloc[1]
+        my_component = self.assets[asset_number]
+        component_flows = (my_component.flows * my_component.gen_profile).value
+        flows_dictionary[component_name] = component_flows
+        component_times = my_component.node_times
+        times_dictionary[component_name] = component_times
+        
+        
         my_artist = stackplot_artist()
         my_artist.flows_dictionary = flows_dictionary
-        my_artist.times = times_dictionary["BESS_Charging"]
+        my_artist.times = times_dictionary["BESS_Disharging"]
         my_artist.plot()
+        return
+    
+    def plot_RE_EL_input_flows(self):
+        #Plots the input EL flows for all RE locations. This is only for SG case study for my DPhil Thesis
+        for counter1 in range(3):
+            self.plot_single_RE_EL_input_flows(counter1 + 1)
         return

@@ -81,6 +81,7 @@ my_network.plot_asset_costs()
 my_network.plot_SG_EL_output_flows()
 my_network.plot_SG_EL_input_flows()
 my_network.plot_RE_EL_output_flows()
+my_network.plot_RE_EL_input_flows()
 
 
 ### Update Network Parameters ###
@@ -107,9 +108,9 @@ print("Total cost to satisfy all demand = ", my_network.problem.value, " Billion
 # my_network.print_asset_sizes()
 my_network.plot_asset_sizes()
 my_network.plot_asset_costs()
-
 my_network.plot_SG_EL_output_flows()
 my_network.plot_SG_EL_input_flows()
 my_network.plot_RE_EL_output_flows()
+my_network.plot_RE_EL_input_flows()
 
 
