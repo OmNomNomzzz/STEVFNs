@@ -551,7 +551,7 @@ class Network_STEVFNs:
             my_component = self.assets[asset_number]
             total_component_flows = my_component.flows.value
             total_length = len(total_component_flows)
-            component_flows = total_component_flows[int(total_length/2):]
+            component_flows = total_component_flows[:int(total_length/2)]
             flows_dictionary[component_name] = component_flows
             component_times = my_component.source_node_times
             times_dictionary[component_name] = component_times
@@ -590,4 +590,73 @@ class Network_STEVFNs:
         for counter1 in range(3):
             self.plot_single_RE_EL_output_flows(counter1+1)
         return
+    
+    def plot_single_RE_EL_input_flows(self, RE_loc):
+        #Plots the EL flows for loc_0, i.e. Singapore. This is only for SG case study for my DPhil Thesis
+        #Initialize dictionary to store flows and times
+        flows_dictionary = dict()
+        times_dictionary = dict()
         
+        #Add flows and times for EL Transport for locations less than RE_loc
+        con1 = self.system_structure_df["Location_2"] == RE_loc
+        tdf1 = self.system_structure_df[con1]
+        con2 = tdf1["Asset_Class"] == "EL_Transport"
+        tdf2 = tdf1[con2]
+        for counter1 in range(RE_loc):
+            component_name = "EL_Transport_" + str(counter1)
+            con3 = tdf2["Location_1"] == counter1
+            asset_number = tdf2[con3]["Asset_Number"].iloc[0]
+            my_component = self.assets[asset_number]
+            total_component_flows = my_component.flows.value
+            total_length = len(total_component_flows)
+            component_flows = total_component_flows[int(total_length/2):]
+            flows_dictionary[component_name] = component_flows
+            component_times = my_component.source_node_times
+            times_dictionary[component_name] = component_times
+        
+        #Add flows and times for EL Transport for locations more than RE_loc
+        con1 = self.system_structure_df["Location_1"] == RE_loc
+        tdf1 = self.system_structure_df[con1]
+        con2 = tdf1["Asset_Class"] == "EL_Transport"
+        tdf2 = tdf1[con2]
+        for counter1 in range(3-RE_loc):
+            component_name = "EL_Transport_" + str(counter1 + RE_loc + 1)
+            con3 = tdf2["Location_2"] == counter1 + RE_loc + 1
+            asset_number = tdf2[con3]["Asset_Number"].iloc[0]
+            my_component = self.assets[asset_number]
+            total_component_flows = my_component.flows.value
+            total_length = len(total_component_flows)
+            component_flows = total_component_flows[:int(total_length/2)]
+            flows_dictionary[component_name] = component_flows
+            component_times = my_component.source_node_times
+            times_dictionary[component_name] = component_times
+        
+        
+        #Add flows and times for BESS Charging
+        asset_name = "BESS"
+        component_name = "BESS_Charging"
+        con2 = tdf1["Asset_Class"] == asset_name
+        asset_number = tdf1[con2]["Asset_Number"].iloc[0]
+        my_component = self.assets[asset_number]
+        component_flows = my_component.assets_dictionary["Charging"].flows.value
+        flows_dictionary[component_name] = component_flows
+        component_times = my_component.assets_dictionary["Charging"].source_node_times
+        times_dictionary[component_name] = component_times
+        
+        
+        #Add flows and times for EL to H2
+        component_name = "EL_to_H2"
+        con2 = tdf1["Asset_Class"] == component_name
+        asset_number = tdf1[con2]["Asset_Number"].iloc[0]
+        my_component = self.assets[asset_number]
+        component_flows = my_component.flows.value
+        flows_dictionary[component_name] = component_flows
+        component_times = my_component.source_node_times
+        times_dictionary[component_name] = component_times
+        
+        
+        my_artist = stackplot_artist()
+        my_artist.flows_dictionary = flows_dictionary
+        my_artist.times = times_dictionary["BESS_Charging"]
+        my_artist.plot()
+        return
