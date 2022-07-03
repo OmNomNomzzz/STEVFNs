@@ -38,8 +38,8 @@ class H2_Storage_Asset(Asset_STEVFNs):
         super().define_structure(asset_structure)
         self.target_node_location = self.source_node_location
         self.flows = cp.Variable(self.number_of_edges, nonneg = True)
-        self.target_node_times[0] = self.source_node_times[-1]
-        self.target_node_times[1:] = self.source_node_times[:-1]
+        self.target_node_times[-1] = self.source_node_times[0]
+        self.target_node_times[:-1] = self.source_node_times[1:]
         return
     
     def _update_parameters(self):
