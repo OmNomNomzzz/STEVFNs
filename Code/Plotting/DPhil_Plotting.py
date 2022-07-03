@@ -581,7 +581,7 @@ def plot_SG_H2_output_flows(my_network):
     flows_dictionary = dict()
     times_dictionary = dict()
     
-    #Add flows and times for EL Transport assets
+    
     con1 = my_network.system_structure_df["Location_1"] == 0
     tdf1 = my_network.system_structure_df[con1]
     
@@ -619,6 +619,7 @@ def plot_SG_H2_output_flows(my_network):
     times_dictionary[component_name] = component_times
     
     
+    #Add flows and times for EL Transport assets
     con2 = tdf1["Asset_Class"] == "H2_Transport"
     tdf2 = tdf1[con2]
     for counter1 in range(3):
@@ -632,7 +633,7 @@ def plot_SG_H2_output_flows(my_network):
         component_times = my_component.source_node_times
         final_component_flows = np.zeros_like(flows_dictionary["H2_to_EL"])
         for counter2 in range(len(component_times)):
-            final_component_flows[component_times[counter2]] = component_flows[counter2]
+            final_component_flows[int(component_times[counter2])] = component_flows[counter2]
         flows_dictionary[component_name] = final_component_flows
         times_dictionary[component_name] = flows_dictionary["H2_to_EL"]
     
@@ -723,39 +724,9 @@ def plot_single_RE_H2_output_flows(my_network, RE_loc):
     flows_dictionary = dict()
     times_dictionary = dict()
     
-    #Add flows and times for EL Transport for locations less than RE_loc
-    # con1 = my_network.system_structure_df["Location_2"] == RE_loc
-    # tdf1 = my_network.system_structure_df[con1]
-    # con2 = tdf1["Asset_Class"] == "H2_Transport"
-    # tdf2 = tdf1[con2]
-    # for counter1 in range(RE_loc):
-    #     component_name = "H2_Transport_" + str(counter1)
-    #     con3 = tdf2["Location_1"] == counter1
-    #     asset_number = tdf2[con3]["Asset_Number"].iloc[0]
-    #     my_component = my_network.assets[asset_number]
-    #     total_component_flows = my_component.flows.value
-    #     total_length = len(total_component_flows)
-    #     component_flows = total_component_flows[int(total_length/2):]
-    #     flows_dictionary[component_name] = component_flows
-    #     component_times = my_component.source_node_times
-    #     times_dictionary[component_name] = component_times
     
-    # #Add flows and times for EL Transport for locations more than RE_loc
     con1 = my_network.system_structure_df["Location_1"] == RE_loc
     tdf1 = my_network.system_structure_df[con1]
-    # con2 = tdf1["Asset_Class"] == "H2_Transport"
-    # tdf2 = tdf1[con2]
-    # for counter1 in range(3-RE_loc):
-    #     component_name = "H2_Transport_" + str(counter1 + RE_loc + 1)
-    #     con3 = tdf2["Location_2"] == counter1 + RE_loc + 1
-    #     asset_number = tdf2[con3]["Asset_Number"].iloc[0]
-    #     my_component = my_network.assets[asset_number]
-    #     total_component_flows = my_component.flows.value
-    #     total_length = len(total_component_flows)
-    #     component_flows = total_component_flows[:int(total_length/2)]
-    #     flows_dictionary[component_name] = component_flows
-    #     component_times = my_component.source_node_times
-    #     times_dictionary[component_name] = component_times
     
     
     #Add flows and times for H2 to EL
@@ -780,6 +751,48 @@ def plot_single_RE_H2_output_flows(my_network, RE_loc):
     times_dictionary[component_name] = component_times
     
     
+    #Add flows and times for EL Transport for locations more than RE_loc
+    con1 = my_network.system_structure_df["Location_2"] == RE_loc
+    tdf1 = my_network.system_structure_df[con1]
+    con2 = tdf1["Asset_Class"] == "H2_Transport"
+    tdf2 = tdf1[con2]
+    for counter1 in range(RE_loc):
+        component_name = "H2_Transport_" + str(counter1)
+        con3 = tdf2["Location_1"] == counter1
+        asset_number = tdf2[con3]["Asset_Number"].iloc[0]
+        my_component = my_network.assets[asset_number]
+        total_component_flows = my_component.flows.value
+        total_length = len(total_component_flows)
+        component_flows = total_component_flows[int(total_length/2):]
+        component_times = my_component.source_node_times
+        final_component_flows = np.zeros_like(flows_dictionary["H2_to_EL"])
+        for counter2 in range(len(component_times)):
+            final_component_flows[int(component_times[counter2])] = component_flows[counter2]
+        flows_dictionary[component_name] = final_component_flows
+        times_dictionary[component_name] = flows_dictionary["H2_to_EL"]
+    
+    
+    #Add flows and times for EL Transport for locations more than RE_loc
+    con1 = my_network.system_structure_df["Location_1"] == RE_loc
+    tdf1 = my_network.system_structure_df[con1]
+    con2 = tdf1["Asset_Class"] == "H2_Transport"
+    tdf2 = tdf1[con2]
+    for counter1 in range(3-RE_loc):
+        component_name = "H2_Transport_" + str(counter1 + RE_loc + 1)
+        con3 = tdf2["Location_2"] == counter1 + RE_loc + 1
+        asset_number = tdf2[con3]["Asset_Number"].iloc[0]
+        my_component = my_network.assets[asset_number]
+        total_component_flows = my_component.flows.value
+        total_length = len(total_component_flows)
+        component_flows = total_component_flows[:int(total_length/2)]
+        component_times = my_component.source_node_times
+        final_component_flows = np.zeros_like(flows_dictionary["H2_to_EL"])
+        for counter2 in range(len(component_times)):
+            final_component_flows[int(component_times[counter2])] = component_flows[counter2]
+        flows_dictionary[component_name] = final_component_flows
+        times_dictionary[component_name] = flows_dictionary["H2_to_EL"]
+    
+    
     my_artist = stackplot_artist()
     my_artist.flows_dictionary = flows_dictionary
     my_artist.times = times_dictionary["H2_Storage"]/24
@@ -802,43 +815,9 @@ def plot_single_RE_H2_input_flows(my_network, RE_loc):
     flows_dictionary = dict()
     times_dictionary = dict()
     
-    #Add flows and times for EL Transport for locations less than RE_loc
-    # con1 = my_network.system_structure_df["Location_2"] == RE_loc
-    # tdf1 = my_network.system_structure_df[con1]
-    # con2 = tdf1["Asset_Class"] == "H2_Transport"
-    # tdf2 = tdf1[con2]
-    # for counter1 in range(RE_loc):
-    #     component_name = "H2_Transport_" + str(counter1)
-    #     con3 = tdf2["Location_1"] == counter1
-    #     asset_number = tdf2[con3]["Asset_Number"].iloc[0]
-    #     my_component = my_network.assets[asset_number]
-    #     total_component_flows = my_component.conversion_fun(
-    #         my_component.flows, 
-    #         my_component.conversion_fun_params).value
-    #     total_length = len(total_component_flows)
-    #     component_flows = total_component_flows[:int(total_length/2)]
-    #     flows_dictionary[component_name] = component_flows
-    #     component_times = my_component.source_node_times
-    #     times_dictionary[component_name] = component_times
     
-    # #Add flows and times for EL Transport for locations more than RE_loc
     con1 = my_network.system_structure_df["Location_1"] == RE_loc
     tdf1 = my_network.system_structure_df[con1]
-    # con2 = tdf1["Asset_Class"] == "H2_Transport"
-    # tdf2 = tdf1[con2]
-    # for counter1 in range(3-RE_loc):
-    #     component_name = "H2_Transport_" + str(counter1 + RE_loc + 1)
-    #     con3 = tdf2["Location_2"] == counter1 + RE_loc + 1
-    #     asset_number = tdf2[con3]["Asset_Number"].iloc[0]
-    #     my_component = my_network.assets[asset_number]
-    #     total_component_flows = my_component.conversion_fun(
-    #         my_component.flows, 
-    #         my_component.conversion_fun_params).value
-    #     total_length = len(total_component_flows)
-    #     component_flows = total_component_flows[int(total_length/2):]
-    #     flows_dictionary[component_name] = component_flows
-    #     component_times = my_component.source_node_times
-    #     times_dictionary[component_name] = component_times
     
     
     #Add flows and times for EL to H2
@@ -865,9 +844,55 @@ def plot_single_RE_H2_input_flows(my_network, RE_loc):
     component_flows = np.zeros_like(temp_flows)
     component_flows[1:] = temp_flows[:-1]
     component_flows[0] = temp_flows[-1]
-    flows_dictionary[component_name] = temp_flows
+    flows_dictionary[component_name] = component_flows
     component_times = my_network.assets[asset_number].source_node_times
     times_dictionary[component_name] = component_times
+    
+    
+    #Add flows and times for EL Transport for locations more than RE_loc
+    con1 = my_network.system_structure_df["Location_2"] == RE_loc
+    tdf1 = my_network.system_structure_df[con1]
+    con2 = tdf1["Asset_Class"] == "H2_Transport"
+    tdf2 = tdf1[con2]
+    for counter1 in range(RE_loc):
+        component_name = "H2_Transport_" + str(counter1)
+        con3 = tdf2["Location_1"] == counter1
+        asset_number = tdf2[con3]["Asset_Number"].iloc[0]
+        my_component = my_network.assets[asset_number]
+        total_component_flows = my_component.conversion_fun(
+            my_component.flows,
+            my_component.conversion_fun_params).value
+        total_length = len(total_component_flows)
+        component_flows = total_component_flows[:int(total_length/2)]
+        component_times = my_component.target_node_times
+        final_component_flows = np.zeros_like(flows_dictionary["H2_Storage"])
+        for counter2 in range(len(component_times)):
+            final_component_flows[int(component_times[counter2])] = component_flows[counter2]
+        flows_dictionary[component_name] = final_component_flows
+        times_dictionary[component_name] = flows_dictionary["H2_Storage"]
+    
+    
+    #Add flows and times for EL Transport for locations more than RE_loc
+    con1 = my_network.system_structure_df["Location_1"] == RE_loc
+    tdf1 = my_network.system_structure_df[con1]
+    con2 = tdf1["Asset_Class"] == "H2_Transport"
+    tdf2 = tdf1[con2]
+    for counter1 in range(3-RE_loc):
+        component_name = "H2_Transport_" + str(counter1 + RE_loc + 1)
+        con3 = tdf2["Location_2"] == counter1 + RE_loc + 1
+        asset_number = tdf2[con3]["Asset_Number"].iloc[0]
+        my_component = my_network.assets[asset_number]
+        total_component_flows = my_component.conversion_fun(
+            my_component.flows,
+            my_component.conversion_fun_params).value
+        total_length = len(total_component_flows)
+        component_flows = total_component_flows[int(total_length/2):]
+        component_times = my_component.target_node_times
+        final_component_flows = np.zeros_like(flows_dictionary["H2_Storage"])
+        for counter2 in range(len(component_times)):
+            final_component_flows[int(component_times[counter2])] = component_flows[counter2]
+        flows_dictionary[component_name] = final_component_flows
+        times_dictionary[component_name] = flows_dictionary["H2_Storage"]
     
     
     my_artist = stackplot_artist()
