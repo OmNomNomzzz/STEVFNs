@@ -121,8 +121,8 @@ class Storage_Asset(Asset_STEVFNs):
     def define_structure(self, asset_structure):
         super().define_structure(asset_structure)
         self.target_node_location = self.source_node_location
-        self.target_node_times[0] = self.source_node_times[-1]
-        self.target_node_times[1:] = self.source_node_times[:-1]
+        self.target_node_times[-1] = self.source_node_times[0]
+        self.target_node_times[:-1] = self.source_node_times[1:]
         self.flows = cp.Variable(self.number_of_edges, nonneg = True)
         return
     
