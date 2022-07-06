@@ -910,3 +910,16 @@ def plot_RE_H2_input_flows(my_network):
         plot_single_RE_H2_input_flows(my_network, counter1 + 1)
     return
 
+
+def plot_all(my_network):
+    plot_asset_sizes(my_network)
+    plot_asset_costs(my_network)
+    plot_SG_EL_input_flows(my_network)
+    plot_SG_EL_output_flows(my_network)
+    plot_RE_EL_input_flows(my_network)
+    plot_RE_EL_output_flows(my_network)
+    plot_SG_H2_input_flows(my_network)
+    plot_SG_H2_output_flows(my_network)
+    plot_RE_H2_input_flows(my_network)
+    plot_RE_H2_output_flows(my_network)
+    return
