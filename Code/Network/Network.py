@@ -37,7 +37,7 @@ class Network_STEVFNs:
         node_df = pd.Series([new_node], 
                             index = pd.MultiIndex.from_tuples([(node_location, node_type, node_time)], 
                                     names = ["location", "type", "time"]))
-        self.nodes_df = self.nodes_df.append(node_df)
+        self.nodes_df = pd.concat([self.nodes_df, node_df])
         return
     
     def extract_node(self, node_location, node_type, node_time):
