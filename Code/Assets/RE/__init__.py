@@ -68,7 +68,7 @@ class RE_Asset(Asset_STEVFNs):
         lon = np.int64(np.round((lon) / 0.625)) * 0.625
         lon = min(lon, 179.375)
         lon = max(lon, -180.0)
-        LON = "{:0.1f}".format(lon)
+        LON = str(lon)
         RE_TYPE = self.parameters_df["RE_type"]
         profile_folder = os.path.join(self.parameters_folder, "profiles", RE_TYPE, r"lat"+LAT)
         profile_filename = RE_TYPE + r"_lat" + LAT + r"_lon" + LON + r".csv"
