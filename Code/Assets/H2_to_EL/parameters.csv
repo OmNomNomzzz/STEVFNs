@@ -1,4 +1,3 @@
 Type,sizing_constant,sizing_constant_unit,usage_constant_1,usage_constant_1_unit,conversion_factor,conversion_factor_unit
-0,0.4,G$/(Gg/h),2.80E-05,G$/Gg,23.33,GWh/Gg
-1,0.24,G$/(Gg/h),3.20E-05,G$/Gg,20,GWh/Gg
-2,0.48,G$/(Gg/h),2.40E-05,G$/Gg,26.66,GWh/Gg
+0,2.385,G$/(Gg/h),0.00E+00,G$/Gg,3.11,GWh/Gg
+1,1.193,G$/(Gg/h),0.00E+00,G$/Gg,3.11,GWh/Gg

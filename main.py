@@ -79,7 +79,9 @@ for counter1 in range(len(scenario_folders_list)):
     ### Plot Results ############
     print("Time taken to solve problem = ", end_time - start_time, "s")
     print("Total cost to satisfy all demand = ", my_network.problem.value, " Billion USD")
-    DPhil_Plotting.plot_all(my_network)
+    # DPhil_Plotting.plot_all(my_network)
+    DPhil_Plotting.plot_asset_sizes(my_network)
+    DPhil_Plotting.plot_asset_costs(my_network)
     
 
 
