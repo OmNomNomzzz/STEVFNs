@@ -20,9 +20,10 @@ class H2_Transport_Asset(Asset_STEVFNs):
     
     @staticmethod
     def cost_fun(flows, params):
-        sizing_constant = params["sizing_constant"]
+        # sizing_constant = params["sizing_constant"]
         usage_constant = params["usage_constant"]
-        return sizing_constant * cp.max(flows) + usage_constant * cp.sum(flows)
+        # return sizing_constant * cp.max(flows) + usage_constant * cp.sum(flows)
+        return usage_constant * cp.sum(flows)
     
     @staticmethod
     def conversion_fun(flows, params):
