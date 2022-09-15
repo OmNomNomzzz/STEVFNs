@@ -2,3 +2,4 @@ Type,sizing_constant,sizing_constant_unit,RE_type,set_size,set_number
 0,0.6,G$/GWp,PVOUT,24,0
 1,0.858,G$/GWp,WINDOUT,24,0
 2,0.3,G$/GWp,PVOUT,24,0
+3,0.429,G$/GWp,WINDOUT,24,0
