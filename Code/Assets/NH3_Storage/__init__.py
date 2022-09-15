@@ -10,17 +10,18 @@ import cvxpy as cp
 from ..Base_Assets import Asset_STEVFNs
 
 
-class H2_to_HTH_Asset(Asset_STEVFNs):
-    """Class of H2 to HTH conversion asset"""
-    asset_name = "H2_to_HTH"
-    source_node_type = "H2"
-    target_node_type = "HTH"
+class NH3_Storage_Asset(Asset_STEVFNs):
+    """Class of NH3 storage asset"""
+    asset_name = "NH3_Storage"
+    source_node_type = "NH3"
+    target_node_type = "NH3"
     
     @staticmethod
     def cost_fun(flows, params):
         sizing_constant = params["sizing_constant"]
-        usage_constant_1 = params["usage_constant_1"]
-        return sizing_constant * cp.max(flows) + usage_constant_1 * cp.sum(flows)
+        # usage_constant_1 = params["usage_constant_1"]
+        # return sizing_constant * cp.max(flows) + usage_constant_1 * cp.sum(flows)
+        return sizing_constant * cp.max(flows)
     
     @staticmethod
     def conversion_fun(flows, params):
@@ -38,6 +39,8 @@ class H2_to_HTH_Asset(Asset_STEVFNs):
         super().define_structure(asset_structure)
         self.target_node_location = self.source_node_location
         self.flows = cp.Variable(self.number_of_edges, nonneg = True)
+        self.target_node_times[-1] = self.source_node_times[0]
+        self.target_node_times[:-1] = self.source_node_times[1:]
         return
     
     def _update_parameters(self):

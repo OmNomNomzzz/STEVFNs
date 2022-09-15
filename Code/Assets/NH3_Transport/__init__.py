@@ -12,11 +12,11 @@ import numpy as np
 from ...Network import Edge_STEVFNs
 
 
-class H2_Transport_Asset(Asset_STEVFNs):
-    """Class of H2 transport asset"""
-    asset_name = "H2_Transport"
-    source_node_type = "H2"
-    target_node_type = "H2"
+class NH3_Transport_Asset(Asset_STEVFNs):
+    """Class of NH3 transport asset"""
+    asset_name = "NH3_Transport"
+    source_node_type = "NH3"
+    target_node_type = "NH3"
     
     @staticmethod
     def cost_fun(flows, params):

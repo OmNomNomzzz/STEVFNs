@@ -10,18 +10,18 @@ import cvxpy as cp
 from ..Base_Assets import Asset_STEVFNs
 
 
-class H2_to_EL_Asset(Asset_STEVFNs):
-    """Class of H2 to EL conversion asset"""
-    asset_name = "H2_to_EL"
-    source_node_type = "H2"
-    target_node_type = "EL"
+class EL_to_NH3_Asset(Asset_STEVFNs):
+    """Class of EL to NH3 conversion asset"""
+    asset_name = "EL_to_NH3"
+    source_node_type = "EL"
+    target_node_type = "NH3"
     
     @staticmethod
     def cost_fun(flows, params):
         sizing_constant = params["sizing_constant"]
         # usage_constant_1 = params["usage_constant_1"]
         # return sizing_constant * cp.max(flows) + usage_constant_1 * cp.sum(flows)
-        return sizing_constant * cp.max(flows) 
+        return sizing_constant * cp.max(flows)
     
     @staticmethod
     def conversion_fun(flows, params):
