@@ -48,8 +48,8 @@ end_time = time.time()
 print("Time taken to build network = ", end_time - start_time, "s")
 
 
-# for counter1 in range(len(scenario_folders_list)):
-for counter1 in range(1):
+for counter1 in range(len(scenario_folders_list)):
+# for counter1 in range(1):
     ### Read Input Files ###
     scenario_folder = scenario_folders_list[counter1]
     asset_parameters_filename = os.path.join(scenario_folder, "Asset_Parameters.csv")
@@ -81,8 +81,8 @@ for counter1 in range(1):
     ### Plot Results ############
     print("Time taken to solve problem = ", end_time - start_time, "s")
     print("Total cost to satisfy all demand = ", my_network.problem.value, " Billion USD")
-    # DPhil_Plotting.plot_all(my_network)
-    DPhil_Plotting.plot_asset_sizes(my_network)
+    DPhil_Plotting.plot_all(my_network)
+    # DPhil_Plotting.plot_asset_sizes(my_network)
     # DPhil_Plotting.plot_asset_costs(my_network)
     
 
