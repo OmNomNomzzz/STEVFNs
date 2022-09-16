@@ -9,6 +9,7 @@ Created on Thu Nov  4 17:38:43 2021
 import pandas as pd
 import time
 import os
+import cvxpy as cp
 
 
 from Code.Network.Network import Network_STEVFNs
@@ -47,7 +48,8 @@ end_time = time.time()
 print("Time taken to build network = ", end_time - start_time, "s")
 
 
-for counter1 in range(len(scenario_folders_list)):
+# for counter1 in range(len(scenario_folders_list)):
+for counter1 in range(1):
     ### Read Input Files ###
     scenario_folder = scenario_folders_list[counter1]
     asset_parameters_filename = os.path.join(scenario_folder, "Asset_Parameters.csv")
@@ -71,8 +73,8 @@ for counter1 in range(len(scenario_folders_list)):
     start_time = time.time()
     
     
-    my_network.solve_problem()
-    
+    # my_network.solve_problem()
+    my_network.problem.solve(solver = cp.ECOS, warm_start=True, max_iters=1000, ignore_dpp=True)
     
     end_time = time.time()
     
@@ -81,7 +83,7 @@ for counter1 in range(len(scenario_folders_list)):
     print("Total cost to satisfy all demand = ", my_network.problem.value, " Billion USD")
     # DPhil_Plotting.plot_all(my_network)
     DPhil_Plotting.plot_asset_sizes(my_network)
-    DPhil_Plotting.plot_asset_costs(my_network)
+    # DPhil_Plotting.plot_asset_costs(my_network)
     
 
 
