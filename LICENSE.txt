@@ -9,7 +9,7 @@ The above copyright notice and this permission notice shall be included in all c
 
 The author(s), the software, and the "list of publications detailing the software" shall be cited in all copies or substantial portions of the Software.
 
-The list of publications detailing the software are given in the document called "CITING.txt" in the repository.
+The list of publications detailing the software are given in the document called "CITATIONS.bib" in the repository.
 
 The list of publications detailing the software may be updated with future versions of the software. The list of publications should also be updated when citing future versions of the software.
 
