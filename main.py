@@ -48,8 +48,8 @@ end_time = time.time()
 print("Time taken to build network = ", end_time - start_time, "s")
 
 
-# for counter1 in range(len(scenario_folders_list)):
-for counter1 in range(1):
+for counter1 in range(len(scenario_folders_list)):
+# for counter1 in range(1):
     ### Read Input Files ###
     scenario_folder = scenario_folders_list[counter1]
     asset_parameters_filename = os.path.join(scenario_folder, "Asset_Parameters.csv")
@@ -74,7 +74,7 @@ for counter1 in range(1):
     
     
     # my_network.solve_problem()
-    my_network.problem.solve(solver = cp.ECOS, warm_start=True, max_iters=1000, ignore_dpp=True)
+    my_network.problem.solve(solver = cp.ECOS, warm_start=True, max_iters=1000, ignore_dpp=False)
     
     end_time = time.time()
     
@@ -85,14 +85,14 @@ for counter1 in range(1):
     DPhil_Plotting.plot_asset_sizes(my_network)
     DPhil_Plotting.plot_asset_costs(my_network)
     
-##### Plot flows for BAU scenario ######
-DPhil_Plotting.plot_SG_EL_input_flows_BAU(my_network)
-DPhil_Plotting.plot_SG_EL_output_flows_BAU(my_network)
-DPhil_Plotting.plot_RE_EL_input_flows_BAU(my_network)
-DPhil_Plotting.plot_RE_EL_output_flows_BAU(my_network)
+# ##### Plot flows for BAU scenario ######
+# DPhil_Plotting.plot_SG_EL_input_flows_BAU(my_network)
+# DPhil_Plotting.plot_SG_EL_output_flows_BAU(my_network)
+# DPhil_Plotting.plot_RE_EL_input_flows_BAU(my_network)
+# DPhil_Plotting.plot_RE_EL_output_flows_BAU(my_network)
 
-DPhil_Plotting.plot_SG_NH3_input_flows_BAU(my_network)
-DPhil_Plotting.plot_SG_NH3_output_flows_BAU(my_network)
-DPhil_Plotting.plot_RE_NH3_input_flows_BAU(my_network)
-DPhil_Plotting.plot_RE_NH3_output_flows_BAU(my_network)
+# DPhil_Plotting.plot_SG_NH3_input_flows_BAU(my_network)
+# DPhil_Plotting.plot_SG_NH3_output_flows_BAU(my_network)
+# DPhil_Plotting.plot_RE_NH3_input_flows_BAU(my_network)
+# DPhil_Plotting.plot_RE_NH3_output_flows_BAU(my_network)
 
