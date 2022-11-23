@@ -1,3 +1,7 @@
+How to cite:
+
+Please cite all the references in "CITATIONS.bib" file.
+
 How to install:
 
 The STEVFNs tool has the following dependencies:
