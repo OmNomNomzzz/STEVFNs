@@ -1,11 +1,9 @@
 If you use the STEVFNs tool, you need to cite the following:
 
-@misc{Aniq2022,
-  author = {Aniq Ahsan},
-  title = {Project Title},
-  year = {2022},
-  publisher = {GitHub},
-  journal = {GitHub repository},
-  howpublished = {\url{https://github.com/OmNomNomzzz/STEVFNs}},
-  commit = {}
+@software{Ahsan_STEVFNs_Tool_2022,
+author = {Ahsan, Aniq},
+month = {11},
+title = {{STEVFNs Tool}},
+version = {1.0},
+year = {2022}
 }
