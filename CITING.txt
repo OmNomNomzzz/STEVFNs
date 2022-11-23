@@ -7,5 +7,5 @@ If you use the STEVFNs tool, you need to cite the following:
   publisher = {GitHub},
   journal = {GitHub repository},
   howpublished = {\url{https://github.com/OmNomNomzzz/STEVFNs}},
-  branch = {main}
+  commit = {}
 }
