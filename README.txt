@@ -1,6 +1,6 @@
 How to cite:
 
-Please cite all the references in "CITATION.bib" file.
+Please cite all the references in "CITATIONS.bib" file.
 
 How to install:
 
