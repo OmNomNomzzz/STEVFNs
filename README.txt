@@ -15,6 +15,14 @@ conda install matplotlib
 
 How to run:
 
+A demo and tutorial for using the STEVFNs tool can be found on Aniq's youtube channel. This is part of a seminar for the STEVFNs tool.
+https://www.youtube.com/watch?v=_n2w6Zzfofw
+
+Details of how assets are modelled in STEVFNs is given in the STEVENs asset model seminar:
+https://www.youtube.com/watch?v=caSYzciVFKw
+
+If you do not wish to watch the long video tutorial, please follow the following.
+
 To run the base example, run the main.py file in your IDE of choice. This runs an example of the energy system used by the case study in Aniq Ahsan's DPhil thesis, but for 4 days instead of a full year.
 
 To change the scenario:
