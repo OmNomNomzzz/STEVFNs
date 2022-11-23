@@ -1,0 +1,14 @@
+Asset_Number,Asset_Class,Location_1,Location_2,Asset_Type
+0,RE,0,0,0
+1,RE,0,0,1
+2,BESS,0,0,1
+3,EL_Demand,0,0,14
+4,RE,1,1,0
+5,RE,1,1,1
+6,BESS,1,1,1
+7,RE,2,2,0
+8,RE,2,2,1
+9,BESS,2,2,1
+10,EL_Demand,2,2,16
+11,EL_Transport,0,1,0
+12,EL_Transport,1,2,0

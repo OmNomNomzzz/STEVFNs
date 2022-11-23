@@ -18,7 +18,7 @@ from Code.Plotting import DPhil_Plotting
 
 
 #### Define Input Files ####
-case_study_name = "SG_Case_Study"
+case_study_name = "Supergrid_Case_Study"
 
 
 base_folder = os.path.dirname(__file__)
@@ -48,8 +48,8 @@ end_time = time.time()
 print("Time taken to build network = ", end_time - start_time, "s")
 
 
-for counter1 in range(len(scenario_folders_list)):
-# for counter1 in range(1):
+# for counter1 in range(len(scenario_folders_list)):
+for counter1 in range(1):
     ### Read Input Files ###
     scenario_folder = scenario_folders_list[counter1]
     asset_parameters_filename = os.path.join(scenario_folder, "Asset_Parameters.csv")
@@ -74,7 +74,7 @@ for counter1 in range(len(scenario_folders_list)):
     
     
     # my_network.solve_problem()
-    my_network.problem.solve(solver = cp.ECOS, warm_start=True, max_iters=1000, ignore_dpp=False)
+    my_network.problem.solve(solver = cp.ECOS, warm_start=True, max_iters=1000, ignore_dpp=True)
     
     end_time = time.time()
     
