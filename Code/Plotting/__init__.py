@@ -213,3 +213,26 @@ class stackplot_artist:
         if show == 1:
             plt.show()
         return
+
+
+class twin_line_artist:
+    """Class that makes a twin line graph """
+    def __init__(self, title=None):
+        self.flows_dictionary = dict()
+        self.ylabel = ""
+        return
+    
+    def attach_artist(self, main_artist):
+        self.main_artist = main_artist
+        return
+    
+    def plot(self, show = 1):
+        self.main_artist.plot(show = 0)
+        self.ax = self.main_artist.ax.twinx()
+        self.ax.set_ylabel(self.ylabel)
+        for flow_name, flow in self.flows_dictionary.items():
+            self.ax.plot(self.main_artist.times, flow, label = flow_name)
+        self.ax.legend()
+        if show == 1:
+            plt.show()
+        return

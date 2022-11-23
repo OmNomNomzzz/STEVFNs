@@ -1,5 +1,3 @@
 Type,storage_sizing_constant,storage_sizing_constant_units,storage_usage_constant,storage_usage_constant_units,storage_conversion_factor,charging_sizing_constant,charging_sizing_constant_units,charging_usage_constant,charging_usage_constant_units,charging_conversion_factor,discharging_sizing_constant,discharging_sizing_constant_units,discharging_usage_constant,discharging_usage_constant_units,discharging_conversion_factor
-0,0.4,G$/GWh,0,G$/GWh,1.00E+00,0.8,G$/GW,8.00E-05,G$/GWh,0.97,4.00E-01,G$/GW,8.00E-05,G$/GWh,9.70E-01
-1,0.42,G$/GWh,0,G$/GWh,1.00E+00,0.84,G$/GW,8.40E-05,G$/GWh,0.975,4.20E-01,G$/GW,8.40E-05,G$/GWh,9.75E-01
-2,0.38,G$/GWh,0,G$/GWh,1.00E+00,0.76,G$/GW,7.60E-05,G$/GWh,0.95,3.80E-01,G$/GW,7.60E-05,G$/GWh,9.50E-01
-3,0.01,G$/GWh,0,G$/GWh,1.00E+00,0.02,G$/GW,2.00E-06,G$/GWh,0.97,1.00E-02,G$/GW,2.00E-06,G$/GWh,9.70E-01
+0,0.271,G$/GWh,0,G$/GWh,1.00E+00,0.542,G$/GW,2.71E-05,G$/GWh,0.975,2.71E-01,G$/GW,2.71E-05,G$/GWh,9.75E-01
+1,0.136,G$/GWh,0,G$/GWh,1.00E+00,0.271,G$/GW,1.36E-05,G$/GWh,0.975,1.36E-01,G$/GW,1.36E-05,G$/GWh,9.75E-01

@@ -102,9 +102,10 @@ class Storage_Asset(Asset_STEVFNs):
     @staticmethod
     def cost_fun(flows, params):
         sizing_constant = params["storage_sizing_constant"]
-        usage_constant_1 = params["storage_usage_constant"]
+        # usage_constant_1 = params["storage_usage_constant"]
         
-        return cp.maximum(sizing_constant * cp.max(flows),  usage_constant_1 * cp.sum(flows))
+        # return cp.maximum(sizing_constant * cp.max(flows),  usage_constant_1 * cp.sum(flows))
+        return sizing_constant * cp.max(flows)
     
     @staticmethod
     def conversion_fun(flows, params):
