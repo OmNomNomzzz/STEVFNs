@@ -48,15 +48,17 @@ end_time = time.time()
 print("Time taken to build network = ", end_time - start_time, "s")
 
 
-for counter1 in range(len(scenario_folders_list)):
-# for counter1 in range(1):
+# for counter1 in range(len(scenario_folders_list)):
+for counter1 in range(1):
     ### Read Input Files ###
     scenario_folder = scenario_folders_list[counter1]
     asset_parameters_filename = os.path.join(scenario_folder, "Asset_Parameters.csv")
     location_parameters_filename = os.path.join(scenario_folder, "Location_Parameters.csv")
+    system_parameters_filename = os.path.join(scenario_folder, "System_Parameters.csv")
     
     asset_parameters_df = pd.read_csv(asset_parameters_filename)
     location_parameters_df = pd.read_csv(location_parameters_filename)
+    system_parameters_df = pd.read_csv(system_parameters_filename)
     
     
     ### Update Network Parameters ###

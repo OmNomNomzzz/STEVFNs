@@ -1,0 +1,4 @@
+Parameter,Value,Units
+Timestep,1,h
+Discount_Rate,5,%
+Project_Life,30,yr
