@@ -19,7 +19,7 @@ from Code.Plotting import DPhil_Plotting
 
 #### Define Input Files ####
 case_study_name = "Autarky_Case_Study"
-# case_study_name = "Xlinks_Case_Study" #Includes scenarios for UK-Morocco and UK-Spain
+# case_study_name = "Xlinks_Case_Study" 
 # case_study_name = "Xlinks_EXT_Case_Study"
 
 
