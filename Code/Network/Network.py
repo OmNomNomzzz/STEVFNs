@@ -23,6 +23,12 @@ class Network_STEVFNs:
         self.constraints = []
         self.nodes_df = pd.Series([], index = pd.MultiIndex.from_tuples([], names = ["location", "type", "time"]))
         self.base_folder = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+        self.system_parameters_df = pd.DataFrame({
+            "parameter": ["timestep", "discount_rate", "project_life"],
+            "value" : [1, 0.05, 262800],#default values are [1hour, 5%, 30years]
+            "unit" : ["h", "unitless", "timestep"]}).set_index("parameter")
+        self.system_structure_properties = dict({
+            "simulated_timesteps" : 0,})
         return
     
     def set_usage_factor(self, discount_rate, timesteps):
@@ -55,6 +61,12 @@ class Network_STEVFNs:
         for counter1 in range(len(self.assets)):
             self.assets[counter1].build()
             self.costs += [self.assets[counter1].cost]
+        return
+    
+    def build_system_structure_properties(self):
+        self.system_structure_properties["simulated_timesteps"] = (self.nodes_df.index.get_level_values("time").max() -
+                                                                   self.nodes_df.index.get_level_values("time").min() + 1)
+        return
     
     def build_constraints(self):
         self.constraints = []
@@ -70,6 +82,7 @@ class Network_STEVFNs:
     
     def build_problem(self):
         self.build_assets()
+        self.build_system_structure_properties()
         self.build_cost()
         self.build_constraints()
         self.objective = cp.Minimize(self.cost)
@@ -112,7 +125,10 @@ class Network_STEVFNs:
     
     def update(self, location_parameters_df, asset_parameters_df, system_parameters_df):
         #updates system parameters#
-        self.system_parameters_df = system_parameters_df
+        for counter1 in range(len(system_parameters_df)):
+            tdf = system_parameters_df.iloc[counter1]
+            self.system_parameters_df.loc[tdf["parameter"], "value"] = tdf["value"]
+            self.system_parameters_df.loc[tdf["parameter"], "unit"] = tdf["unit"]
         #Update Location lat,lon#
         for counter1 in range(len(location_parameters_df)):
             location = location_parameters_df.iloc[counter1]["Location"]
