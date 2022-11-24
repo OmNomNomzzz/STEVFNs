@@ -1,0 +1,10 @@
+Asset_Number,Asset_Class,Location_1,Location_2,Start_Time,End_Time,Period,Transport_Time
+0,RE_PV,0,0,0,8760,1,0
+1,RE_WIND,0,0,0,8760,1,0
+2,BESS,0,0,0,8760,1,0
+3,EL_Demand,0,0,0,8760,1,0
+4,RE_PV,1,1,0,8760,1,0
+5,RE_WIND,1,1,0,8760,1,0
+6,BESS,1,1,0,8760,1,0
+7,EL_Demand,1,1,0,8760,1,0
+8,EL_Transport,0,1,0,8760,1,0
