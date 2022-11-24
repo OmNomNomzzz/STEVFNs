@@ -65,7 +65,7 @@ for counter1 in range(1):
     start_time = time.time()
     
     
-    my_network.update(location_parameters_df, asset_parameters_df)
+    my_network.update(location_parameters_df, asset_parameters_df, system_parameters_df)
     
     
     end_time = time.time()
@@ -76,7 +76,7 @@ for counter1 in range(1):
     
     
     # my_network.solve_problem()
-    my_network.problem.solve(solver = cp.ECOS, warm_start=True, max_iters=1000, ignore_dpp=False)
+    my_network.problem.solve(solver = cp.ECOS, warm_start=True, max_iters=1000, ignore_dpp=True)
     
     end_time = time.time()
     

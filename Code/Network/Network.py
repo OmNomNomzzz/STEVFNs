@@ -110,7 +110,7 @@ class Network_STEVFNs:
         self.build_problem()
         return
     
-    def update(self, location_parameters_df, asset_parameters_df):
+    def update(self, location_parameters_df, asset_parameters_df, system_parameters_df):
         #Update Location lat,lon#
         for counter1 in range(len(location_parameters_df)):
             location = location_parameters_df.iloc[counter1]["Location"]
@@ -121,6 +121,8 @@ class Network_STEVFNs:
             asset_number = asset_parameters_df.iloc[counter1]["Asset_Number"]
             asset_type = asset_parameters_df.iloc[counter1]["Asset_Type"]
             self.assets[asset_number].update(asset_type)
+        #updates system parameters#
+        self.system_parameters_df = system_parameters_df
         return
     
 
