@@ -31,13 +31,6 @@ class Network_STEVFNs:
             "simulated_timesteps" : 0,})
         return
     
-    def set_usage_factor(self, discount_rate, timesteps):
-        discount_factor = 1 / (1+discount_rate)
-        NPV_factor = (1-discount_factor**30)/(1-discount_factor)#Assume the asset will be used for 30 years
-        yearly_factor = 365.0*24 / timesteps
-        self.usage_factor = NPV_factor * yearly_factor
-        return
-    
     def generate_node(self, node_location, node_type, node_time):
         new_node = Node_STEVFNs()
         node_df = pd.Series([new_node], 
@@ -118,7 +111,6 @@ class Network_STEVFNs:
         #Generate Assets#
         for counter1 in range(len(network_structure_df)):
             self.generate_asset(network_structure_df.iloc[counter1])
-        self.set_usage_factor(discount_rate = 0.05, timesteps = network_structure_df["End_Time"].max())
         #Build Problem#
         self.build_problem()
         return
