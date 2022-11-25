@@ -60,6 +60,7 @@ class RE_WIND_Asset(Asset_STEVFNs):
     def _update_parameters(self):
         for parameter_name, parameter in self.cost_fun_params.items():
             parameter.value = self.parameters_df[parameter_name]
+        #Update cost parameters based on NPV#
         self._update_sizing_constant()
         self._load_RE_profile()
         return
