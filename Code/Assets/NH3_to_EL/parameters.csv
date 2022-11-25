@@ -1,4 +1,4 @@
-Type,sizing_constant,sizing_constant_unit,usage_constant_1,usage_constant_1_unit,conversion_factor,conversion_factor_unit
-0,2.385,G$/(Gg/h),0.00E+00,G$/Gg,3.11,GWh/Gg
-1,1.193,G$/(Gg/h),0.00E+00,G$/Gg,3.11,GWh/Gg
-2,2.385,G$/(Gg/h),0.00E+00,G$/Gg,4.152,GWh/Gg
+Type,sizing_constant,sizing_constant_unit,usage_constant_1,usage_constant_1_unit,conversion_factor,conversion_factor_unit,lifespan,lifespan_units
+0,2.385,G$/(Gg/h),0.00E+00,G$/Gg,3.11,GWh/Gg,262800,h
+1,1.193,G$/(Gg/h),0.00E+00,G$/Gg,3.11,GWh/Gg,262800,h
+2,2.385,G$/(Gg/h),0.00E+00,G$/Gg,4.152,GWh/Gg,262800,h

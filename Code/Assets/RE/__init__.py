@@ -50,9 +50,18 @@ class RE_Asset(Asset_STEVFNs):
     def get_plot_data(self):
         return self.flows.value * self.gen_profile.value
     
+    def _update_sizing_constant(self):
+        N = np.ceil(self.network.system_parameters_df.loc["project_life", "value"]/self.parameters_df["lifespan"])
+        r = (1 + self.network.system_parameters_df.loc["discount_rate", "value"])**(-self.parameters_df["lifespan"]/8760)
+        NPV_factor = (1-r**N)/(1-r)
+        self.cost_fun_params["sizing_constant"].value = self.cost_fun_params["sizing_constant"].value * NPV_factor
+        return
+    
+    
     def _update_parameters(self):
         for parameter_name, parameter in self.cost_fun_params.items():
             parameter.value = self.parameters_df[parameter_name]
+        self._update_sizing_constant()
         self._load_RE_profile()
         return
     
