@@ -54,8 +54,9 @@ class RE_Asset(Asset_STEVFNs):
         N = np.ceil(self.network.system_parameters_df.loc["project_life", "value"]/self.parameters_df["lifespan"])
         r = (1 + self.network.system_parameters_df.loc["discount_rate", "value"])**(-self.parameters_df["lifespan"]/8760)
         NPV_factor = (1-r**N)/(1-r)
-        self.cost_fun_params["sizing_constant"].value = self.parameters_df["sizing_constant"] * NPV_factor
+        self.cost_fun_params["sizing_constant"].value = self.cost_fun_params["sizing_constant"].value * NPV_factor
         return
+    
     
     def _update_parameters(self):
         for parameter_name, parameter in self.cost_fun_params.items():

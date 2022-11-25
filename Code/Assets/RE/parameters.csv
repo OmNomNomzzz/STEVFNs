@@ -1,5 +1,5 @@
 Type,sizing_constant,sizing_constant_unit,lifespan,lifespan_unit,RE_type,set_size,set_number
-0,0.6,G$/GWp,20,yr,PVOUT,24,0
-1,0.858,G$/GWp,20,yr,WINDOUT,24,0
-2,0.3,G$/GWp,20,yr,PVOUT,24,0
-3,0.429,G$/GWp,20,yr,WINDOUT,24,0
+0,0.6,G$/GWp,175200,h,PVOUT,24,0
+1,0.858,G$/GWp,175200,h,WINDOUT,24,0
+2,0.3,G$/GWp,175200,h,PVOUT,24,0
+3,0.429,G$/GWp,175200,h,WINDOUT,24,0
