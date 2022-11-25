@@ -6,5 +6,5 @@ Asset_Number,Asset_Class,Location_1,Location_2,Asset_Type
 4,RE_PV,1,1,0
 5,RE_WIND,1,1,1
 6,BESS,1,1,1
-7,EL_Demand,1,1,14
+7,EL_Demand,1,1,17
 8,EL_Transport,0,1,1
