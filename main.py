@@ -71,7 +71,7 @@ for counter1 in range(len(scenario_folders_list)):
     
     
     end_time = time.time()
-    print(counter1)
+    print(case_study_name)
     print("Time taken to update network = ", end_time - start_time, "s")
     
     ### Run Simulation ###
@@ -85,10 +85,11 @@ for counter1 in range(len(scenario_folders_list)):
     
     ### Plot Results ############
     print("Time taken to solve problem = ", end_time - start_time, "s")
-    print("Total cost to satisfy all demand = ", my_network.problem.value, " Billion USD")
+    print("Total cost to satisfy all demand = ", my_network.problem.value, " Billion USD, in scenario:", counter1)
     # DPhil_Plotting.plot_all(my_network)
     DPhil_Plotting.plot_asset_sizes(my_network)
     DPhil_Plotting.plot_asset_costs(my_network)
+    
     
 # ##### Plot flows for BAU scenario ######
 # DPhil_Plotting.plot_SG_EL_input_flows_BAU(my_network)
@@ -100,4 +101,9 @@ for counter1 in range(len(scenario_folders_list)):
 # DPhil_Plotting.plot_SG_NH3_output_flows_BAU(my_network)
 # DPhil_Plotting.plot_RE_NH3_input_flows_BAU(my_network)
 # DPhil_Plotting.plot_RE_NH3_output_flows_BAU(my_network)
+
+
+    for counter2 in range(len(my_network.assets)):
+        # print(my_network.assets[counter2], my_network.assets[counter2].asset_size())
+        print(my_network.assets[counter2], my_network.assets[counter2].cost.value)
 
