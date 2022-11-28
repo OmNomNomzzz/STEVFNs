@@ -1,5 +1,5 @@
-Type,sizing_constant,sizing_constant_unit,usage_constant_1,usage_constant_1_unit,usage_constant_2,usage_constant_2_unit
-0,0.5,G$/GWp,7.00E-05,G$/GWh,0,G$/(GWh^2)
-1,0.3,G$/GWp,8.00E-05,G$/GWh,0,G$/(GWh^2)
-2,0.6,G$/GWp,6.00E-05,G$/GWh,0,G$/(GWh^2)
-3,2,G$/GWp,1.00E-04,G$/GWh,0,G$/(GWh^2)
+Type,sizing_constant,sizing_constant_unit,usage_constant_1,usage_constant_1_unit,usage_constant_2,usage_constant_2_unit,lifespan,lifespan_units
+0,0.5,G$/GWp,7.00E-05,G$/GWh,0,G$/(GWh^2),262800,h
+1,0.3,G$/GWp,8.00E-05,G$/GWh,0,G$/(GWh^2),262800,h
+2,0.6,G$/GWp,6.00E-05,G$/GWh,0,G$/(GWh^2),262800,h
+3,2,G$/GWp,1.00E-04,G$/GWh,0,G$/(GWh^2),262800,h

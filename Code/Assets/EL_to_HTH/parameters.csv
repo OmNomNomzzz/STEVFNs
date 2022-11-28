@@ -1,2 +1,2 @@
-Type,sizing_constant,sizing_constant_unit,usage_constant_1,usage_constant_1_unit,conversion_factor
-0,0.05,G$/GWp,1.00E-06,G$/GWh,1
+Type,sizing_constant,sizing_constant_unit,usage_constant_1,usage_constant_1_unit,conversion_factor,lifespan,lifespan_units
+0,0.05,G$/GWp,1.00E-06,G$/GWh,1,262800,h

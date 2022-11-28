@@ -56,16 +56,18 @@ for counter1 in range(len(scenario_folders_list)):
     scenario_folder = scenario_folders_list[counter1]
     asset_parameters_filename = os.path.join(scenario_folder, "Asset_Parameters.csv")
     location_parameters_filename = os.path.join(scenario_folder, "Location_Parameters.csv")
+    system_parameters_filename = os.path.join(scenario_folder, "System_Parameters.csv")
     
     asset_parameters_df = pd.read_csv(asset_parameters_filename)
     location_parameters_df = pd.read_csv(location_parameters_filename)
+    system_parameters_df = pd.read_csv(system_parameters_filename)
     
     
     ### Update Network Parameters ###
     start_time = time.time()
     
     
-    my_network.update(location_parameters_df, asset_parameters_df)
+    my_network.update(location_parameters_df, asset_parameters_df, system_parameters_df)
     
     
     end_time = time.time()
