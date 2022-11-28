@@ -18,8 +18,8 @@ from Code.Plotting import DPhil_Plotting
 
 
 #### Define Input Files ####
-case_study_name = "Autarky_Case_Study"
-# case_study_name = "Xlinks_Case_Study" 
+# case_study_name = "Autarky_Case_Study"
+case_study_name = "Xlinks_Case_Study" 
 # case_study_name = "Xlinks_EXT_Case_Study"
 
 
@@ -69,6 +69,7 @@ for counter1 in range(len(scenario_folders_list)):
     
     
     end_time = time.time()
+    print(counter1)
     print("Time taken to update network = ", end_time - start_time, "s")
     
     ### Run Simulation ###
