@@ -19,8 +19,8 @@ from Code.Plotting import DPhil_Plotting
 
 #### Define Input Files ####
 # case_study_name = "Autarky_Case_Study"
-case_study_name = "Xlinks_Case_Study" 
-# case_study_name = "Xlinks_EXT_Case_Study"
+# case_study_name = "Xlinks_Case_Study" 
+case_study_name = "Xlinks_EXT_Case_Study"
 
 
 base_folder = os.path.dirname(__file__)
