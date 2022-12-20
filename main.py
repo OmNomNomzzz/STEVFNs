@@ -79,7 +79,7 @@ for counter1 in range(len(scenario_folders_list)):
     
     
     # my_network.solve_problem()
-    my_network.problem.solve(solver = cp.ECOS, warm_start=True, max_iters=1000, ignore_dpp=True)
+    my_network.problem.solve(solver = cp.ECOS, warm_start=True, max_iters=10000, ignore_dpp=True)
     
     end_time = time.time()
     
@@ -104,6 +104,6 @@ for counter1 in range(len(scenario_folders_list)):
 
 
     for counter2 in range(len(my_network.assets)):
-        # print(my_network.assets[counter2], my_network.assets[counter2].asset_size())
-        print(my_network.assets[counter2], my_network.assets[counter2].cost.value)
+        print(my_network.assets[counter2], 'size:', my_network.assets[counter2].asset_size())
+        print(my_network.assets[counter2], 'cost:', my_network.assets[counter2].cost.value)
 
