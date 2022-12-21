@@ -10,6 +10,6 @@ Asset_Number,Asset_Class,Location_1,Location_2,Asset_Type
 8,RE_PV,2,2,10
 9,RE_WIND,2,2,11
 10,BESS,2,2,1
-11,EL_Demand,2,2,16
+11,EL_Demand,2,2,18
 12,EL_Transport,0,1,0
 13,EL_Transport,1,2,0
