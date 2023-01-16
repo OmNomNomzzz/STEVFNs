@@ -253,7 +253,7 @@ def plot_SG_EL_output_flows(my_network):
     tdf1 = my_network.system_structure_df[con1]
     con2 = tdf1["Asset_Class"] == "EL_Transport"
     tdf2 = tdf1[con2]
-    for counter1 in range(3):
+    for counter1 in range(1):
         component_name = "EL_Transport_" + str(counter1 + 1)
         con3 = tdf2["Location_2"] == counter1 + 1
         asset_number = tdf2[con3]["Asset_Number"].iloc[0]
@@ -290,32 +290,32 @@ def plot_SG_EL_output_flows(my_network):
     
     
     #Add flows and times for EL to NH3
-    component_name = "EL_to_NH3"
-    con2 = tdf1["Asset_Class"] == component_name
-    asset_number = tdf1[con2]["Asset_Number"].iloc[0]
-    my_component = my_network.assets[asset_number]
-    component_flows = my_component.flows.value
-    flows_dictionary[component_name] = component_flows
-    component_times = my_component.source_node_times
-    times_dictionary[component_name] = component_times
+    # component_name = "EL_to_NH3"
+    # con2 = tdf1["Asset_Class"] == component_name
+    # asset_number = tdf1[con2]["Asset_Number"].iloc[0]
+    # my_component = my_network.assets[asset_number]
+    # component_flows = my_component.flows.value
+    # flows_dictionary[component_name] = component_flows
+    # component_times = my_component.source_node_times
+    # times_dictionary[component_name] = component_times
     
     
     #Add flows and times for EL to HTH
-    component_name = "EL_to_HTH"
-    con2 = tdf1["Asset_Class"] == component_name
-    asset_number = tdf1[con2]["Asset_Number"].iloc[0]
-    my_component = my_network.assets[asset_number]
-    component_flows = my_component.flows.value
-    flows_dictionary[component_name] = component_flows
-    component_times = my_component.source_node_times
-    times_dictionary[component_name] = component_times
+    # component_name = "EL_to_HTH"
+    # con2 = tdf1["Asset_Class"] == component_name
+    # asset_number = tdf1[con2]["Asset_Number"].iloc[0]
+    # my_component = my_network.assets[asset_number]
+    # component_flows = my_component.flows.value
+    # flows_dictionary[component_name] = component_flows
+    # component_times = my_component.source_node_times
+    # times_dictionary[component_name] = component_times
     
     my_artist = stackplot_artist()
     my_artist.flows_dictionary = flows_dictionary
     my_artist.times = times_dictionary["EL_Demand"]/24
     my_artist.ylabel = "Electricity Flow (GWh)"
     my_artist.xlabel = "Time (Days)"
-    my_artist.title = "Flow of Electrical Energy out of EL node at Singapore"
+    my_artist.title = "Flow of Electrical Energy out of EL node at GB"
     my_artist.plot()
     return
 
@@ -331,7 +331,7 @@ def plot_SG_EL_input_flows(my_network):
     tdf1 = my_network.system_structure_df[con1]
     con2 = tdf1["Asset_Class"] == "EL_Transport"
     tdf2 = tdf1[con2]
-    for counter1 in range(3):
+    for counter1 in range(1):
         component_name = "EL_Transport_" + str(counter1 + 1)
         con3 = tdf2["Location_2"] == counter1 + 1
         asset_number = tdf2[con3]["Asset_Number"].iloc[0]
@@ -362,16 +362,16 @@ def plot_SG_EL_input_flows(my_network):
     
     
     #Add flows and times for NH3 to EL
-    component_name = "NH3_to_EL"
-    con2 = tdf1["Asset_Class"] == component_name
-    asset_number = tdf1[con2]["Asset_Number"].iloc[0]
-    my_component = my_network.assets[asset_number]
-    component_flows = my_component.conversion_fun(
-        my_component.flows, 
-        my_component.conversion_fun_params).value
-    flows_dictionary[component_name] = component_flows
-    component_times = my_component.source_node_times
-    times_dictionary[component_name] = component_times
+    # component_name = "NH3_to_EL"
+    # con2 = tdf1["Asset_Class"] == component_name
+    # asset_number = tdf1[con2]["Asset_Number"].iloc[0]
+    # my_component = my_network.assets[asset_number]
+    # component_flows = my_component.conversion_fun(
+    #     my_component.flows, 
+    #     my_component.conversion_fun_params).value
+    # flows_dictionary[component_name] = component_flows
+    # component_times = my_component.source_node_times
+    # times_dictionary[component_name] = component_times
     
     
     my_artist = stackplot_artist()

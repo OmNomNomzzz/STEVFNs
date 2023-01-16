@@ -19,8 +19,8 @@ from Code.Plotting import DPhil_Plotting
 
 #### Define Input Files ####
 # case_study_name = "Autarky_Case_Study"
-case_study_name = "Xlinks_Case_Study" 
-# case_study_name = "Xlinks_EXT_Case_Study"
+# case_study_name = "Xlinks_Case_Study" 
+case_study_name = "Xlinks_EXT_Case_Study"
 
 
 base_folder = os.path.dirname(__file__)
@@ -85,7 +85,7 @@ for counter1 in range(len(scenario_folders_list)):
     
     ### Plot Results ############
     print("Time taken to solve problem = ", end_time - start_time, "s")
-    print("Total cost to satisfy all demand = ", my_network.problem.value, " Billion USD, in scenario:", counter1)
+    print("Total cost to satisfy all demand = ", my_network.problem.value, " Billion USD, in scenario:", scenario_folders_list[counter1])
     # DPhil_Plotting.plot_all(my_network)
     DPhil_Plotting.plot_asset_sizes(my_network)
     DPhil_Plotting.plot_asset_costs(my_network)
@@ -93,14 +93,10 @@ for counter1 in range(len(scenario_folders_list)):
     
 # ##### Plot flows for BAU scenario ######
 # DPhil_Plotting.plot_SG_EL_input_flows_BAU(my_network)
-# DPhil_Plotting.plot_SG_EL_output_flows_BAU(my_network)
+DPhil_Plotting.plot_SG_EL_output_flows(my_network)
 # DPhil_Plotting.plot_RE_EL_input_flows_BAU(my_network)
 # DPhil_Plotting.plot_RE_EL_output_flows_BAU(my_network)
 
-# DPhil_Plotting.plot_SG_NH3_input_flows_BAU(my_network)
-# DPhil_Plotting.plot_SG_NH3_output_flows_BAU(my_network)
-# DPhil_Plotting.plot_RE_NH3_input_flows_BAU(my_network)
-# DPhil_Plotting.plot_RE_NH3_output_flows_BAU(my_network)
 
 
     for counter2 in range(len(my_network.assets)):
