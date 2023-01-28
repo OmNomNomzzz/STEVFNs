@@ -88,6 +88,7 @@ class Unmet_EL_Demand_Component(Asset_STEVFNs):
     
     def define_structure(self, asset_structure):
         super().define_structure(asset_structure)
+        self.source_node_times = np.zeros(self.number_of_edges)
         self.flows = cp.Variable(self.number_of_edges, nonneg=True)
         return
 
@@ -105,6 +106,16 @@ class Total_Unmet_EL_Demand_Component(Asset_STEVFNs):
         super().__init__()
         self.conversion_fun_params =  {"total_unmet_demand": cp.Parameter(nonneg=True)}
         return
+    
+    def define_structure(self, asset_structure):
+        self.asset_structure = asset_structure
+        self.source_node_location = asset_structure["Location_1"]
+        self.source_node_times = np.zeros(1)
+        self.target_node_location = asset_structure["Location_2"]
+        self.target_node_times = np.zeros(1)
+        self.number_of_edges = len(self.source_node_times)
+        self.flows = cp.Constant(np.zeros(self.number_of_edges))
+        return
 
 class EL_Demand_UM_Asset(Multi_Asset):
     """Class of Electricity Demand Asset"""
@@ -112,6 +123,7 @@ class EL_Demand_UM_Asset(Multi_Asset):
     
     def __init__(self):
         super().__init__()
+        self.parameters_dict = dict()
         return
     
     assets_class_dictionary = {"EL_Demand": EL_Demand_Component,
@@ -119,27 +131,8 @@ class EL_Demand_UM_Asset(Multi_Asset):
                                "Unmet_EL_Demand": Unmet_EL_Demand_Component,
                                "Total_Unmet_EL_Demand": Total_Unmet_EL_Demand_Component}
     
-    def _update_assets(self):
-        for asset_name, asset in self.assets_dictionary.items():
-            asset.update(self.parameters_df)
-        return
-    
-    
-    
-    def _update_parameters(self):
-        return
-    
-    def define_structure(self, asset_structure):
-        self.node_location = asset_structure["Location_1"]
-        self.node_times = np.arange(asset_structure["Start_Time"], 
-                                           asset_structure["End_Time"], 
-                                           asset_structure["Period"])
-        self.number_of_edges = len(self.node_times)
-        self.flows = cp.Parameter(shape = self.number_of_edges, nonneg=True)
-        return
-    
-    def build_costs(self):
-        self.cost = cp.Constant(0)
+    def update(self, asset_type):
+        super().update(asset_type)
         return
         
     def build_edge(self, edge_number):
@@ -169,12 +162,15 @@ class EL_Demand_UM_Asset(Multi_Asset):
             new_loc_0 = set_size * counter1
             new_loc_1 = new_loc_0 + set_size
             new_profile[new_loc_0 : new_loc_1] = full_profile[old_loc_0 : old_loc_1]
-        self.flows.value = new_profile[:self.number_of_edges]
+        demand_profile = new_profile[:self.number_of_edges]
+        total_unmet_demand = demand_profile.sum() * self.parameters_df["unmet_fraction"]
+        self.assets_dictionary["EL_Demand"].conversion_fun_params["demand_profile"].value = demand_profile
+        self.assets_dictionary["Total_Unmet_EL_Demand"].conversion_fun_params["total_unmet_demand"].value = total_unmet_demand
         return
     
     def get_asset_sizes(self):
         # Returns the size of the asset as a dict #
-        asset_size = self.size()
+        asset_size = self.assets_dictionary["EL_Demand"].size()
         asset_identity = self.asset_name + r"_location_" + str(self.node_location)
         return {asset_identity: asset_size}
  
