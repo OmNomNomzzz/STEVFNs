@@ -41,11 +41,13 @@ class EL_Demand_Component(Asset_STEVFNs):
         target_node_time = self.target_node_times[edge_number]
         new_edge = Edge_STEVFNs()
         self.edges += [new_edge]
-        new_edge.attach_source_node(self.network.extract_node(
-            self.source_node_location, self.source_node_type, source_node_time))
-        new_edge.attach_target_node(self.network.extract_node(
-            self.target_node_location, self.target_node_type, target_node_time))
-        new_edge.flow = self.flows
+        if self.source_node_type != "NULL":
+            new_edge.attach_source_node(self.network.extract_node(
+                self.source_node_location, self.source_node_type, source_node_time))
+        if self.source_node_type != "NULL":
+            new_edge.attach_target_node(self.network.extract_node(
+                self.target_node_location, self.target_node_type, target_node_time))
+        new_edge.flow = self.flows[edge_number]
         new_edge.conversion_fun = self.conversion_fun
         new_edge.conversion_fun_params = {
             "demand": self.conversion_fun_params["demand_profile"][edge_number]}
@@ -82,6 +84,11 @@ class Unmet_EL_Demand_Component(Asset_STEVFNs):
     
     def __init__(self):
         super().__init__()
+        return
+    
+    def define_structure(self, asset_structure):
+        super().define_structure(asset_structure)
+        self.flows = cp.Variable(self.number_of_edges, nonneg=True)
         return
 
 class Total_Unmet_EL_Demand_Component(Asset_STEVFNs):
