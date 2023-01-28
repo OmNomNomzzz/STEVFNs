@@ -44,13 +44,14 @@ class EL_Demand_Component(Asset_STEVFNs):
         if self.source_node_type != "NULL":
             new_edge.attach_source_node(self.network.extract_node(
                 self.source_node_location, self.source_node_type, source_node_time))
-        if self.source_node_type != "NULL":
+        if self.target_node_type != "NULL":
             new_edge.attach_target_node(self.network.extract_node(
                 self.target_node_location, self.target_node_type, target_node_time))
         new_edge.flow = self.flows[edge_number]
         new_edge.conversion_fun = self.conversion_fun
         new_edge.conversion_fun_params = {
             "demand": self.conversion_fun_params["demand_profile"][edge_number]}
+        new_edge.target_node.curtailment = False
         return
 
 class Net_EL_Demand_Component(Asset_STEVFNs):
@@ -71,6 +72,7 @@ class Net_EL_Demand_Component(Asset_STEVFNs):
         super().define_structure(asset_structure)
         self.flows = cp.Variable(self.number_of_edges, nonneg=True)
         return
+    
 
 class Unmet_EL_Demand_Component(Asset_STEVFNs):
     """Class of Total Unmet Electricity Demand Component"""
@@ -96,7 +98,7 @@ class Total_Unmet_EL_Demand_Component(Asset_STEVFNs):
     """Class of Total Unmet Electricity Demand Component"""
     asset_name = "Total_Unmet_EL_Demand_Component"
     source_node_type = "NULL"
-    target_node_type = "Unmet_El_Demand"
+    target_node_type = "Unmet_EL_Demand"
     
     @staticmethod
     def conversion_fun(flows, params):
@@ -137,17 +139,8 @@ class EL_Demand_UM_Asset(Multi_Asset):
         return
     
     def update(self, asset_type):
-        super().update(asset_type)
-        return
-        
-    def build_edge(self, edge_number):
-        """Method that Builds Edges for EL_Demand Asset"""
-        node_time = self.node_times[edge_number]
-        new_edge = Edge_STEVFNs()
-        self.edges += [new_edge]
-        new_edge.attach_source_node(self.network.extract_node(
-            self.node_location, self.node_type, node_time))
-        new_edge.flow = self.flows[edge_number]
+        self._load_parameters_df(asset_type)
+        self._update_parameters()
         return
     
     def _update_parameters(self):

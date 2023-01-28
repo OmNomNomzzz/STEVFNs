@@ -40,7 +40,7 @@ class Asset_STEVFNs:
         if self.source_node_type != "NULL":
             new_edge.attach_source_node(self.network.extract_node(
                 self.source_node_location, self.source_node_type, source_node_time))
-        if self.source_node_type != "NULL":
+        if self.target_node_type != "NULL":
             new_edge.attach_target_node(self.network.extract_node(
                 self.target_node_location, self.target_node_type, target_node_time))
         new_edge.flow = self.flows[edge_number]
