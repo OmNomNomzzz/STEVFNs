@@ -71,7 +71,7 @@ class Asset_STEVFNs:
                                            asset_structure["End_Time"], 
                                            asset_structure["Period"])
         self.number_of_edges = len(self.source_node_times)
-        self.flows = cp.Constant(0)
+        self.flows = cp.Constant(np.zeros(self.number_of_edges))
         return
     
     def _load_parameters_df(self, asset_type):

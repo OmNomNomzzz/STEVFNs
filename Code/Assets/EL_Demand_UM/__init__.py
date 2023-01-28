@@ -12,14 +12,114 @@ import pandas as pd
 import os
 from ..Base_Assets import Asset_STEVFNs
 from ...Network import Edge_STEVFNs
+from ..Base_Assets import Multi_Asset
 
 
-class EL_Demand_Asset(Asset_STEVFNs):
-    """Class of Electricity Demand Asset"""
-    asset_name = "EL_Demand"
-    node_type = "EL"
+
+class EL_Demand_Component(Asset_STEVFNs):
+    """Class of Electricity Demand Component"""
+    asset_name = "EL_Demand_Component"
+    source_node_type = "NULL"
+    target_node_type = "Net_EL_Demand"
+    
+    @staticmethod
+    def conversion_fun(flows, params):
+        return params["demand"]
+    
     def __init__(self):
         super().__init__()
+        return
+    
+    def define_structure(self, asset_structure):
+        super().define_structure(asset_structure)
+        self.conversion_fun_params = {
+            "demand_profile": cp.Parameter( self.number_of_edges, nonneg = True)}
+        return
+    
+    def build_edge(self, edge_number):
+        source_node_time = self.source_node_times[edge_number]
+        target_node_time = self.target_node_times[edge_number]
+        new_edge = Edge_STEVFNs()
+        self.edges += [new_edge]
+        new_edge.attach_source_node(self.network.extract_node(
+            self.source_node_location, self.source_node_type, source_node_time))
+        new_edge.attach_target_node(self.network.extract_node(
+            self.target_node_location, self.target_node_type, target_node_time))
+        new_edge.flow = self.flows
+        new_edge.conversion_fun = self.conversion_fun
+        new_edge.conversion_fun_params = {
+            "demand": self.conversion_fun_params["demand_profile"][edge_number]}
+        return
+
+class Net_EL_Demand_Component(Asset_STEVFNs):
+    """Class of Net Electricity Demand Component"""
+    asset_name = "Net_EL_Demand_Component"
+    source_node_type = "Net_EL_Demand"
+    target_node_type = "EL"
+    
+    @staticmethod
+    def conversion_fun(flows, params):
+        return -flows
+    
+    def __init__(self):
+        super().__init__()
+        return
+    
+    def define_structure(self, asset_structure):
+        super().define_structure(asset_structure)
+        self.flows = cp.Variable(self.number_of_edges, nonneg=True)
+        return
+
+class Unmet_EL_Demand_Component(Asset_STEVFNs):
+    """Class of Total Unmet Electricity Demand Component"""
+    asset_name = "Unmet_EL_Demand_Component"
+    source_node_type = "Unmet_EL_Demand"
+    target_node_type = "Net_EL_Demand"
+    
+    @staticmethod
+    def conversion_fun(flows, params):
+        return -flows
+    
+    def __init__(self):
+        super().__init__()
+        return
+
+class Total_Unmet_EL_Demand_Component(Asset_STEVFNs):
+    """Class of Total Unmet Electricity Demand Component"""
+    asset_name = "Total_Unmet_EL_Demand_Component"
+    source_node_type = "NULL"
+    target_node_type = "Unmet_El_Demand"
+    
+    @staticmethod
+    def conversion_fun(flows, params):
+        return params["total_unmet_demand"]
+    
+    def __init__(self):
+        super().__init__()
+        self.conversion_fun_params =  {"total_unmet_demand": cp.Parameter(nonneg=True)}
+        return
+
+class EL_Demand_UM_Asset(Multi_Asset):
+    """Class of Electricity Demand Asset"""
+    asset_name = "EL_Demand_UM"
+    
+    def __init__(self):
+        super().__init__()
+        return
+    
+    assets_class_dictionary = {"EL_Demand": EL_Demand_Component,
+                               "Net_EL_Demand": Net_EL_Demand_Component,
+                               "Unmet_EL_Demand": Unmet_EL_Demand_Component,
+                               "Total_Unmet_EL_Demand": Total_Unmet_EL_Demand_Component}
+    
+    def _update_assets(self):
+        for asset_name, asset in self.assets_dictionary.items():
+            asset.update(self.parameters_df)
+        return
+    
+    
+    
+    def _update_parameters(self):
         return
     
     def define_structure(self, asset_structure):
@@ -70,4 +170,4 @@ class EL_Demand_Asset(Asset_STEVFNs):
         asset_size = self.size()
         asset_identity = self.asset_name + r"_location_" + str(self.node_location)
         return {asset_identity: asset_size}
-    
+ 
