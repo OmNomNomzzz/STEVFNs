@@ -131,6 +131,11 @@ class EL_Demand_UM_Asset(Multi_Asset):
                                "Unmet_EL_Demand": Unmet_EL_Demand_Component,
                                "Total_Unmet_EL_Demand": Total_Unmet_EL_Demand_Component}
     
+    def build(self):
+        super().build()
+        self.number_of_edges = self.assets_dictionary["EL_Demand"].number_of_edges
+        return
+    
     def update(self, asset_type):
         super().update(asset_type)
         return
