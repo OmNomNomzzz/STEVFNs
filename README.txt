@@ -19,8 +19,12 @@ conda install matplotlib
 
 How to run:
 
-A demo and tutorial for using the STEVFNs tool can be found on Aniq's youtube channel. This is part of a seminar for the STEVFNs tool.
+A demo and tutorial for using the STEVFNs tool can be found on Aniq's youtube channel. This is part of a seminar for the STEVFNs tool:
 https://www.youtube.com/watch?v=_n2w6Zzfofw
+
+Details of theoretical physics concepts used to develop STEVFNs is given in the STEVFNs theory seminar:
+In this seminar Aniq discusses how you can model any type of energy system asset using generalized coodinates and flows in space-time and type.
+https://www.youtube.com/watch?v=GIrBYSPbma0
 
 Details of how assets are modelled in STEVFNs is given in the STEVENs asset model seminar:
 https://www.youtube.com/watch?v=caSYzciVFKw
