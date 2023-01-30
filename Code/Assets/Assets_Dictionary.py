@@ -21,6 +21,7 @@ from .NH3_Transport import NH3_Transport_Asset
 from .RE_PV import RE_PV_Asset
 from .RE_WIND import RE_WIND_Asset
 from .RE_max import RE_max_Asset
+from .EL_Demand_UM import EL_Demand_UM_Asset
 
 ASSET_DICT = {EL_Demand_Asset.asset_name: EL_Demand_Asset,
               HTH_Demand_Asset.asset_name: HTH_Demand_Asset,
@@ -37,4 +38,5 @@ ASSET_DICT = {EL_Demand_Asset.asset_name: EL_Demand_Asset,
               RE_PV_Asset.asset_name: RE_PV_Asset,
               RE_WIND_Asset.asset_name: RE_WIND_Asset,
               RE_max_Asset.asset_name: RE_max_Asset,
+              EL_Demand_UM_Asset.asset_name: EL_Demand_UM_Asset,
               }
