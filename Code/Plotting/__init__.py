@@ -156,6 +156,7 @@ class bar_chart_artist:
         self.ylabel = ""
         if title != None:
             self.title = title
+        self.text_data = None
         return
     
     def plot(self, bar_width = 1.0, bar_spacing = 3.0):
@@ -181,6 +182,8 @@ class bar_chart_artist:
         # self.ax.set_ylabel("Size of Assets (GWh)")
         self.ax.set_ylabel(self.ylabel)
         self.ax.legend(ncol = 2)
+        if self.text_data != None:
+            self.fig.text(self.text_data["x"], self.text_data["y"], self.text_data["s"])
         self.fig.tight_layout()
         plt.show()
         return
