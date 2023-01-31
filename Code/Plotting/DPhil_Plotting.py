@@ -7,6 +7,7 @@ Created on Sat Jul  2 17:41:01 2022
 
 # from __init__.py import *
 import numpy as np
+import pandas as pd
 from ..Plotting import bar_chart_artist, stackplot_artist, twin_line_artist
 
 
@@ -241,6 +242,208 @@ def plot_asset_costs(my_network, bar_width = 1.0, bar_spacing = 3.0):
     my_artist.plot(bar_width = bar_width, bar_spacing = bar_spacing)
     return
 
+#####  Plotting flows for Interconnection project and saving csv files for flows
+def plot_AUT_EL_input_flows(my_network):
+    #Plots the EL flows for loc_0, i.e. the location of the scenario running, no EL_Transport asset
+    #Initialize dictionary to store flows and times
+    flows_dictionary = dict()
+    times_dictionary = dict()
+    
+    #Add flows and times for EL Transport assets
+    con1 = my_network.system_structure_df["Location_1"] == 0
+    tdf1 = my_network.system_structure_df[con1]
+    
+    #Add flows and times for BESS Discharging
+    asset_name = "BESS"
+    component_name = "BESS_Discharging"
+    con2 = tdf1["Asset_Class"] == asset_name
+    asset_number = tdf1[con2]["Asset_Number"].iloc[0]
+    my_asset = my_network.assets[asset_number]
+    my_component = my_asset.assets_dictionary["Discharging"]
+    component_flows = my_component.conversion_fun(
+        my_component.flows, 
+        my_component.conversion_fun_params).value
+    flows_dictionary[component_name] = component_flows
+    component_times = my_component.source_node_times
+    times_dictionary[component_name] = component_times
+    
+    flowsIn_df = pd.DataFrame.from_dict(flows_dictionary) 
+    flowsIn_df.to_csv ('flows_input.csv', index = False, header=True)
+
+    
+    my_artist = stackplot_artist()
+    my_artist.flows_dictionary = flows_dictionary
+    my_artist.times = times_dictionary["BESS_Discharging"]/24
+    my_artist.ylabel = "Electricity Flow (GWh)"
+    my_artist.xlabel = "Time (Days)"
+    my_artist.title = "Flow of Electrical Energy into EL node"
+    my_artist.plot()
+    
+    
+    return
+
+def plot_AUT_EL_output_flows(my_network):
+    #Plots the EL flows for loc_0, i.e. the location of the scenario running, no EL_Transport asset
+    #Initialize dictionary to store flows and times
+    flows_dictionary = dict()
+    times_dictionary = dict()
+    
+    #Add flows and times for EL Transport assets
+    con1 = my_network.system_structure_df["Location_1"] == 0
+    tdf1 = my_network.system_structure_df[con1]
+    
+    #Add flows and times for EL demand unmet - fix this plotting
+    # component_name = "Net_EL_Demand_Component"
+    # con2 = tdf1["Asset_Class"] == "EL_Demand_UM"
+    # asset_number = tdf1[con2]["Asset_Number"].iloc[0]
+    # my_component = my_network.assets[asset_number]
+    # component_flows = my_component.flows.value # how to get flows from EL_Demand_UM_Asset
+    # flows_dictionary[component_name] = component_flows
+    # component_times = my_component.node_times
+    # times_dictionary[component_name] = component_times
+    
+    #Add flows and times for BESS Discharging
+    asset_name = "BESS"
+    component_name = "BESS_Charging"
+    con2 = tdf1["Asset_Class"] == asset_name
+    asset_number = tdf1[con2]["Asset_Number"].iloc[0]
+    my_asset = my_network.assets[asset_number]
+    my_component = my_asset.assets_dictionary["Charging"]
+    component_flows = my_component.conversion_fun(
+        my_component.flows, 
+        my_component.conversion_fun_params).value
+    flows_dictionary[component_name] = component_flows
+    component_times = my_component.source_node_times
+    times_dictionary[component_name] = component_times
+    
+    
+    my_artist = stackplot_artist()
+    my_artist.flows_dictionary = flows_dictionary
+    my_artist.times = times_dictionary["BESS_Charging"]/24
+    my_artist.ylabel = "Electricity Flow (GWh)"
+    my_artist.xlabel = "Time (Days)"
+    my_artist.title = "Flow of Electrical Energy out of EL node"
+    my_artist.plot()
+    
+    flowsOut_df = pd.DataFrame.from_dict(flows_dictionary) 
+    flowsOut_df.to_csv ('flows_output.csv', index = False, header=True)
+    return
+
+
+
+
+def plot_XlinkEXT_EL_input_flows(my_network):
+    #Plots the EL flows for loc_0, i.e. GB, only for X-linksExtended Case study
+    #Initialize dictionary to store flows and times
+    flows_dictionary = dict()
+    times_dictionary = dict()
+    
+    #Add flows and times for EL Transport assets
+    con1 = my_network.system_structure_df["Location_1"] == 0
+    tdf1 = my_network.system_structure_df[con1]
+    con2 = tdf1["Asset_Class"] == "EL_Transport"
+    tdf2 = tdf1[con2]
+    # for counter1 in range(1):
+    #     component_name = "EL_Transport_" + str(counter1 + 1)
+    #     con3 = tdf2["Location_2"] == counter1 + 1
+    #     asset_number = tdf2[con3]["Asset_Number"].iloc[0]
+    #     my_component = my_network.assets[asset_number]
+    #     total_component_flows = my_component.conversion_fun(
+    #         my_component.flows, 
+    #         my_component.conversion_fun_params).value
+    #     total_length = len(total_component_flows)
+    #     component_flows = total_component_flows[int(total_length/2):]
+    #     flows_dictionary[component_name] = component_flows
+    #     component_times = my_network.assets[asset_number].source_node_times
+    #     times_dictionary[component_name] = component_times
+    
+    
+    #Add flows and times for BESS Discharging
+    asset_name = "BESS"
+    component_name = "BESS_Discharging"
+    con2 = tdf1["Asset_Class"] == asset_name
+    asset_number = tdf1[con2]["Asset_Number"].iloc[0]
+    my_asset = my_network.assets[asset_number]
+    my_component = my_asset.assets_dictionary["Discharging"]
+    component_flows = my_component.conversion_fun(
+        my_component.flows, 
+        my_component.conversion_fun_params).value
+    flows_dictionary[component_name] = component_flows
+    component_times = my_component.source_node_times
+    times_dictionary[component_name] = component_times
+    
+    
+    
+    my_artist = stackplot_artist()
+    my_artist.flows_dictionary = flows_dictionary
+    my_artist.times = times_dictionary["BESS_Discharging"]/24
+    my_artist.ylabel = "Electricity Flow (GWh)"
+    my_artist.xlabel = "Time (Days)"
+    my_artist.title = "Flow of Electrical Energy into EL node at Singapore"
+    my_artist.plot()
+    
+    flowsOut_df = pd.DataFrame.from_dict(flows_dictionary) 
+    flowsOut_df.to_csv ('flows_output.csv', index = False, header=True)
+    return
+
+def plot_XlinkEXT_EL_output_flows(my_network):
+    #Plots the EL flows for loc_0, i.e. GB
+    #Initialize dictionary to store flows and times
+    flows_dictionary = dict()
+    times_dictionary = dict()
+    
+    #Add flows and times for EL Transport assets
+    con1 = my_network.system_structure_df["Location_1"] == 0
+    tdf1 = my_network.system_structure_df[con1]
+    con2 = tdf1["Asset_Class"] == "EL_Transport"
+    tdf2 = tdf1[con2]
+    # for counter1 in range(1):
+    #     component_name = "EL_Transport_" + str(counter1 + 1)
+    #     con3 = tdf2["Location_2"] == counter1 + 1
+    #     asset_number = tdf2[con3]["Asset_Number"].iloc[0]
+    #     my_component = my_network.assets[asset_number]
+    #     total_component_flows = my_component.flows.value
+    #     total_length = len(total_component_flows)
+    #     component_flows = total_component_flows[:int(total_length/2)]
+    #     flows_dictionary[component_name] = component_flows
+    #     component_times = my_component.source_node_times
+    #     times_dictionary[component_name] = component_times
+        
+    
+    #Add flows and times for EL demand
+    # component_name = "EL_Demand"
+    # con2 = tdf1["Asset_Class"] == "EL_Demand"
+    # asset_number = tdf1[con2]["Asset_Number"].iloc[0]
+    # my_component = my_network.assets[asset_number]
+    # component_flows = my_component.flows.value
+    # flows_dictionary[component_name] = component_flows
+    # component_times = my_component.node_times
+    # times_dictionary[component_name] = component_times
+    
+    
+    #Add flows and times for BESS Charging
+    asset_name = "BESS"
+    component_name = "BESS_Charging"
+    con2 = tdf1["Asset_Class"] == asset_name
+    asset_number = tdf1[con2]["Asset_Number"].iloc[0]
+    my_component = my_network.assets[asset_number].assets_dictionary["Charging"]
+    component_flows = my_component.flows.value
+    flows_dictionary[component_name] = component_flows
+    component_times = my_component.source_node_times
+    times_dictionary[component_name] = component_times
+    
+    my_artist = stackplot_artist()
+    my_artist.flows_dictionary = flows_dictionary
+    my_artist.times = times_dictionary["EL_Demand"]/24
+    my_artist.ylabel = "Electricity Flow (GWh)"
+    my_artist.xlabel = "Time (Days)"
+    my_artist.title = "Flow of Electrical Energy out of EL node at Singapore"
+    my_artist.plot()
+    
+    flowsOut_df = pd.DataFrame.from_dict(flows_dictionary) 
+    flowsOut_df.to_csv ('flows_output.csv', index = False, header=True)
+    return
+
 
 def plot_SG_EL_output_flows(my_network):
     #Plots the EL flows for loc_0, i.e. Singapore. This is only for SG case study for my DPhil Thesis
@@ -290,32 +493,32 @@ def plot_SG_EL_output_flows(my_network):
     
     
     #Add flows and times for EL to NH3
-    # component_name = "EL_to_NH3"
-    # con2 = tdf1["Asset_Class"] == component_name
-    # asset_number = tdf1[con2]["Asset_Number"].iloc[0]
-    # my_component = my_network.assets[asset_number]
-    # component_flows = my_component.flows.value
-    # flows_dictionary[component_name] = component_flows
-    # component_times = my_component.source_node_times
-    # times_dictionary[component_name] = component_times
+    component_name = "EL_to_NH3"
+    con2 = tdf1["Asset_Class"] == component_name
+    asset_number = tdf1[con2]["Asset_Number"].iloc[0]
+    my_component = my_network.assets[asset_number]
+    component_flows = my_component.flows.value
+    flows_dictionary[component_name] = component_flows
+    component_times = my_component.source_node_times
+    times_dictionary[component_name] = component_times
     
     
     #Add flows and times for EL to HTH
-    # component_name = "EL_to_HTH"
-    # con2 = tdf1["Asset_Class"] == component_name
-    # asset_number = tdf1[con2]["Asset_Number"].iloc[0]
-    # my_component = my_network.assets[asset_number]
-    # component_flows = my_component.flows.value
-    # flows_dictionary[component_name] = component_flows
-    # component_times = my_component.source_node_times
-    # times_dictionary[component_name] = component_times
+    component_name = "EL_to_HTH"
+    con2 = tdf1["Asset_Class"] == component_name
+    asset_number = tdf1[con2]["Asset_Number"].iloc[0]
+    my_component = my_network.assets[asset_number]
+    component_flows = my_component.flows.value
+    flows_dictionary[component_name] = component_flows
+    component_times = my_component.source_node_times
+    times_dictionary[component_name] = component_times
     
     my_artist = stackplot_artist()
     my_artist.flows_dictionary = flows_dictionary
     my_artist.times = times_dictionary["EL_Demand"]/24
     my_artist.ylabel = "Electricity Flow (GWh)"
     my_artist.xlabel = "Time (Days)"
-    my_artist.title = "Flow of Electrical Energy out of EL node at GB"
+    my_artist.title = "Flow of Electrical Energy out of EL node at Singapore"
     my_artist.plot()
     return
 
@@ -329,21 +532,21 @@ def plot_SG_EL_input_flows(my_network):
     #Add flows and times for EL Transport assets
     con1 = my_network.system_structure_df["Location_1"] == 0
     tdf1 = my_network.system_structure_df[con1]
-    con2 = tdf1["Asset_Class"] == "EL_Transport"
-    tdf2 = tdf1[con2]
-    for counter1 in range(1):
-        component_name = "EL_Transport_" + str(counter1 + 1)
-        con3 = tdf2["Location_2"] == counter1 + 1
-        asset_number = tdf2[con3]["Asset_Number"].iloc[0]
-        my_component = my_network.assets[asset_number]
-        total_component_flows = my_component.conversion_fun(
-            my_component.flows, 
-            my_component.conversion_fun_params).value
-        total_length = len(total_component_flows)
-        component_flows = total_component_flows[int(total_length/2):]
-        flows_dictionary[component_name] = component_flows
-        component_times = my_network.assets[asset_number].source_node_times
-        times_dictionary[component_name] = component_times
+    # con2 = tdf1["Asset_Class"] == "EL_Transport"
+    # tdf2 = tdf1[con2]
+    # for counter1 in range(1):
+    #     component_name = "EL_Transport_" + str(counter1 + 1)
+    #     con3 = tdf2["Location_2"] == counter1 + 1
+    #     asset_number = tdf2[con3]["Asset_Number"].iloc[0]
+    #     my_component = my_network.assets[asset_number]
+    #     total_component_flows = my_component.conversion_fun(
+    #         my_component.flows, 
+    #         my_component.conversion_fun_params).value
+    #     total_length = len(total_component_flows)
+    #     component_flows = total_component_flows[int(total_length/2):]
+    #     flows_dictionary[component_name] = component_flows
+    #     component_times = my_network.assets[asset_number].source_node_times
+    #     times_dictionary[component_name] = component_times
     
     
     #Add flows and times for BESS Discharging
@@ -983,31 +1186,31 @@ def plot_SG_EL_input_flows_BAU(my_network):
     
     
     # #Add flows and times for BESS Discharging
-    # asset_name = "BESS"
-    # component_name = "BESS_Discharging"
-    # con2 = tdf1["Asset_Class"] == asset_name
-    # asset_number = tdf1[con2]["Asset_Number"].iloc[0]
-    # my_asset = my_network.assets[asset_number]
-    # my_component = my_asset.assets_dictionary["Discharging"]
-    # component_flows = my_component.conversion_fun(
-    #     my_component.flows, 
-    #     my_component.conversion_fun_params).value
-    # flows_dictionary[component_name] = component_flows
-    # component_times = my_component.source_node_times
-    # times_dictionary[component_name] = component_times
+    asset_name = "BESS"
+    component_name = "BESS_Discharging"
+    con2 = tdf1["Asset_Class"] == asset_name
+    asset_number = tdf1[con2]["Asset_Number"].iloc[0]
+    my_asset = my_network.assets[asset_number]
+    my_component = my_asset.assets_dictionary["Discharging"]
+    component_flows = my_component.conversion_fun(
+        my_component.flows, 
+        my_component.conversion_fun_params).value
+    flows_dictionary[component_name] = component_flows
+    component_times = my_component.source_node_times
+    times_dictionary[component_name] = component_times
     
     
     # #Add flows and times for NH3 to EL
-    # component_name = "NH3_to_EL"
-    # con2 = tdf1["Asset_Class"] == component_name
-    # asset_number = tdf1[con2]["Asset_Number"].iloc[0]
-    # my_component = my_network.assets[asset_number]
-    # component_flows = my_component.conversion_fun(
-    #     my_component.flows, 
-    #     my_component.conversion_fun_params).value
-    # flows_dictionary[component_name] = component_flows
-    # component_times = my_component.source_node_times
-    # times_dictionary[component_name] = component_times
+    component_name = "NH3_to_EL"
+    con2 = tdf1["Asset_Class"] == component_name
+    asset_number = tdf1[con2]["Asset_Number"].iloc[0]
+    my_component = my_network.assets[asset_number]
+    component_flows = my_component.conversion_fun(
+        my_component.flows, 
+        my_component.conversion_fun_params).value
+    flows_dictionary[component_name] = component_flows
+    component_times = my_component.source_node_times
+    times_dictionary[component_name] = component_times
     
     
     my_artist = stackplot_artist()
@@ -1031,17 +1234,17 @@ def plot_SG_EL_output_flows_BAU(my_network):
     tdf1 = my_network.system_structure_df[con1]
     con2 = tdf1["Asset_Class"] == "EL_Transport"
     tdf2 = tdf1[con2]
-    # for counter1 in range(3):
-    #     component_name = "EL_Transport_" + str(counter1 + 1)
-    #     con3 = tdf2["Location_2"] == counter1 + 1
-    #     asset_number = tdf2[con3]["Asset_Number"].iloc[0]
-    #     my_component = my_network.assets[asset_number]
-    #     total_component_flows = my_component.flows.value
-    #     total_length = len(total_component_flows)
-    #     component_flows = total_component_flows[:int(total_length/2)]
-    #     flows_dictionary[component_name] = component_flows
-    #     component_times = my_component.source_node_times
-    #     times_dictionary[component_name] = component_times
+    for counter1 in range(3):
+        component_name = "EL_Transport_" + str(counter1 + 1)
+        con3 = tdf2["Location_2"] == counter1 + 1
+        asset_number = tdf2[con3]["Asset_Number"].iloc[0]
+        my_component = my_network.assets[asset_number]
+        total_component_flows = my_component.flows.value
+        total_length = len(total_component_flows)
+        component_flows = total_component_flows[:int(total_length/2)]
+        flows_dictionary[component_name] = component_flows
+        component_times = my_component.source_node_times
+        times_dictionary[component_name] = component_times
         
     
     #Add flows and times for EL demand
@@ -1056,26 +1259,26 @@ def plot_SG_EL_output_flows_BAU(my_network):
     
     
     # #Add flows and times for BESS Charging
-    # asset_name = "BESS"
-    # component_name = "BESS_Charging"
-    # con2 = tdf1["Asset_Class"] == asset_name
-    # asset_number = tdf1[con2]["Asset_Number"].iloc[0]
-    # my_component = my_network.assets[asset_number].assets_dictionary["Charging"]
-    # component_flows = my_component.flows.value
-    # flows_dictionary[component_name] = component_flows
-    # component_times = my_component.source_node_times
-    # times_dictionary[component_name] = component_times
+    asset_name = "BESS"
+    component_name = "BESS_Charging"
+    con2 = tdf1["Asset_Class"] == asset_name
+    asset_number = tdf1[con2]["Asset_Number"].iloc[0]
+    my_component = my_network.assets[asset_number].assets_dictionary["Charging"]
+    component_flows = my_component.flows.value
+    flows_dictionary[component_name] = component_flows
+    component_times = my_component.source_node_times
+    times_dictionary[component_name] = component_times
     
     
-    # #Add flows and times for EL to NH3
-    # component_name = "EL_to_NH3"
-    # con2 = tdf1["Asset_Class"] == component_name
-    # asset_number = tdf1[con2]["Asset_Number"].iloc[0]
-    # my_component = my_network.assets[asset_number]
-    # component_flows = my_component.flows.value
-    # flows_dictionary[component_name] = component_flows
-    # component_times = my_component.source_node_times
-    # times_dictionary[component_name] = component_times
+    # Add flows and times for EL to NH3
+    component_name = "EL_to_NH3"
+    con2 = tdf1["Asset_Class"] == component_name
+    asset_number = tdf1[con2]["Asset_Number"].iloc[0]
+    my_component = my_network.assets[asset_number]
+    component_flows = my_component.flows.value
+    flows_dictionary[component_name] = component_flows
+    component_times = my_component.source_node_times
+    times_dictionary[component_name] = component_times
     
     
     #Add flows and times for EL to HTH
@@ -1109,38 +1312,38 @@ def plot_single_RE_EL_input_flows_BAU(my_network, RE_loc):
     tdf1 = my_network.system_structure_df[con1]
     con2 = tdf1["Asset_Class"] == "EL_Transport"
     tdf2 = tdf1[con2]
-    # for counter1 in range(RE_loc):
-    #     component_name = "EL_Transport_" + str(counter1)
-    #     con3 = tdf2["Location_1"] == counter1
-    #     asset_number = tdf2[con3]["Asset_Number"].iloc[0]
-    #     my_component = my_network.assets[asset_number]
-    #     total_component_flows = my_component.conversion_fun(
-    #         my_component.flows, 
-    #         my_component.conversion_fun_params).value
-    #     total_length = len(total_component_flows)
-    #     component_flows = total_component_flows[:int(total_length/2)]
-    #     flows_dictionary[component_name] = component_flows
-    #     component_times = my_component.source_node_times
-    #     times_dictionary[component_name] = component_times
+    for counter1 in range(RE_loc):
+        component_name = "EL_Transport_" + str(counter1)
+        con3 = tdf2["Location_1"] == counter1
+        asset_number = tdf2[con3]["Asset_Number"].iloc[0]
+        my_component = my_network.assets[asset_number]
+        total_component_flows = my_component.conversion_fun(
+            my_component.flows, 
+            my_component.conversion_fun_params).value
+        total_length = len(total_component_flows)
+        component_flows = total_component_flows[:int(total_length/2)]
+        flows_dictionary[component_name] = component_flows
+        component_times = my_component.source_node_times
+        times_dictionary[component_name] = component_times
     
     #Add flows and times for EL Transport for locations more than RE_loc
     con1 = my_network.system_structure_df["Location_1"] == RE_loc
     tdf1 = my_network.system_structure_df[con1]
     con2 = tdf1["Asset_Class"] == "EL_Transport"
     tdf2 = tdf1[con2]
-    # for counter1 in range(3-RE_loc):
-    #     component_name = "EL_Transport_" + str(counter1 + RE_loc + 1)
-    #     con3 = tdf2["Location_2"] == counter1 + RE_loc + 1
-    #     asset_number = tdf2[con3]["Asset_Number"].iloc[0]
-    #     my_component = my_network.assets[asset_number]
-    #     total_component_flows = my_component.conversion_fun(
-    #         my_component.flows, 
-    #         my_component.conversion_fun_params).value
-    #     total_length = len(total_component_flows)
-    #     component_flows = total_component_flows[int(total_length/2):]
-    #     flows_dictionary[component_name] = component_flows
-    #     component_times = my_component.source_node_times
-    #     times_dictionary[component_name] = component_times
+    for counter1 in range(3-RE_loc):
+        component_name = "EL_Transport_" + str(counter1 + RE_loc + 1)
+        con3 = tdf2["Location_2"] == counter1 + RE_loc + 1
+        asset_number = tdf2[con3]["Asset_Number"].iloc[0]
+        my_component = my_network.assets[asset_number]
+        total_component_flows = my_component.conversion_fun(
+            my_component.flows, 
+            my_component.conversion_fun_params).value
+        total_length = len(total_component_flows)
+        component_flows = total_component_flows[int(total_length/2):]
+        flows_dictionary[component_name] = component_flows
+        component_times = my_component.source_node_times
+        times_dictionary[component_name] = component_times
     
     
     #Add flows and times for BESS Discharging
@@ -1238,17 +1441,17 @@ def plot_single_RE_EL_output_flows_BAU(my_network, RE_loc):
     tdf1 = my_network.system_structure_df[con1]
     con2 = tdf1["Asset_Class"] == "EL_Transport"
     tdf2 = tdf1[con2]
-    # for counter1 in range(3-RE_loc):
-    #     component_name = "EL_Transport_" + str(counter1 + RE_loc + 1)
-    #     con3 = tdf2["Location_2"] == counter1 + RE_loc + 1
-    #     asset_number = tdf2[con3]["Asset_Number"].iloc[0]
-    #     my_component = my_network.assets[asset_number]
-    #     total_component_flows = my_component.flows.value
-    #     total_length = len(total_component_flows)
-    #     component_flows = total_component_flows[:int(total_length/2)]
-    #     flows_dictionary[component_name] = component_flows
-    #     component_times = my_component.source_node_times
-    #     times_dictionary[component_name] = component_times
+    for counter1 in range(3-RE_loc):
+        component_name = "EL_Transport_" + str(counter1 + RE_loc + 1)
+        con3 = tdf2["Location_2"] == counter1 + RE_loc + 1
+        asset_number = tdf2[con3]["Asset_Number"].iloc[0]
+        my_component = my_network.assets[asset_number]
+        total_component_flows = my_component.flows.value
+        total_length = len(total_component_flows)
+        component_flows = total_component_flows[:int(total_length/2)]
+        flows_dictionary[component_name] = component_flows
+        component_times = my_component.source_node_times
+        times_dictionary[component_name] = component_times
     
     
     #Add flows and times for BESS Charging

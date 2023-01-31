@@ -89,15 +89,15 @@ for counter1 in range(len(scenario_folders_list)):
     # DPhil_Plotting.plot_all(my_network)
     DPhil_Plotting.plot_asset_sizes(my_network)
     DPhil_Plotting.plot_asset_costs(my_network)
+    # DPhil_Plotting.plot_AUT_EL_input_flows(my_network)
+    # DPhil_Plotting.plot_AUT_EL_output_flows(my_network)
+    DPhil_Plotting.plot_XlinkEXT_EL_input_flows(my_network)
+    DPhil_Plotting.plot_XlinkEXT_EL_output_flows(my_network)
     
     
-# ##### Plot flows for BAU scenario ######
-# DPhil_Plotting.plot_SG_EL_input_flows_BAU(my_network)
-DPhil_Plotting.plot_SG_EL_output_flows(my_network)
-# DPhil_Plotting.plot_RE_EL_input_flows_BAU(my_network)
-# DPhil_Plotting.plot_RE_EL_output_flows_BAU(my_network)
-
-
+    # DPhil_Plotting.plot_single_RE_EL_output_flows(my_network, 0)
+    
+    
 
     for counter2 in range(len(my_network.assets)):
         print(my_network.assets[counter2], 'size:', my_network.assets[counter2].asset_size())
