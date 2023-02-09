@@ -21,7 +21,7 @@ class Network_STEVFNs:
         self.assets = []
         self.costs = []
         self.constraints = []
-        self.nodes_df = pd.Series([], index = pd.MultiIndex.from_tuples([], names = ["location", "type", "time"]))
+        self.nodes_df = pd.Series([], index = pd.MultiIndex.from_tuples([], names = ["location", "type", "time"]), dtype = "O")
         self.base_folder = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
         self.system_parameters_df = pd.DataFrame({
             "parameter": ["timestep", "discount_rate", "project_life"],
