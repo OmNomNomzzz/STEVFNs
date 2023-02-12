@@ -14,6 +14,7 @@ import cvxpy as cp
 
 from Code.Network.Network import Network_STEVFNs
 from Code.Plotting import DPhil_Plotting
+from Code.Flows import Supergrid_Flows
 
 
 
@@ -30,12 +31,9 @@ scenario_folders_list = [x[0] for x in os.walk(case_study_folder)][1:]
 network_structure_filename = os.path.join(case_study_folder, "Network_Structure.csv")
 
 
-
-
 ### Read Input Files ###
 
 network_structure_df = pd.read_csv(network_structure_filename)
-
 
 
 ### Build Network ###
@@ -50,8 +48,8 @@ end_time = time.time()
 print("Time taken to build network = ", end_time - start_time, "s")
 
 
-for counter1 in range(len(scenario_folders_list)):
-# for counter1 in range(1):
+# for counter1 in range(len(scenario_folders_list)):
+for counter1 in range(1):
     ### Read Input Files ###
     scenario_folder = scenario_folders_list[counter1]
     asset_parameters_filename = os.path.join(scenario_folder, "Asset_Parameters.csv")
@@ -83,7 +81,20 @@ for counter1 in range(len(scenario_folders_list)):
     
     end_time = time.time()
     
-    ### Plot Results ############
+
+    ### Extract Flows ###
+    if case_study_name == "Autarky_Case_Study":
+        Supergrid_Flows.export_AUT_Flows(my_network).to_csv(f'{scenario_folders_list[counter1]}_Flows.csv', index = False, header=True)
+    
+    elif case_study_name == "Xlinks_Case_Study":
+        Supergrid_Flows.export_Xlinks_Flows(my_network).to_csv(f'{scenario_folders_list[counter1]}_Flows.csv', index = False, header=True)
+    
+    else:
+        Supergrid_Flows.export_XlinksEXT_Flows(my_network).to_csv(f'{scenario_folders_list[counter1]}_Flows.csv', index = False, header=True)
+
+    
+
+    ### Plot Results ###
     print("Time taken to solve problem = ", end_time - start_time, "s")
     print("Total cost to satisfy all demand = ", my_network.problem.value, " Billion USD, in scenario:", scenario_folders_list[counter1])
     # DPhil_Plotting.plot_all(my_network)
@@ -91,15 +102,13 @@ for counter1 in range(len(scenario_folders_list)):
     DPhil_Plotting.plot_asset_costs(my_network)
     # DPhil_Plotting.plot_AUT_EL_input_flows(my_network)
     # DPhil_Plotting.plot_AUT_EL_output_flows(my_network)
-    DPhil_Plotting.plot_XlinkEXT_EL_input_flows(my_network)
-    DPhil_Plotting.plot_XlinkEXT_EL_output_flows(my_network)
-    
-    
-    # DPhil_Plotting.plot_single_RE_EL_output_flows(my_network, 0)
-    
-    
+    # DPhil_Plotting.plot_XlinkEXT_EL_input_flows(my_network)
+    # DPhil_Plotting.plot_XlinkEXT_EL_output_flows(my_network)
+
 
     for counter2 in range(len(my_network.assets)):
         print(my_network.assets[counter2], 'size:', my_network.assets[counter2].asset_size())
         print(my_network.assets[counter2], 'cost:', my_network.assets[counter2].cost.value)
+        
+        
 
