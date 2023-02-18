@@ -122,7 +122,7 @@ def plot_asset_sizes(my_network, bar_width = 1.0, bar_spacing = 3.0):
     my_artist.bar_data_dict = bar_data_dict
     my_artist.x_ticks_data_dict = x_ticks_data_dict
     my_artist.ylabel = "Asset Size (GWh)"
-    my_artist.title = "Size of Assets in the System by Location and Location Pair"
+    my_artist.title = "Size of Assets in the System by Location and Location Pair \n Scenario: " + my_network.scenario_name
     my_artist.plot(bar_width = bar_width, bar_spacing = bar_spacing)
     return
 
@@ -237,7 +237,8 @@ def plot_asset_costs(my_network, bar_width = 1.0, bar_spacing = 3.0):
     my_artist.bar_data_dict = bar_data_dict
     my_artist.x_ticks_data_dict = x_ticks_data_dict
     my_artist.ylabel = "Asset Cost (Billion USD)"
-    my_artist.title = "Cost of Assets in the System by Location and Location Pair"
+    my_artist.title = "Cost of Assets in the System by Location and Location Pair \n Scenario: " + my_network.scenario_name
+    my_artist.text_data = {"x": 0.12, "y": 0.5, "s": "Total Cost = " + f"{my_network.cost.value: .5}" + " Bil USD"}
     my_artist.plot(bar_width = bar_width, bar_spacing = bar_spacing)
     return
 

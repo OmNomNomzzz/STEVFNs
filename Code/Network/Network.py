@@ -21,7 +21,7 @@ class Network_STEVFNs:
         self.assets = []
         self.costs = []
         self.constraints = []
-        self.nodes_df = pd.Series([], index = pd.MultiIndex.from_tuples([], names = ["location", "type", "time"]))
+        self.nodes_df = pd.Series([], index = pd.MultiIndex.from_tuples([], names = ["location", "type", "time"]), dtype = "O")
         self.base_folder = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
         self.system_parameters_df = pd.DataFrame({
             "parameter": ["timestep", "discount_rate", "project_life"],
@@ -29,6 +29,7 @@ class Network_STEVFNs:
             "unit" : ["h", "unitless", "timestep"]}).set_index("parameter")
         self.system_structure_properties = dict({
             "simulated_timesteps" : 0,})
+        self.scenario_name = ""
         return
     
     def generate_node(self, node_location, node_type, node_time):
@@ -62,12 +63,23 @@ class Network_STEVFNs:
         return
     
     def build_constraints(self):
-        self.constraints = []
+        self._build_nodes()
+        self._update_constraints()
+        return
+    
+    def _build_nodes(self):
         for counter1 in range(self.nodes_df.size):
             node = self.nodes_df.iloc[counter1]
             node.build_constraints()
+        return
+    
+    def _update_constraints(self):
+        self.constraints = []
+        for counter1 in range(self.nodes_df.size):
+            node = self.nodes_df.iloc[counter1]
             self.constraints += node.constraints
         return
+    
     
     def build_cost(self):
         self.cost = cp.sum(self.costs)
@@ -79,6 +91,11 @@ class Network_STEVFNs:
         self.build_cost()
         self.build_constraints()
         self.objective = cp.Minimize(self.cost)
+        self.problem = cp.Problem(self.objective, self.constraints)
+        return
+    
+    def update_problem(self):
+        self._update_constraints()
         self.problem = cp.Problem(self.objective, self.constraints)
         return
     
