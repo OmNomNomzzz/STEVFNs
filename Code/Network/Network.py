@@ -63,12 +63,23 @@ class Network_STEVFNs:
         return
     
     def build_constraints(self):
-        self.constraints = []
+        self._build_nodes()
+        self._update_constraints()
+        return
+    
+    def _build_nodes(self):
         for counter1 in range(self.nodes_df.size):
             node = self.nodes_df.iloc[counter1]
             node.build_constraints()
+        return
+    
+    def _update_constraints(self):
+        self.constraints = []
+        for counter1 in range(self.nodes_df.size):
+            node = self.nodes_df.iloc[counter1]
             self.constraints += node.constraints
         return
+    
     
     def build_cost(self):
         self.cost = cp.sum(self.costs)

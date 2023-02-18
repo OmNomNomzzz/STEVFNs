@@ -51,6 +51,7 @@ class EL_Demand_Constant_Asset(Asset_STEVFNs):
             self._load_parameters_df(asset_type)
             self._update_parameters()
             self._update_edges()
+            self.updated = True
         return
     
     def _update_parameters(self):
