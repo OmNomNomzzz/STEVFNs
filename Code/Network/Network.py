@@ -94,6 +94,11 @@ class Network_STEVFNs:
         self.problem = cp.Problem(self.objective, self.constraints)
         return
     
+    def update_problem(self):
+        self._update_constraints()
+        self.problem = cp.Problem(self.objective, self.constraints)
+        return
+    
     def solve_problem(self):
         # self.problem.solve()
         # self.problem.solve(warm_start=True)# This can sometimes use OSQP solver that sometimes gives errors.

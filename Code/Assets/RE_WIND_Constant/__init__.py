@@ -13,9 +13,9 @@ from ..Base_Assets import Asset_STEVFNs
 from ...Network import Edge_STEVFNs
 
 
-class RE_PV_Constant_Asset(Asset_STEVFNs):
+class RE_WIND_Constant_Asset(Asset_STEVFNs):
     """Class of Renewable Energy Sources """
-    asset_name = "RE_PV_Constant"
+    asset_name = "RE_WIND_Constant"
     node_type = "EL"
     
     @staticmethod
@@ -81,7 +81,6 @@ class RE_PV_Constant_Asset(Asset_STEVFNs):
             current_edge.flow = self.flows * self.gen_profile[edge_number]
             current_edge.target_node.build_constraints()
         return
-    
     
     def _load_RE_profile(self):
         """This function reads file and updates self.gen_profile """
