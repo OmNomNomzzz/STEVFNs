@@ -15,7 +15,7 @@ from ...Network import Edge_STEVFNs
 
 
 class EL_Demand_Constant_Asset(Asset_STEVFNs):
-    """Class of Electricity Demand Asset with constant demand"""
+    """Class of Electricity Demand Asset"""
     asset_name = "EL_Demand_Constant"
     node_type = "EL"
     def __init__(self):
@@ -50,7 +50,6 @@ class EL_Demand_Constant_Asset(Asset_STEVFNs):
         if self.updated == False:
             self._load_parameters_df(asset_type)
             self._update_parameters()
-            self._update_edges()
             self.updated = True
         return
     
@@ -71,12 +70,17 @@ class EL_Demand_Constant_Asset(Asset_STEVFNs):
             new_loc_0 = set_size * counter1
             new_loc_1 = new_loc_0 + set_size
             new_profile[new_loc_0 : new_loc_1] = full_profile[old_loc_0 : old_loc_1]
-        self.flows.value = new_profile[:self.number_of_edges]
+        self.flows = cp.Constant(new_profile[:self.number_of_edges])
+        self._update_edges()
+        self.network.update_problem()
         return
     
     def _update_edges(self):
-        for counter1 in range(self.number_of_edges):
-            self.edges[counter1].flow = cp.Constant(self.edges[counter1].flow.value)
+        for edge_number in range(self.number_of_edges):
+            current_edge = self.edges[edge_number]
+            current_edge.flow = self.flows[edge_number]
+            current_edge.source_node.build_constraints()
+        return
     
     def get_asset_sizes(self):
         # Returns the size of the asset as a dict #
