@@ -20,8 +20,8 @@ from Code.Flows import Supergrid_Flows
 
 #### Define Input Files ####
 # case_study_name = "Autarky_Case_Study"
-# case_study_name = "Xlinks_Case_Study" 
-case_study_name = "Xlinks_EXT_Case_Study"
+case_study_name = "Xlinks_Case_Study" 
+# case_study_name = "Xlinks_EXT_Case_Study"
 
 
 base_folder = os.path.dirname(__file__)
@@ -48,8 +48,8 @@ end_time = time.time()
 print("Time taken to build network = ", end_time - start_time, "s")
 
 
-# for counter1 in range(len(scenario_folders_list)):
-for counter1 in range(1):
+for counter1 in range(len(scenario_folders_list)):
+# for counter1 in range(1):
     ### Read Input Files ###
     scenario_folder = scenario_folders_list[counter1]
     asset_parameters_filename = os.path.join(scenario_folder, "Asset_Parameters.csv")
@@ -82,7 +82,7 @@ for counter1 in range(1):
     end_time = time.time()
     
 
-    ### Extract Flows ###
+    ### Extract Flows and save into csv files in Case Study Folder ###
     if case_study_name == "Autarky_Case_Study":
         Supergrid_Flows.export_AUT_Flows(my_network).to_csv(f'{scenario_folders_list[counter1]}_Flows.csv', index = False, header=True)
     
@@ -100,10 +100,8 @@ for counter1 in range(1):
     # DPhil_Plotting.plot_all(my_network)
     DPhil_Plotting.plot_asset_sizes(my_network)
     DPhil_Plotting.plot_asset_costs(my_network)
-    # DPhil_Plotting.plot_AUT_EL_input_flows(my_network)
-    # DPhil_Plotting.plot_AUT_EL_output_flows(my_network)
-    # DPhil_Plotting.plot_XlinkEXT_EL_input_flows(my_network)
-    # DPhil_Plotting.plot_XlinkEXT_EL_output_flows(my_network)
+
+    
 
 
     for counter2 in range(len(my_network.assets)):
@@ -111,4 +109,4 @@ for counter1 in range(1):
         print(my_network.assets[counter2], 'cost:', my_network.assets[counter2].cost.value)
         
         
-
+    
