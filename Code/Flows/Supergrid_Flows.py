@@ -7,6 +7,7 @@ Created on Sun Feb 12 10:03:55 2023
 """
 
 import pandas as pd
+import numpy as np
 
         
 
@@ -84,27 +85,98 @@ def export_XlinksEXT_Flows(my_network):
 
     
     
-# def export_AUT_costs_sizes(my_network):
+def export_AUT_costs_sizes(my_network):
 
-#     costs = pd.DataFrame()
-#     sizes = pd.DataFrame()
-    
-#     ### Unmet demand asset
-#     demand_s = pd.DataFrame(my_network.assets[3].asset_size(), columns = ["EL_Demand_UM_GWp"])
-    
-#     ### BESS ###
-#     BESS_s = pd.DataFrame(my_network.assets[2].asset_size(), columns = ["BESS_GWh"])
-#     BESS_c = pd.DataFrame(my_network.assets[2].cost.value, columns = ["BESS_G$"])
+    costs_Sizes = pd.DataFrame()
 
-#     ### RE ###
-#     PV = pd.DataFrame(my_network.assets[0].asset_size(), columns = ['PV'])
-#     Wind = pd.DataFrame(my_network.assets[1].asset_size(), columns = ['Wind'])
+    ### Unmet demand asset
+    costs_Sizes.insert(0, 'EL_Demand_UM_GWp', [my_network.assets[3].asset_size()])
+    costs_Sizes.insert(0, 'EL_Demand_UM_G$', [my_network.assets[3].cost.value])
     
-#     ### Export to .csv in case study folder
-#     size = pd.concat([size, demand_s, BESS_s, BESS_c, PV, Wind], axis=1)
-#     return(costs, sizes)
+    ### BESS ###
+    costs_Sizes.insert(0, 'BESS_GWh', [my_network.assets[2].asset_size()])
+    costs_Sizes.insert(0, 'BESS_G$', [my_network.assets[2].cost.value])
+
+    ### RE ###
+    costs_Sizes.insert(0, 'PV_GWp', [my_network.assets[0].asset_size()])
+    costs_Sizes.insert(0, 'PV_G$', [my_network.assets[0].cost.value])
+    costs_Sizes.insert(0, 'Wind_GWp', [my_network.assets[1].asset_size()])
+    costs_Sizes.insert(0, 'Wind_G$', [my_network.assets[1].cost.value])
     
+    return(costs_Sizes)
+    
+def export_Xlinks_costs_sizes(my_network):
+
+    costs_Sizes = pd.DataFrame()
+
+    ### Unmet demand asset
+    costs_Sizes.insert(0, 'GB_EL_Demand_UM_GWp', [my_network.assets[3].asset_size()])
+    costs_Sizes.insert(0, 'GB_EL_Demand_UM_G$', [my_network.assets[3].cost.value])
+    costs_Sizes.insert(0, 'loc1_EL_Demand_UM_GWp', [my_network.assets[7].asset_size()])
+    costs_Sizes.insert(0, 'loc1_EL_Demand_UM_G$', [my_network.assets[7].cost.value])
+    
+    ### BESS ###
+    costs_Sizes.insert(0, 'GB_BESS_GWh', [my_network.assets[2].asset_size()])
+    costs_Sizes.insert(0, 'GB_BESS_G$', [my_network.assets[2].cost.value])
+    costs_Sizes.insert(0, 'loc1_BESS_GWh', [my_network.assets[6].asset_size()])
+    costs_Sizes.insert(0, 'loc1_BESS_G$', [my_network.assets[6].cost.value])
+
+    ### RE ###
+    costs_Sizes.insert(0, 'GB_PV_GWp', [my_network.assets[0].asset_size()])
+    costs_Sizes.insert(0, 'GB_PV_G$', [my_network.assets[0].cost.value])
+    costs_Sizes.insert(0, 'GB_Wind_GWp', [my_network.assets[1].asset_size()])
+    costs_Sizes.insert(0, 'GB_Wind_G$', [my_network.assets[1].cost.value])
+    costs_Sizes.insert(0, 'loc1_PV_GWp', [my_network.assets[4].asset_size()])
+    costs_Sizes.insert(0, 'loc1_PV_G$', [my_network.assets[4].cost.value])
+    costs_Sizes.insert(0, 'loc1_Wind_GWp', [my_network.assets[5].asset_size()])
+    costs_Sizes.insert(0, 'loc1_Wind_G$', [my_network.assets[5].cost.value])
+    
+    ### HVDC ###
+    costs_Sizes.insert(0, 'GB-loc1_HVDC_GWp', [my_network.assets[8].asset_size()])
+    costs_Sizes.insert(0, 'GB-loc1_HVDC_G$', [my_network.assets[8].cost.value])
+    
+    return(costs_Sizes)
         
+def export_XlinksEXT_costs_sizes(my_network):
+    costs_Sizes = pd.DataFrame()
+
+    ### Unmet demand asset
+    costs_Sizes.insert(0, 'GB_EL_Demand_UM_GWp', [my_network.assets[3].asset_size()])
+    costs_Sizes.insert(0, 'GB_EL_Demand_UM_G$', [my_network.assets[3].cost.value])
+    costs_Sizes.insert(0, 'MA_EL_Demand_UM_GWp', [my_network.assets[7].asset_size()])
+    costs_Sizes.insert(0, 'MA_EL_Demand_UM_G$', [my_network.assets[7].cost.value])
+    costs_Sizes.insert(0, 'ZA_EL_Demand_UM_GWp', [my_network.assets[11].asset_size()])
+    costs_Sizes.insert(0, 'ZA_EL_Demand_UM_G$', [my_network.assets[11].cost.value])
+    
+    ### BESS ###
+    costs_Sizes.insert(0, 'GB_BESS_GWh', [my_network.assets[2].asset_size()])
+    costs_Sizes.insert(0, 'GB_BESS_G$', [my_network.assets[2].cost.value])
+    costs_Sizes.insert(0, 'MA_BESS_GWh', [my_network.assets[6].asset_size()])
+    costs_Sizes.insert(0, 'MA_BESS_G$', [my_network.assets[6].cost.value])
+    costs_Sizes.insert(0, 'ZA_BESS_GWh', [my_network.assets[10].asset_size()])
+    costs_Sizes.insert(0, 'ZA_BESS_G$', [my_network.assets[10].cost.value])
+
+    ### RE ###
+    costs_Sizes.insert(0, 'GB_PV_GWp', [my_network.assets[0].asset_size()])
+    costs_Sizes.insert(0, 'GB_PV_G$', [my_network.assets[0].cost.value])
+    costs_Sizes.insert(0, 'GB_Wind_GWp', [my_network.assets[1].asset_size()])
+    costs_Sizes.insert(0, 'GB_Wind_G$', [my_network.assets[1].cost.value])
+    costs_Sizes.insert(0, 'MA_PV_GWp', [my_network.assets[4].asset_size()])
+    costs_Sizes.insert(0, 'MA_PV_G$', [my_network.assets[4].cost.value])
+    costs_Sizes.insert(0, 'MA_Wind_GWp', [my_network.assets[5].asset_size()])
+    costs_Sizes.insert(0, 'MA_Wind_G$', [my_network.assets[5].cost.value])
+    costs_Sizes.insert(0, 'ZA_PV_GWp', [my_network.assets[8].asset_size()])
+    costs_Sizes.insert(0, 'ZA_PV_G$', [my_network.assets[8].cost.value])
+    costs_Sizes.insert(0, 'ZA_Wind_GWp', [my_network.assets[9].asset_size()])
+    costs_Sizes.insert(0, 'ZA_Wind_G$', [my_network.assets[9].cost.value])
+    
+    ### HVDC ###
+    costs_Sizes.insert(0, 'GB-MA_HVDC_GWp', [my_network.assets[12].asset_size()])
+    costs_Sizes.insert(0, 'GB-MA_HVDC_G$', [my_network.assets[12].cost.value])
+    costs_Sizes.insert(0, 'MA-ZA_HVDC_GWp', [my_network.assets[13].asset_size()])
+    costs_Sizes.insert(0, 'MA-ZA_HVDC_G$', [my_network.assets[13].cost.value])
+    
+    return(costs_Sizes)
     
     
     

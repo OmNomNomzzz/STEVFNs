@@ -85,12 +85,15 @@ for counter1 in range(len(scenario_folders_list)):
     ### Extract Flows and save into csv files in Case Study Folder ###
     if case_study_name == "Autarky_Case_Study":
         Supergrid_Flows.export_AUT_Flows(my_network).to_csv(f'{scenario_folders_list[counter1]}_Flows.csv', index = False, header=True)
+        Supergrid_Flows.export_AUT_costs_sizes(my_network).to_csv(f'{scenario_folders_list[counter1]}_Costs_Sizes.csv', index = False, header=True)
     
     elif case_study_name == "Xlinks_Case_Study":
-        Supergrid_Flows.export_Xlinks_Flows(my_network).to_csv(f'{scenario_folders_list[counter1]}_Flows.csv', index = False, header=True)
+        # Supergrid_Flows.export_Xlinks_Flows(my_network).to_csv(f'{scenario_folders_list[counter1]}_Flows.csv', index = False, header=True)
+        Supergrid_Flows.export_Xlinks_costs_sizes(my_network).to_csv(f'{scenario_folders_list[counter1]}_Costs_Sizes.csv', index = False, header=True)
     
     else:
         Supergrid_Flows.export_XlinksEXT_Flows(my_network).to_csv(f'{scenario_folders_list[counter1]}_Flows.csv', index = False, header=True)
+        Supergrid_Flows.export_XlinksEXT_costs_sizes(my_network).to_csv(f'{scenario_folders_list[counter1]}_Costs_Sizes.csv', index = False, header=True)
 
     
 
