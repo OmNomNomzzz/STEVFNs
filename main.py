@@ -19,8 +19,8 @@ from Code.Flows import Supergrid_Flows
 
 
 #### Define Input Files ####
-# case_study_name = "Autarky_Case_Study"
-case_study_name = "Xlinks_Case_Study" 
+case_study_name = "Autarky_Case_Study"
+# case_study_name = "Xlinks_Case_Study" 
 # case_study_name = "Xlinks_EXT_Case_Study"
 
 
@@ -48,8 +48,8 @@ end_time = time.time()
 print("Time taken to build network = ", end_time - start_time, "s")
 
 
-for counter1 in range(len(scenario_folders_list)):
-# for counter1 in range(1):
+# for counter1 in range(len(scenario_folders_list)):
+for counter1 in range(1):
     ### Read Input Files ###
     scenario_folder = scenario_folders_list[counter1]
     asset_parameters_filename = os.path.join(scenario_folder, "Asset_Parameters.csv")
@@ -88,11 +88,11 @@ for counter1 in range(len(scenario_folders_list)):
         Supergrid_Flows.export_AUT_costs_sizes(my_network).to_csv(f'{scenario_folders_list[counter1]}_Costs_Sizes.csv', index = False, header=True)
     
     elif case_study_name == "Xlinks_Case_Study":
-        # Supergrid_Flows.export_Xlinks_Flows(my_network).to_csv(f'{scenario_folders_list[counter1]}_Flows.csv', index = False, header=True)
+        Supergrid_Flows.export_Xlinks_Flows(my_network).to_csv(f'{scenario_folders_list[counter1]}_Flows.csv', index = False, header=True)
         Supergrid_Flows.export_Xlinks_costs_sizes(my_network).to_csv(f'{scenario_folders_list[counter1]}_Costs_Sizes.csv', index = False, header=True)
     
     else:
-        Supergrid_Flows.export_XlinksEXT_Flows(my_network).to_csv(f'{scenario_folders_list[counter1]}_Flows.csv', index = False, header=True)
+        # Supergrid_Flows.export_XlinksEXT_Flows(my_network).to_csv(f'{scenario_folders_list[counter1]}_Flows.csv', index = False, header=True)
         Supergrid_Flows.export_XlinksEXT_costs_sizes(my_network).to_csv(f'{scenario_folders_list[counter1]}_Costs_Sizes.csv', index = False, header=True)
 
     
