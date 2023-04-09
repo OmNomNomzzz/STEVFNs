@@ -50,6 +50,16 @@ class Import_Asset(Asset_STEVFNs):
             self.target_node_type = self.target_node_type_list[counter1]
             self.build_edges()
             self.build_cost()
+            self._prevent_curtailment()
+        return
+    
+    def _prevent_curtailment(self):
+        for edge_number in range(self.number_of_edges):
+            target_node_type = self.target_node_type_list[1]
+            target_node_time = self.target_node_times[edge_number]
+            target_node_location = self.source_node_location
+            node = self.network.extract_node(target_node_location, target_node_type, target_node_time)
+            node.curtailment = False
         return
     
     def _update_parameters(self):
@@ -57,6 +67,7 @@ class Import_Asset(Asset_STEVFNs):
         profile_filename = os.path.join(self.parameters_folder, "profiles", profile_filename)
         profile_df = pd.read_csv(profile_filename)
         full_profile = np.array(profile_df["Market Price"])
+        full_profile = np.append(full_profile, full_profile)
         start_index = self.parameters_df["initial_timestep"]
         end_index = start_index + self.number_of_edges
         final_profile = full_profile[start_index:end_index]
@@ -143,6 +154,7 @@ class Export_Asset(Asset_STEVFNs):
         profile_filename = os.path.join(self.parameters_folder, "profiles", profile_filename)
         profile_df = pd.read_csv(profile_filename)
         full_profile = np.array(profile_df["Market Price"])
+        full_profile = np.append(full_profile, full_profile)
         start_index = self.parameters_df["initial_timestep"]
         end_index = start_index + self.number_of_edges
         final_profile = full_profile[start_index:end_index]

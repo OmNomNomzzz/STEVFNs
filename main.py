@@ -117,7 +117,7 @@ BESS_asset =  my_network.assets[0]
 market_half_hourly_asset = my_network.assets[1]
 market_daily_asset = my_network.assets[2]
 
-for counter1 in range(2):
+for counter1 in range(1095):
     
     ### Update Network Parameters ###
     start_time = time.time()

@@ -1,4 +1,4 @@
 Asset_Number,Asset_Class,Location_1,Location_2,Start_Time,End_Time,Period,Transport_Time
-0,BESS_Market,0,0,0,192,0.5,0
-1,Market_Half_Hourly_BESS,0,0,0,192,0.5,0
-2,Market_Daily_BESS,0,0,0,192,24,0
+0,BESS_Market,0,0,0,336,0.5,0
+1,Market_Half_Hourly_BESS,0,0,0,336,0.5,0
+2,Market_Daily_BESS,0,0,0,336,24,0
