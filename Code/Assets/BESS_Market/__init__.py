@@ -273,7 +273,7 @@ class Storage_Asset(Asset_STEVFNs):
         NPV_factor = (1-r**N)/(1-r)
         # self.cost_fun_params["storage_sizing_constant"].value = self.cost_fun_params["storage_sizing_constant"].value * NPV_factor
         sizing_constant = self.cost_fun_params["storage_sizing_constant"].value
-        storage_max = self.cost_fun_params["storage_max"]
+        storage_max = self.cost_fun_params["storage_max"].value
         # lifespan = self.cost_fun_params["lifespan"]
         # lifespan_price = sizing_constant * storage_max / lifespan #Loss of lifespan per half hour
         # lifespan_cost = lifespan_price * self.network.system_structure_properties["simulated_timesteps"]

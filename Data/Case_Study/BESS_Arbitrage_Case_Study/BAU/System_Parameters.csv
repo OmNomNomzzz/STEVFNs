@@ -1,4 +1,4 @@
 parameter,value,unit
 timestep,1,h
-discount_rate,0.05,unitless
+discount_rate,1.00E-10,unitless
 project_life,262800,timestep
