@@ -85,21 +85,21 @@ class Charging_Asset(Asset_STEVFNs):
         self.parameters_df = parameters_df
         return
     
-    def _update_sizing_constant(self):
-        N = np.ceil(self.network.system_parameters_df.loc["project_life", "value"]/self.parameters_df["lifespan"])
-        r = (1 + self.network.system_parameters_df.loc["discount_rate", "value"])**(-self.parameters_df["lifespan"]/8760)
-        NPV_factor = (1-r**N)/(1-r)
-        self.cost_fun_params["charging_sizing_constant"].value = self.cost_fun_params["charging_sizing_constant"].value * NPV_factor
-        return
+    # def _update_sizing_constant(self):
+    #     N = np.ceil(self.network.system_parameters_df.loc["project_life", "value"]/self.parameters_df["lifespan"])
+    #     r = (1 + self.network.system_parameters_df.loc["discount_rate", "value"])**(-self.parameters_df["lifespan"]/8760)
+    #     NPV_factor = (1-r**N)/(1-r)
+    #     self.cost_fun_params["charging_sizing_constant"].value = self.cost_fun_params["charging_sizing_constant"].value * NPV_factor
+    #     return
     
-    def _update_usage_constant(self):
-        simulation_factor = 8760/self.network.system_structure_properties["simulated_timesteps"]
-        N = np.ceil(self.network.system_parameters_df.loc["project_life", "value"]/8760)
-        r = (1 + self.network.system_parameters_df.loc["discount_rate", "value"])**-1
-        NPV_factor = (1-r**N)/(1-r)
-        self.cost_fun_params["charging_usage_constant"].value = (self.cost_fun_params["charging_usage_constant"].value * 
-                                                        NPV_factor * simulation_factor)
-        return
+    # def _update_usage_constant(self):
+    #     simulation_factor = 8760/self.network.system_structure_properties["simulated_timesteps"]
+    #     N = np.ceil(self.network.system_parameters_df.loc["project_life", "value"]/8760)
+    #     r = (1 + self.network.system_parameters_df.loc["discount_rate", "value"])**-1
+    #     NPV_factor = (1-r**N)/(1-r)
+    #     self.cost_fun_params["charging_usage_constant"].value = (self.cost_fun_params["charging_usage_constant"].value * 
+    #                                                     NPV_factor * simulation_factor)
+    #     return
     
     def _update_charging_max(self):
         self.conversion_fun_params["charging_max"].value = (self.conversion_fun_params["charging_max"].value * 
@@ -178,21 +178,21 @@ class Discharging_Asset(Asset_STEVFNs):
         self.parameters_df = parameters_df
         return
     
-    def _update_sizing_constant(self):
-        N = np.ceil(self.network.system_parameters_df.loc["project_life", "value"]/self.parameters_df["lifespan"])
-        r = (1 + self.network.system_parameters_df.loc["discount_rate", "value"])**(-self.parameters_df["lifespan"]/8760)
-        NPV_factor = (1-r**N)/(1-r)
-        self.cost_fun_params["discharging_sizing_constant"].value = self.cost_fun_params["discharging_sizing_constant"].value * NPV_factor
-        return
+    # def _update_sizing_constant(self):
+    #     N = np.ceil(self.network.system_parameters_df.loc["project_life", "value"]/self.parameters_df["lifespan"])
+    #     r = (1 + self.network.system_parameters_df.loc["discount_rate", "value"])**(-self.parameters_df["lifespan"]/8760)
+    #     NPV_factor = (1-r**N)/(1-r)
+    #     self.cost_fun_params["discharging_sizing_constant"].value = self.cost_fun_params["discharging_sizing_constant"].value * NPV_factor
+    #     return
     
-    def _update_usage_constant(self):
-        simulation_factor = 8760/self.network.system_structure_properties["simulated_timesteps"]
-        N = np.ceil(self.network.system_parameters_df.loc["project_life", "value"]/8760)
-        r = (1 + self.network.system_parameters_df.loc["discount_rate", "value"])**-1
-        NPV_factor = (1-r**N)/(1-r)
-        self.cost_fun_params["discharging_usage_constant"].value = (self.cost_fun_params["discharging_usage_constant"].value * 
-                                                        NPV_factor * simulation_factor)
-        return
+    # def _update_usage_constant(self):
+    #     simulation_factor = 8760/self.network.system_structure_properties["simulated_timesteps"]
+    #     N = np.ceil(self.network.system_parameters_df.loc["project_life", "value"]/8760)
+    #     r = (1 + self.network.system_parameters_df.loc["discount_rate", "value"])**-1
+    #     NPV_factor = (1-r**N)/(1-r)
+    #     self.cost_fun_params["discharging_usage_constant"].value = (self.cost_fun_params["discharging_usage_constant"].value * 
+    #                                                     NPV_factor * simulation_factor)
+    #     return
     
     def _update_discharging_max(self):
         self.conversion_fun_params["discharging_max"].value = (self.conversion_fun_params["discharging_max"].value * 
@@ -224,12 +224,8 @@ class Storage_Asset(Asset_STEVFNs):
     target_node_type_list = ["BESS", "BESS_Max_Storage"]
     @staticmethod
     def cost_fun(flows, params):
-        # sizing_constant = params["storage_sizing_constant"]
-        # usage_constant_1 = params["storage_usage_constant"]
-        
-        # return cp.maximum(sizing_constant * cp.max(flows),  usage_constant_1 * cp.sum(flows))
-        # return sizing_constant * cp.max(flows)
-        return cp.Constant(0)
+        sizing_constant = params["storage_sizing_constant"]
+        return sizing_constant
     
     @staticmethod
     def conversion_fun(flows, params):
@@ -243,8 +239,8 @@ class Storage_Asset(Asset_STEVFNs):
     
     @staticmethod
     def conversion_fun2(flows, params):
-        max_storage = params["storage_max"]
-        return max_storage - flows
+        storage_max = params["storage_max"]
+        return storage_max - flows
     
     conversion_fun_list = [conversion_fun1.__get__(object), 
                            conversion_fun2.__get__(object)]
@@ -252,7 +248,8 @@ class Storage_Asset(Asset_STEVFNs):
     def __init__(self):
         super().__init__()
         self.cost_fun_params = {"storage_sizing_constant": cp.Parameter(nonneg=True),
-                          "storage_usage_constant": cp.Parameter(nonneg=True)}
+                          "storage_max": cp.Parameter(nonneg=True),
+                          "lifespan": cp.Parameter(nonneg=True)}
         self.conversion_fun_params = {"storage_conversion_factor": cp.Parameter(nonneg=True),
                                       "storage_max": cp.Parameter(nonneg=True),
                                       "initial_storage": cp.Parameter(nonneg=True)}
@@ -271,26 +268,32 @@ class Storage_Asset(Asset_STEVFNs):
         return
     
     def _update_sizing_constant(self):
-        N = np.ceil(self.network.system_parameters_df.loc["project_life", "value"]/self.parameters_df["lifespan"])
-        r = (1 + self.network.system_parameters_df.loc["discount_rate", "value"])**(-self.parameters_df["lifespan"]/8760)
-        NPV_factor = (1-r**N)/(1-r)
-        self.cost_fun_params["storage_sizing_constant"].value = self.cost_fun_params["storage_sizing_constant"].value * NPV_factor
+        # N = np.ceil(self.network.system_parameters_df.loc["project_life", "value"]/self.parameters_df["lifespan"])
+        # r = (1 + self.network.system_parameters_df.loc["discount_rate", "value"])**(-self.parameters_df["lifespan"]/8760)
+        # NPV_factor = (1-r**N)/(1-r)
+        # self.cost_fun_params["storage_sizing_constant"].value = self.cost_fun_params["storage_sizing_constant"].value * NPV_factor
+        sizing_constant = self.cost_fun_params["storage_sizing_constant"].value
+        storage_max = self.cost_fun_params["storage_max"]
+        lifespan = self.cost_fun_params["lifespan"]
+        lifespan_price = sizing_constant * storage_max / lifespan #Loss of lifespan per half hour
+        lifespan_cost = lifespan_price * self.network.system_structure_properties["simulated_timesteps"]
+        self.cost_fun_params["storage_sizing_constant"].value = lifespan_cost.value
         return
     
-    def _update_usage_constant(self):
-        simulation_factor = 8760/self.network.system_structure_properties["simulated_timesteps"]
-        N = np.ceil(self.network.system_parameters_df.loc["project_life", "value"]/8760)
-        r = (1 + self.network.system_parameters_df.loc["discount_rate", "value"])**-1
-        NPV_factor = (1-r**N)/(1-r)
-        self.cost_fun_params["storage_usage_constant"].value = (self.cost_fun_params["storage_usage_constant"].value * 
-                                                        NPV_factor * simulation_factor)
-        return
+    # def _update_usage_constant(self):
+    #     simulation_factor = 8760/self.network.system_structure_properties["simulated_timesteps"]
+    #     N = np.ceil(self.network.system_parameters_df.loc["project_life", "value"]/8760)
+    #     r = (1 + self.network.system_parameters_df.loc["discount_rate", "value"])**-1
+    #     NPV_factor = (1-r**N)/(1-r)
+    #     self.cost_fun_params["storage_usage_constant"].value = (self.cost_fun_params["storage_usage_constant"].value * 
+    #                                                     NPV_factor * simulation_factor)
+    #     return
     
     def _update_parameters(self):
         super()._update_parameters()
         #Set Usage Parameters Based on NPV#
         # self._update_usage_constant()
-        # self._update_sizing_constant()
+        self._update_sizing_constant()
         return
     
     def build(self):
