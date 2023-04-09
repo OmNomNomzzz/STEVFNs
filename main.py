@@ -10,6 +10,7 @@ import pandas as pd
 import time
 import os
 import cvxpy as cp
+import numpy as np
 
 
 from Code.Network.Network import Network_STEVFNs
@@ -18,7 +19,7 @@ from Code.Plotting import DPhil_Plotting
 
 
 #### Define Input Files ####
-case_study_name = "SG_Case_Study"
+case_study_name = "BESS_Arbitrage_Case_Study"
 
 
 base_folder = os.path.dirname(__file__)
@@ -83,7 +84,7 @@ for counter1 in range(len(scenario_folders_list)):
     
     ### Plot Results ############
     print("Time taken to solve problem = ", end_time - start_time, "s")
-    print("Total cost to satisfy all demand = ", my_network.problem.value, " Billion USD")
+    print("Total cost to satisfy all demand = ", my_network.problem.value, " Million USD")
     # DPhil_Plotting.plot_all(my_network)
     DPhil_Plotting.plot_asset_sizes(my_network)
     DPhil_Plotting.plot_asset_costs(my_network)
@@ -98,4 +99,63 @@ for counter1 in range(len(scenario_folders_list)):
 # DPhil_Plotting.plot_SG_NH3_output_flows_BAU(my_network)
 # DPhil_Plotting.plot_RE_NH3_input_flows_BAU(my_network)
 # DPhil_Plotting.plot_RE_NH3_output_flows_BAU(my_network)
+
+######### Perform Model Predictive Control ###########
+#Total number of half hours to simulate
+N_times = 2*24*365
+
+final_BESS_charging = np.zeros(N_times)
+final_BESS_discharging = np.zeros(N_times)
+market_half_hourly_imports = np.zeros(N_times)
+market_half_hourly_exports = np.zeros(N_times)
+market_daily_imports = np.zeros(N_times)
+market_daily_exports = np.zeros(N_times)
+
+initial_storage = 0.0
+
+BESS_asset =  my_network.assets[0]
+market_half_hourly_asset = my_network.assets[1]
+market_daily_asset = my_network.assets[2]
+
+for counter1 in range(2):
+    
+    ### Update Network Parameters ###
+    start_time = time.time()
+    
+    day_number = counter1
+    half_hour_number = counter1*48
+    #Update BESS#
+    BESS_asset.parameters_df["initial_storage"] = initial_storage
+    BESS_asset._update_assets()
+    
+    #Update half hourly market#
+    market_half_hourly_asset.parameters_df["initial_timestep"] = half_hour_number
+    market_half_hourly_asset._update_assets()
+    
+    #Update daily market#
+    market_daily_asset.parameters_df["initial_timestep"] = day_number
+    market_daily_asset._update_assets()
+    
+    end_time = time.time()
+    print("Time taken to update network = ", end_time - start_time, "s")
+    
+    ### Run Simulation ###
+    start_time = time.time()
+    
+    
+    # my_network.solve_problem()
+    my_network.problem.solve(solver = cp.ECOS, warm_start=True, max_iters=1000, ignore_dpp=False)
+    
+    end_time = time.time()
+    print("Time taken to solve problem = ", end_time - start_time, "s")
+    
+    #Store Results
+    final_BESS_charging[half_hour_number: half_hour_number+48] = 
+    final_BESS_discharging[half_hour_number: half_hour_number+48] = 
+    market_half_hourly_imports[half_hour_number: half_hour_number+48] = 
+    market_half_hourly_exports[half_hour_number: half_hour_number+48] = 
+    market_daily_imports[half_hour_number: half_hour_number+48] = 
+    market_daily_exports[half_hour_number: half_hour_number+48] = 
+    
+
 

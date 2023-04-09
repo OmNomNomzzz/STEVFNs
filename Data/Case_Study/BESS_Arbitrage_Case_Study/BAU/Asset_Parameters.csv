@@ -1,0 +1,4 @@
+Asset_Number,Asset_Class,Location_1,Location_2,Asset_Type
+0,BESS_Market,0,0,0
+1,Market_Half_Hourly_BESS,0,0,0
+2,Market_Daily_BESS,0,0,0

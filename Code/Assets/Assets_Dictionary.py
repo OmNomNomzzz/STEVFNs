@@ -25,6 +25,9 @@ from .EL_Demand_UM import EL_Demand_UM_Asset
 from .EL_Demand_Constant import EL_Demand_Constant_Asset
 from .RE_PV_Constant import RE_PV_Constant_Asset
 from .RE_WIND_Constant import RE_WIND_Constant_Asset
+from .BESS_Market import BESS_Market_Asset
+from .Market_Half_Hourly_BESS import Market_Half_Hourly_BESS_Asset
+from .Market_Daily_BESS import Market_Daily_BESS_Asset
 
 ASSET_DICT = {EL_Demand_Asset.asset_name: EL_Demand_Asset,
               HTH_Demand_Asset.asset_name: HTH_Demand_Asset,
@@ -45,4 +48,7 @@ ASSET_DICT = {EL_Demand_Asset.asset_name: EL_Demand_Asset,
               EL_Demand_Constant_Asset.asset_name: EL_Demand_Constant_Asset,
               RE_PV_Constant_Asset.asset_name: RE_PV_Constant_Asset,
               RE_WIND_Constant_Asset.asset_name: RE_WIND_Constant_Asset,
+              BESS_Market_Asset.asset_name: BESS_Market_Asset,
+              Market_Half_Hourly_BESS_Asset.asset_name: Market_Half_Hourly_BESS_Asset,
+              Market_Daily_BESS_Asset.asset_name: Market_Daily_BESS_Asset,
               }
