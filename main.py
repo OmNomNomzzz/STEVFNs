@@ -48,7 +48,8 @@ my_network.build(network_structure_df)
 end_time = time.time()
 print("Time taken to build network = ", end_time - start_time, "s")
 
-
+#Pre-running the problem for DPP#
+print("Performing initial run of optimization problem.")
 for counter1 in range(len(scenario_folders_list)):
 # for counter1 in range(1):
     ### Read Input Files ###
@@ -84,10 +85,10 @@ for counter1 in range(len(scenario_folders_list)):
     
     ### Plot Results ############
     print("Time taken to solve problem = ", end_time - start_time, "s")
-    print("Total cost to satisfy all demand = ", my_network.problem.value, " Million USD")
+    # print("Total cost to satisfy all demand = ", my_network.problem.value, " Million USD")
     # DPhil_Plotting.plot_all(my_network)
-    DPhil_Plotting.plot_asset_sizes(my_network)
-    DPhil_Plotting.plot_asset_costs(my_network)
+    # DPhil_Plotting.plot_asset_sizes(my_network)
+    # DPhil_Plotting.plot_asset_costs(my_network)
     
 # ##### Plot flows for BAU scenario ######
 # DPhil_Plotting.plot_SG_EL_input_flows_BAU(my_network)
@@ -117,8 +118,10 @@ BESS_asset =  my_network.assets[0]
 market_half_hourly_asset = my_network.assets[1]
 market_daily_asset = my_network.assets[2]
 
+
+#Performing Model Predictive Control#
 for counter1 in range(1096):
-    
+    print("Day number: ", counter1)
     ### Update Network Parameters ###
     start_time = time.time()
     
