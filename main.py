@@ -28,7 +28,7 @@ case_study_folder = os.path.join(data_folder, "Case_Study", case_study_name)
 scenario_folders_list = [x[0] for x in os.walk(case_study_folder)][1:]
 network_structure_filename = os.path.join(case_study_folder, "Network_Structure.csv")
 
-
+results_filename = os.path.join(case_study_folder, "results.csv")
 
 
 ### Read Input Files ###
@@ -117,7 +117,7 @@ BESS_asset =  my_network.assets[0]
 market_half_hourly_asset = my_network.assets[1]
 market_daily_asset = my_network.assets[2]
 
-for counter1 in range(1095):
+for counter1 in range(1096):
     
     ### Update Network Parameters ###
     start_time = time.time()
@@ -160,5 +160,15 @@ for counter1 in range(1095):
     #Update soc
     initial_storage = BESS_asset.assets_dictionary["Storage"].flows[47].value
     
+
+final_results_df = pd.DataFrame({
+    "BESS_Charging": final_BESS_charging,
+    "BESS_Discharging": final_BESS_discharging,
+    "Half_Hourly_Import": market_half_hourly_imports,
+    "Half_Hourly_Export": market_half_hourly_exports,
+    "Daily_Import": market_daily_imports,
+    "Daily_Export": market_daily_exports,})
+
+final_results_df.to_csv(results_filename)
 
 

@@ -129,6 +129,16 @@ class Export_Asset(Asset_STEVFNs):
             self.source_node_type = self.source_node_type_list[counter1]
             self.build_edges()
             self.build_cost()
+            self._prevent_curtailment()
+        return
+    
+    def _prevent_curtailment(self):
+        for edge_number in range(self.number_of_edges):
+            target_node_type = self.target_node_type_list[1]
+            target_node_time = self.target_node_times[edge_number]
+            target_node_location = self.source_node_location
+            node = self.network.extract_node(target_node_location, target_node_type, target_node_time)
+            node.curtailment = False
         return
     
     def _update_parameters(self):
