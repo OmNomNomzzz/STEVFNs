@@ -102,7 +102,7 @@ for counter1 in range(len(scenario_folders_list)):
 
 ######### Perform Model Predictive Control ###########
 #Total number of half hours to simulate
-N_times = 2*24*365
+N_times = 1096*48
 
 final_BESS_charging = np.zeros(N_times)
 final_BESS_discharging = np.zeros(N_times)
@@ -137,7 +137,7 @@ for counter1 in range(2):
     market_daily_asset._update_assets()
     
     end_time = time.time()
-    print("Time taken to update network = ", end_time - start_time, "s")
+    # print("Time taken to update network = ", end_time - start_time, "s")
     
     ### Run Simulation ###
     start_time = time.time()
@@ -147,15 +147,18 @@ for counter1 in range(2):
     my_network.problem.solve(solver = cp.ECOS, warm_start=True, max_iters=1000, ignore_dpp=False)
     
     end_time = time.time()
-    print("Time taken to solve problem = ", end_time - start_time, "s")
+    # print("Time taken to solve problem = ", end_time - start_time, "s")
     
     #Store Results
-    final_BESS_charging[half_hour_number: half_hour_number+48] = 
-    final_BESS_discharging[half_hour_number: half_hour_number+48] = 
-    market_half_hourly_imports[half_hour_number: half_hour_number+48] = 
-    market_half_hourly_exports[half_hour_number: half_hour_number+48] = 
-    market_daily_imports[half_hour_number: half_hour_number+48] = 
-    market_daily_exports[half_hour_number: half_hour_number+48] = 
+    final_BESS_charging[half_hour_number: half_hour_number+48] = BESS_asset.assets_dictionary["Charging"].flows.value[:48]
+    final_BESS_discharging[half_hour_number: half_hour_number+48] = BESS_asset.assets_dictionary["Discharging"].flows.value[:48]
+    market_half_hourly_imports[half_hour_number: half_hour_number+48] = market_half_hourly_asset.assets_dictionary["Import"].flows.value[:48]
+    market_half_hourly_exports[half_hour_number: half_hour_number+48] = market_half_hourly_asset.assets_dictionary["Export"].flows.value[:48]
+    market_daily_imports[half_hour_number: half_hour_number+48] = market_daily_asset.assets_dictionary["Import"].flows.value[0]
+    market_daily_exports[half_hour_number: half_hour_number+48] = market_daily_asset.assets_dictionary["Export"].flows.value[0]
+    
+    #Update soc
+    initial_storage = BESS_asset.assets_dictionary["Storage"].flows[47].value
     
 
 

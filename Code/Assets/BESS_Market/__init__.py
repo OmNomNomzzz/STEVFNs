@@ -243,8 +243,8 @@ class Storage_Asset(Asset_STEVFNs):
     
     @staticmethod
     def conversion_fun2(flows, params):
-        max_power = params["storage_max"]
-        return max_power - flows
+        max_storage = params["storage_max"]
+        return max_storage - flows
     
     conversion_fun_list = [conversion_fun1.__get__(object), 
                            conversion_fun2.__get__(object)]
@@ -313,9 +313,8 @@ class Storage_Asset(Asset_STEVFNs):
         if self.target_node_type != "NULL":
             new_edge.attach_target_node(self.network.extract_node(
                 self.target_node_location, self.target_node_type, target_node_time))
-        if edge_number == self.number_of_edges:
+        if edge_number == (self.number_of_edges-1):
             new_edge.flow = self.conversion_fun_params["initial_storage"]
-            self.flows[edge_number].value = self.conversion_fun_params["initial_storage"].value
         else:
             new_edge.flow = self.flows[edge_number]
             new_edge.conversion_fun = self.conversion_fun

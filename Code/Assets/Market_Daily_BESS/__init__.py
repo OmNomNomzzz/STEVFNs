@@ -31,15 +31,14 @@ class Import_Asset(Asset_STEVFNs):
     
     def __init__(self):
         super().__init__()
-        self.cost_fun_params = {"import_prices": cp.Parameter(nonneg=True)}
+        self.cost_fun_params = {"import_prices": cp.Parameter()}
         return
     
     def define_structure(self, asset_structure):
         super().define_structure(asset_structure)
         self.target_node_location = self.source_node_location
         self.flows = cp.Variable(self.number_of_edges, nonneg = True)
-        self.cost_fun_params["import_prices"] = cp.Parameter(shape = self.number_of_edges,
-                                                             nonneg = True)
+        self.cost_fun_params["import_prices"] = cp.Parameter(shape = self.number_of_edges)
         return
     
     def _load_parameters_df(self, parameters_df):
@@ -118,15 +117,14 @@ class Export_Asset(Asset_STEVFNs):
     
     def __init__(self):
         super().__init__()
-        self.cost_fun_params = {"export_prices": cp.Parameter(nonneg=True)}
+        self.cost_fun_params = {"export_prices": cp.Parameter()}
         return
     
     def define_structure(self, asset_structure):
         super().define_structure(asset_structure)
         self.target_node_location = self.source_node_location
         self.flows = cp.Variable(self.number_of_edges, nonneg = True)
-        self.cost_fun_params["export_prices"] = cp.Parameter(shape = self.number_of_edges,
-                                                             nonneg = True)
+        self.cost_fun_params["export_prices"] = cp.Parameter(shape = self.number_of_edges)
         return
     
     def _load_parameters_df(self, parameters_df):
