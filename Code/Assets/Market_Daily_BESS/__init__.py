@@ -73,20 +73,20 @@ class Import_Asset(Asset_STEVFNs):
         final_profile = full_profile[start_index:end_index]
         
         #Add impact of asset period (timestep)
-        final_profile = final_profile * self.asset_structure["Period"]
+        final_profile = final_profile * 48
         
         # #Add impact of NPV for simulated times
-        # r = (1 + self.network.system_parameters_df.loc["discount_rate", "value"])**-1
+        r = (1 + self.network.system_parameters_df.loc["discount_rate", "value"])**-1
         # N_array = np.floor(np.arange(self.number_of_edges) * 
         #              self.asset_structure["Period"] / 8760.0)
         # NPV_factor_array = (r**N_array)
         # final_profile = final_profile * NPV_factor_array
         
-        # #Add impact of NPV for lifetime of project
-        # simulation_factor = 8760/self.network.system_structure_properties["simulated_timesteps"]
-        # N = np.ceil(self.network.system_parameters_df.loc["project_life", "value"]/8760)
-        # NPV_factor = (1-r**N)/(1-r)
-        # final_profile = final_profile * NPV_factor * simulation_factor
+        #Add impact of NPV for lifetime of project
+        simulation_factor = 8760/self.network.system_structure_properties["simulated_timesteps"]
+        N = np.ceil(self.network.system_parameters_df.loc["project_life", "value"]/8760)
+        NPV_factor = (1-r**N)/(1-r)
+        final_profile = final_profile * NPV_factor * simulation_factor
         
         # self.cost_fun_params["charging_usage_constant"].value = (self.cost_fun_params["charging_usage_constant"].value * 
         #                                                 NPV_factor * simulation_factor)
@@ -170,7 +170,22 @@ class Export_Asset(Asset_STEVFNs):
         final_profile = full_profile[start_index:end_index]
         
         #Add impact of asset period (timestep)
-        final_profile = final_profile * self.asset_structure["Period"]
+        final_profile = final_profile * 48
+        
+        # #Add impact of NPV for simulated times
+        r = (1 + self.network.system_parameters_df.loc["discount_rate", "value"])**-1
+        # N_array = np.floor(np.arange(self.number_of_edges) * 
+        #              self.asset_structure["Period"] / 8760.0)
+        # NPV_factor_array = (r**N_array)
+        # final_profile = final_profile * NPV_factor_array
+        
+        #Add impact of NPV for lifetime of project
+        simulation_factor = 8760/self.network.system_structure_properties["simulated_timesteps"]
+        N = np.ceil(self.network.system_parameters_df.loc["project_life", "value"]/8760)
+        NPV_factor = (1-r**N)/(1-r)
+        final_profile = final_profile * NPV_factor * simulation_factor
+        
+        
         self.cost_fun_params["export_prices"].value = final_profile
         return
     
