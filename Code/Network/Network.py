@@ -29,6 +29,7 @@ class Network_STEVFNs:
             "unit" : ["h", "unitless", "timestep"]}).set_index("parameter")
         self.system_structure_properties = dict({
             "simulated_timesteps" : 0,})
+        self.scenario_name = ""
         return
     
     def generate_node(self, node_location, node_type, node_time):

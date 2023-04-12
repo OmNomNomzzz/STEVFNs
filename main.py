@@ -83,17 +83,17 @@ for counter1 in range(1):
     
 
     ### Extract Flows and save into csv files in Case Study Folder ###
-    if case_study_name == "Autarky_Case_Study":
-        Supergrid_Flows.export_AUT_Flows(my_network).to_csv(f'{scenario_folders_list[counter1]}_Flows.csv', index = False, header=True)
-        Supergrid_Flows.export_AUT_costs_sizes(my_network).to_csv(f'{scenario_folders_list[counter1]}_Costs_Sizes.csv', index = False, header=True)
+    # if case_study_name == "Autarky_Case_Study":
+    #     Supergrid_Flows.export_AUT_Flows(my_network).to_csv(f'{scenario_folders_list[counter1]}_Flows.csv', index = False, header=True)
+    #     Supergrid_Flows.export_AUT_costs_sizes(my_network).to_csv(f'{scenario_folders_list[counter1]}_Costs_Sizes.csv', index = False, header=True)
     
-    elif case_study_name == "Xlinks_Case_Study":
-        Supergrid_Flows.export_Xlinks_Flows(my_network).to_csv(f'{scenario_folders_list[counter1]}_Flows.csv', index = False, header=True)
-        Supergrid_Flows.export_Xlinks_costs_sizes(my_network).to_csv(f'{scenario_folders_list[counter1]}_Costs_Sizes.csv', index = False, header=True)
+    # elif case_study_name == "Xlinks_Case_Study":
+    #     Supergrid_Flows.export_Xlinks_Flows(my_network).to_csv(f'{scenario_folders_list[counter1]}_Flows.csv', index = False, header=True)
+    #     Supergrid_Flows.export_Xlinks_costs_sizes(my_network).to_csv(f'{scenario_folders_list[counter1]}_Costs_Sizes.csv', index = False, header=True)
     
-    else:
-        # Supergrid_Flows.export_XlinksEXT_Flows(my_network).to_csv(f'{scenario_folders_list[counter1]}_Flows.csv', index = False, header=True)
-        Supergrid_Flows.export_XlinksEXT_costs_sizes(my_network).to_csv(f'{scenario_folders_list[counter1]}_Costs_Sizes.csv', index = False, header=True)
+    # else:
+    #     # Supergrid_Flows.export_XlinksEXT_Flows(my_network).to_csv(f'{scenario_folders_list[counter1]}_Flows.csv', index = False, header=True)
+    #     Supergrid_Flows.export_XlinksEXT_costs_sizes(my_network).to_csv(f'{scenario_folders_list[counter1]}_Costs_Sizes.csv', index = False, header=True)
 
     
 
@@ -107,9 +107,9 @@ for counter1 in range(1):
     
 
 
-    for counter2 in range(len(my_network.assets)):
-        print(my_network.assets[counter2], 'size:', my_network.assets[counter2].asset_size())
-        print(my_network.assets[counter2], 'cost:', my_network.assets[counter2].cost.value)
+    # for counter2 in range(len(my_network.assets)):
+    #     print(my_network.assets[counter2], 'size:', my_network.assets[counter2].asset_size())
+    #     print(my_network.assets[counter2], 'cost:', my_network.assets[counter2].cost.value)
         
         
     
