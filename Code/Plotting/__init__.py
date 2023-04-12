@@ -158,7 +158,7 @@ class bar_chart_artist:
             self.title = title
         return
     
-    def plot(self, bar_width = 1.0, bar_spacing = 3.0, bar_color = ('red', 'blue', 'green', 'orange')):
+    def plot(self, bar_width = 1.0, bar_spacing = 3.0):
         if not(hasattr(self, "fig")) or not(hasattr(self, "ax")):
             self.fig, self.ax = plt.subplots()
         #add bar charts
@@ -171,8 +171,7 @@ class bar_chart_artist:
                             x = bar_data["x"],
                             height = bar_data["height"],
                             width = bar_width,
-                            label = bar_name,
-                            color = bar_color
+                            label = bar_name
                             )]
         ### add some labels ###
         if hasattr(self, "title"):
