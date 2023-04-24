@@ -30,7 +30,6 @@ class Network_STEVFNs:
         self.system_structure_properties = dict({
             "simulated_timesteps" : 0,})
         self.scenario_name = ""
-        return
     
     def generate_node(self, node_location, node_type, node_time):
         new_node = Node_STEVFNs()
