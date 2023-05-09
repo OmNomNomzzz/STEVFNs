@@ -42,6 +42,11 @@ class EL_Transport_Asset(Asset_STEVFNs):
         self.distance = R * c # in Mm
         return
     
+    # def _update_distance(self):
+    #     # For constant distance established by the route, hardcoded instead of lat-long calc for Supergrid
+    #     self.distance = self.parameters_df["distance_constant"] # in Mm
+    #     return
+    
     def __init__(self):
         super().__init__()
         self.cost_fun_params = {"sizing_constant": cp.Parameter(nonneg=True),
