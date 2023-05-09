@@ -19,8 +19,8 @@ from Code.Flows import Supergrid_Flows
 
 
 #### Define Input Files ####
-case_study_name = "Autarky_Case_Study"
-# case_study_name = "Xlinks_Case_Study" 
+# case_study_name = "Autarky_Case_Study"
+case_study_name = "Xlinks_Case_Study" 
 # case_study_name = "Xlinks_EXT_Case_Study"
 
 
@@ -48,8 +48,8 @@ end_time = time.time()
 print("Time taken to build network = ", end_time - start_time, "s")
 
 
-# for counter1 in range(len(scenario_folders_list)):
-for counter1 in range(1):
+for counter1 in range(len(scenario_folders_list)):
+# for counter1 in range(1):
     ### Read Input Files ###
     scenario_folder = scenario_folders_list[counter1]
     asset_parameters_filename = os.path.join(scenario_folder, "Asset_Parameters.csv")
@@ -107,9 +107,9 @@ for counter1 in range(1):
     
 
 
-    # for counter2 in range(len(my_network.assets)):
-    #     print(my_network.assets[counter2], 'size:', my_network.assets[counter2].asset_size())
-    #     print(my_network.assets[counter2], 'cost:', my_network.assets[counter2].cost.value)
+    for counter2 in range(len(my_network.assets)):
+        print(my_network.assets[counter2], 'size:', my_network.assets[counter2].asset_size())
+        print(my_network.assets[counter2], 'cost:', my_network.assets[counter2].cost.value)
         
         
     

@@ -43,7 +43,8 @@ class EL_Transport_Asset(Asset_STEVFNs):
         return
     
     # def _update_distance(self):
-    #     # For constant distance established by the route, hardcoded instead of lat-long calc for Supergrid
+    #     # For constant distance established by the route, stated as an additional parameter in parameters.csv
+    #     # Comment function above and uncomment this one for this method
     #     self.distance = self.parameters_df["distance_constant"] # in Mm
     #     return
     
