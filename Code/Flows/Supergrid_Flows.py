@@ -7,7 +7,7 @@ Created on Sun Feb 12 10:03:55 2023
 """
 
 import pandas as pd
-import numpy as np
+
 
         
 
@@ -132,8 +132,8 @@ def export_Xlinks_costs_sizes(my_network):
     costs_Sizes.insert(0, 'MA_Wind_G$', [my_network.assets[5].cost.value])
     
     ### HVDC ###
-    costs_Sizes.insert(0, 'GB-loc1_HVDC_GWp', [my_network.assets[8].asset_size()])
-    costs_Sizes.insert(0, 'GB-loc1_HVDC_G$', [my_network.assets[8].cost.value])
+    costs_Sizes.insert(0, 'GB-MA_HVDC_GWp', [my_network.assets[8].asset_size()])
+    costs_Sizes.insert(0, 'GB-MA_HVDC_G$', [my_network.assets[8].cost.value])
     
     return(costs_Sizes)
         

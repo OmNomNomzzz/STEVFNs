@@ -29,24 +29,24 @@ class EL_Transport_Asset(Asset_STEVFNs):
         conversion_factor = params["conversion_factor"]
         return conversion_factor * flows
     
-    def _update_distance(self):
-        #Function that calculates the distance between the source and target nodes#
-        lat_lon_0 = self.network.lat_lon_df.iloc[int(self.source_node_location)]
-        lat_lon_1 = self.network.lat_lon_df.iloc[int(self.target_node_location)]
-        lat_0 = lat_lon_0["lat"]/180 * np.pi
-        lat_1 = lat_lon_1["lat"]/180 * np.pi
-        lon_d = (lat_lon_1["lon"] - lat_lon_0["lon"])/180 * np.pi
-        a = np.sin((lat_1 - lat_0)/2)**2 + np.cos(lat_0) * np.cos(lat_1) * np.sin(lon_d/2)**2
-        c = 2 * np.arctan2(a**0.5, (1-a)**0.5)
-        R = 6.371 # in Mm radius of the earth
-        self.distance = R * c # in Mm
-        return
-    
     # def _update_distance(self):
-    #     # For constant distance established by the route, stated as an additional parameter in parameters.csv
-    #     # Comment function above and uncomment this one for this method
-    #     self.distance = self.parameters_df["distance_constant"] # in Mm
+    #     #Function that calculates the distance between the source and target nodes#
+    #     lat_lon_0 = self.network.lat_lon_df.iloc[int(self.source_node_location)]
+    #     lat_lon_1 = self.network.lat_lon_df.iloc[int(self.target_node_location)]
+    #     lat_0 = lat_lon_0["lat"]/180 * np.pi
+    #     lat_1 = lat_lon_1["lat"]/180 * np.pi
+    #     lon_d = (lat_lon_1["lon"] - lat_lon_0["lon"])/180 * np.pi
+    #     a = np.sin((lat_1 - lat_0)/2)**2 + np.cos(lat_0) * np.cos(lat_1) * np.sin(lon_d/2)**2
+    #     c = 2 * np.arctan2(a**0.5, (1-a)**0.5)
+    #     R = 6.371 # in Mm radius of the earth
+    #     self.distance = R * c # in Mm
     #     return
+    
+    def _update_distance(self):
+        # For constant distance established by the route, stated as an additional parameter in parameters.csv
+        # Comment function above and uncomment this one for this method
+        self.distance = self.parameters_df["distance_constant"] # in Mm
+        return
     
     def __init__(self):
         super().__init__()
