@@ -22,6 +22,9 @@ from .RE_PV import RE_PV_Asset
 from .RE_WIND import RE_WIND_Asset
 from .RE_max import RE_max_Asset
 from .EL_Demand_UM import EL_Demand_UM_Asset
+from .EL_Demand_Constant import EL_Demand_Constant_Asset
+from .RE_PV_Constant import RE_PV_Constant_Asset
+from .RE_WIND_Constant import RE_WIND_Constant_Asset
 
 ASSET_DICT = {EL_Demand_Asset.asset_name: EL_Demand_Asset,
               HTH_Demand_Asset.asset_name: HTH_Demand_Asset,
@@ -39,4 +42,7 @@ ASSET_DICT = {EL_Demand_Asset.asset_name: EL_Demand_Asset,
               RE_WIND_Asset.asset_name: RE_WIND_Asset,
               RE_max_Asset.asset_name: RE_max_Asset,
               EL_Demand_UM_Asset.asset_name: EL_Demand_UM_Asset,
+              EL_Demand_Constant_Asset.asset_name: EL_Demand_Constant_Asset,
+              RE_PV_Constant_Asset.asset_name: RE_PV_Constant_Asset,
+              RE_WIND_Constant_Asset.asset_name: RE_WIND_Constant_Asset,
               }
