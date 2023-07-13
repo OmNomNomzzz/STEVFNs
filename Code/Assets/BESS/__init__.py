@@ -24,6 +24,7 @@ class Charging_Asset(Asset_STEVFNs):
         usage_constant_1 = params["charging_usage_constant"]
         
         return cp.maximum(sizing_constant * cp.max(flows),  usage_constant_1 * cp.sum(flows))
+        
     
     @staticmethod
     def conversion_fun(flows, params):
@@ -136,9 +137,14 @@ class Storage_Asset(Asset_STEVFNs):
     def cost_fun(flows, params):
         sizing_constant = params["storage_sizing_constant"]
         usage_constant_1 = params["storage_usage_constant"]
+        # minimum_size = params["minimum_constant"]
+        
         
         return cp.maximum(sizing_constant * cp.max(flows),  usage_constant_1 * cp.sum(flows))
         # return sizing_constant * cp.max(flows)
+        
+        # Setting a minimum size for the assets, Supergrid case study sensitivity analysis; uncomment minimum size for parameters
+        # return cp.maximum(sizing_constant * cp.maximum(cp.max(flows), minimum_size),  usage_constant_1 * cp.sum(flows))
     
     @staticmethod
     def conversion_fun(flows, params):
