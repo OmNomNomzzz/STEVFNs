@@ -22,8 +22,16 @@ class EL_Transport_Asset(Asset_STEVFNs):
     def cost_fun(flows, params):
         sizing_constant = params["sizing_constant"]
         usage_constant = params["usage_constant"]
+        # minimum_constant = params["minimum_constant"]
+        
         return sizing_constant * cp.max(flows) + usage_constant * cp.sum(flows)
-    
+        
+    '''include a minimum size asset for Supergrid regrets sensitivity analysis. Uncomment above for parameter
+        for minimum size, and in init function to add parameter into the dictionary (lines 66-68): '''
+        
+        # return sizing_constant * cp.maximum(cp.max(flows), minimum_constant) + usage_constant * cp.sum(flows)
+        
+        
     @staticmethod
     def conversion_fun(flows, params):
         conversion_factor = params["conversion_factor"]
@@ -31,6 +39,7 @@ class EL_Transport_Asset(Asset_STEVFNs):
     
     # def _update_distance(self):
     #     #Function that calculates the distance between the source and target nodes#
+    
     #     lat_lon_0 = self.network.lat_lon_df.iloc[int(self.source_node_location)]
     #     lat_lon_1 = self.network.lat_lon_df.iloc[int(self.target_node_location)]
     #     lat_0 = lat_lon_0["lat"]/180 * np.pi
@@ -42,9 +51,10 @@ class EL_Transport_Asset(Asset_STEVFNs):
     #     self.distance = R * c # in Mm
     #     return
     
+# For constant distance established by the HVDC route, stated as an additional parameter in parameters.csv,
+# Comment function above to calculate as-the-bird-flies distance, and uncomment below for this method:    
+    
     def _update_distance(self):
-        # For constant distance established by the route, stated as an additional parameter in parameters.csv
-        # Comment function above and uncomment this one for this method
         self.distance = self.parameters_df["distance_constant"] # in Mm
         return
     
@@ -52,6 +62,12 @@ class EL_Transport_Asset(Asset_STEVFNs):
         super().__init__()
         self.cost_fun_params = {"sizing_constant": cp.Parameter(nonneg=True),
                           "usage_constant": cp.Parameter(nonneg=True)}
+        
+        
+        # Use below cost function parameters when minimum size asset is used
+        # self.cost_fun_params = {"sizing_constant": cp.Parameter(nonneg=True),
+        #                   "usage_constant": cp.Parameter(nonneg=True),
+        #                   "minimum_constant": cp.Parameter(nonneg=True)}
         self.conversion_fun_params = {"conversion_factor": cp.Parameter(nonneg=True)}
         return
     
