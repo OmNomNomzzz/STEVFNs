@@ -1,3 +1,3 @@
-Type,sizing_constant_1,sizing_constant_1_unit,usage_constant_1,usage_constant_1_unit,conversion_factor_1,sizing_constant_2,sizing_constant_2_unit,usage_constant_2,usage_constant_2_unit,conversion_factor_2,conversion_factor_2_unit,distance_constant,distance_constant_unit,lifespan,lifespan_unit
-0,2.28E-01,G$/GWp,1.80E-06,G$/GWh,0.014,0.875,G$/(GW*Mm),1.00E-06,G$/(GWh*Mm),0.016,(Mm)^-1,3.8,Mm,438000,h
-1,2.28E-01,G$/GWp,1.80E-06,G$/GWh,0.014,0.875,G$/(GW*Mm),1.00E-06,G$/(GWh*Mm),0.016,(Mm)^-1,9.763,Mm,438000,h
+Type,sizing_constant_1,sizing_constant_1_unit,usage_constant_1,usage_constant_1_unit,conversion_factor_1,sizing_constant_2,sizing_constant_2_unit,usage_constant_2,usage_constant_2_unit,conversion_factor_2,conversion_factor_2_unit,distance_constant,distance_constant_unit,lifespan,lifespan_unit,minimum_constant,minimum_constant_unit
+0,2.28E-01,G$/GWp,1.80E-06,G$/GWh,0.014,0.875,G$/(GW*Mm),1.00E-06,G$/(GWh*Mm),0.016,(Mm)^-1,3.8,Mm,438000,h,0,GWp
+1,2.28E-01,G$/GWp,1.80E-06,G$/GWh,0.014,0.875,G$/(GW*Mm),1.00E-06,G$/(GWh*Mm),0.016,(Mm)^-1,9.763,Mm,438000,h,0,GWp
