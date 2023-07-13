@@ -21,10 +21,17 @@ class RE_WIND_Asset(Asset_STEVFNs):
     @staticmethod
     def cost_fun(flows, params):
         return params["sizing_constant"] * flows
+        # for minimum size assets in Supergrid case study:
+        # return params["sizing_constant"] * cp.maximum(flows, minimum_constant)
     
     def __init__(self):
+        
         super().__init__()
         self.cost_fun_params = {"sizing_constant": cp.Parameter(nonneg=True)}
+        
+        # Uncomment below to add minimum size asset to dictionary, and comment above
+        # self.cost_fun_params = {"sizing_constant": cp.Parameter(nonneg=True),
+        #                         "minimum_constant": cp.Parameter(nonneg=True)}
         return
         
     
