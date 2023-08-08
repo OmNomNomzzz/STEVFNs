@@ -1,0 +1,23 @@
+# Environment file for STEVFNs
+#
+# Authors: Aniq Ahsan
+
+
+name: stevfns
+
+
+channels:
+  - defaults
+  - conda-forge
+
+
+dependencies:
+  - python=3.9
+
+  - matplotlib
+  - pandas
+  
+  - cvxpy=1.2.1
+  - numpy=1.23.3
+  - spyder=5.3.3
+
