@@ -7,20 +7,40 @@ Space Time Energy Vector Flow Networks
 Please cite all the references in "CITATIONS.bib" file.
 
 ## Installation
+The following installation uses git for version control, if you do not have git, follow [these instructions](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
+A conda package manager, such as Anaconda is recommended. 
+The environment file provided includes an installation of the IDE Spyder to write and run the code, but other alternative IDEs may be used if preferred.
 
-1. Clone the repository to your desired local path
+
+1. Clone the repository to your desired local path (which should not have any spaces)
 ```
-...your_path/ % git clone https://github.com/OmNomNomzzz/STEVFNs.git
+(base) base_path % cd your_path/your_folder_name
+(base) .../your_folder_name % git clone https://github.com/OmNomNomzzz/STEVFNs.git
 ```
 
 and either:
-2. Create an environment from the environment.yaml file
+
+2. Create an environment from the environment.yaml file through the command:
 ```
-...your_path/STEVFNs % conda env create -f envs/environment.yaml
+(base) .../your_folder_name % cd STEVFNs
+(base) .../your_folder_name/STEVFNs % conda env create -f envs/environment.yaml
 ```
 
 Or
-3. install the following required dependencies individually:
+
+3. Create a new environment
+```
+conda env --name stevfns
+```
+4. activate the new environment
+```
+conda activate stevfns
+```
+and the command line should change from (base) to (stevfns), as:
+```
+(stevfns) .../your_folder_name/STEVFNs %
+``` 
+5. Once the environment is created, install the following required dependencies individually into your working environment:
 
 (a) cvxpy
 ```
@@ -30,7 +50,6 @@ conda install -c conda-forge cvxpy
 ```
 conda install pandas
 ```
-
 (c) matplotlib
 ```
 conda install matplotlib
