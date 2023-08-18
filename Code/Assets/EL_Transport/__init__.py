@@ -26,8 +26,8 @@ class EL_Transport_Asset(Asset_STEVFNs):
         
         return sizing_constant * cp.max(flows) + usage_constant * cp.sum(flows)
         
-    '''include a minimum size asset for Supergrid regrets sensitivity analysis. Uncomment above for parameter
-        for minimum size, and in init function to add parameter into the dictionary (lines 66-68): '''
+    '''to include a minimum size asset for Supergrid regrets sensitivity analysis. Uncomment above to add parameter
+        for minimum size, and in init function to add parameter into the dictionary (lines 70-73): '''
         
         # return sizing_constant * cp.maximum(cp.max(flows), minimum_constant) + usage_constant * cp.sum(flows)
         
@@ -37,6 +37,8 @@ class EL_Transport_Asset(Asset_STEVFNs):
         conversion_factor = params["conversion_factor"]
         return conversion_factor * flows
     
+#### HVDC distance: Comment _update_distance below to calculate as-the-bird-flies HVDC theoretical distance
+
     # def _update_distance(self):
     #     #Function that calculates the distance between the source and target nodes#
     
@@ -51,8 +53,9 @@ class EL_Transport_Asset(Asset_STEVFNs):
     #     self.distance = R * c # in Mm
     #     return
     
-# For constant distance established by the HVDC route, stated as an additional parameter in parameters.csv,
-# Comment function above to calculate as-the-bird-flies distance, and uncomment below for this method:    
+# For a given constant distance established by the HVDC route, use
+# _update_distance function below INSTEAD of the above. The value for distance should
+# be input to the EL_Tranpsport parameters.csv file, under column distance_constant
     
     def _update_distance(self):
         self.distance = self.parameters_df["distance_constant"] # in Mm

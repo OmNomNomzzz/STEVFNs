@@ -8,7 +8,11 @@ Created on Sun Feb 12 10:03:55 2023
 
 import pandas as pd
 
-
+'''
+These functions are currently hard-coded for assets in the HVDC interconnections case studies.
+Use as guidance on how results of flows and asset sizes and costs may be obtained. 
+Indices for my_network.assets[i] correspond to the Asset Number in Network_Structure.csv for each scenario
+'''
         
 
 def export_AUT_Flows(my_network):
