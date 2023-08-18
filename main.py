@@ -104,8 +104,6 @@ for counter1 in range(len(scenario_folders_list)):
     DPhil_Plotting.plot_asset_sizes(my_network)
     DPhil_Plotting.plot_asset_costs(my_network)
 
-    
-
 
     for counter2 in range(len(my_network.assets)):
         print(my_network.assets[counter2], 'size:', my_network.assets[counter2].asset_size())
