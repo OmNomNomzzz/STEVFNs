@@ -1,5 +1,5 @@
 Type,maximum_budget,maximum_budget_unit
-0,1000,MtCO2e
-1,100,MtCO2e
-2,200,MtCO2e
-3,100,MtCO2e
+0,100,GgCO2e
+1,10,GgCO2e
+2,200,GgCO2e
+3,20,GgCO2e
