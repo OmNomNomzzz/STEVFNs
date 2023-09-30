@@ -25,6 +25,7 @@ from .EL_Demand_UM import EL_Demand_UM_Asset
 from .EL_Demand_Constant import EL_Demand_Constant_Asset
 from .RE_PV_Constant import RE_PV_Constant_Asset
 from .RE_WIND_Constant import RE_WIND_Constant_Asset
+from .CO2_Budget import CO2_Budget_Asset
 
 ASSET_DICT = {EL_Demand_Asset.asset_name: EL_Demand_Asset,
               HTH_Demand_Asset.asset_name: HTH_Demand_Asset,
@@ -45,4 +46,5 @@ ASSET_DICT = {EL_Demand_Asset.asset_name: EL_Demand_Asset,
               EL_Demand_Constant_Asset.asset_name: EL_Demand_Constant_Asset,
               RE_PV_Constant_Asset.asset_name: RE_PV_Constant_Asset,
               RE_WIND_Constant_Asset.asset_name: RE_WIND_Constant_Asset,
+              CO2_Budget_Asset.asset_name: CO2_Budget_Asset,
               }
