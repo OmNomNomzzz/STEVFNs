@@ -49,14 +49,14 @@ class PP_CO2_Asset(Asset_STEVFNs):
         self.asset_structure = asset_structure
         self.source_node_location = asset_structure["Location_1"]
         self.source_node_times = np.arange(asset_structure["Start_Time"] + self.transport_time, 
-                                           asset_structure["End_Time"], 
+                                           asset_structure["End_Time"] + self.transport_time, 
                                            self.period)
         self.target_node_location = asset_structure["Location_2"]
         self.target_node_times = np.arange(asset_structure["Start_Time"] + self.transport_time, 
-                                           asset_structure["End_Time"], 
+                                           asset_structure["End_Time"] + self.transport_time, 
                                            self.period)
         self.number_of_edges = len(self.source_node_times)
-        self.flows = cp.Constant(np.zeros(self.number_of_edges))
+        self.flows = cp.Variable(self.number_of_edges, nonneg = True)
         return
         
     def build_edges(self):
