@@ -13,38 +13,77 @@ from ..Base_Assets import Asset_STEVFNs
 from ...Network import Edge_STEVFNs
 
 
-class RE_PV_Asset(Asset_STEVFNs):
+class RE_PV_Limited_Asset(Asset_STEVFNs):
     """Class of Renewable Energy Sources """
-    asset_name = "RE_PV"
-    node_type = "EL"
+    asset_name = "RE_PV_Limited"
+    target_node_type = "EL"
+    source_node_type_2 = "NULL"
+    target_node_type_2 = "RE_Limit"
+    period = 1
+    transport_time = 0
+    target_node_time_2 = 0
     
     @staticmethod
     def cost_fun(flows, params):
         return params["sizing_constant"] * flows
     
+    @staticmethod
+    def conversion_fun_2(flows, params):
+        return params["maximum_size"] - flows
+    
     def __init__(self):
         super().__init__()
         self.cost_fun_params = {"sizing_constant": cp.Parameter(nonneg=True)}
+        self.conversion_fun_params_2 = {"maximum_size": cp.Parameter(nonneg=True)}
         return
         
     
     def define_structure(self, asset_structure):
-        self.node_location = asset_structure["Location_1"]
-        self.node_times = np.arange(asset_structure["Start_Time"], 
+        self.source_node_location = "NULL"
+        self.target_node_location = asset_structure["Location_1"]
+        self.source_node_location_2 = "NULL"
+        self.target_node_location_2 = asset_structure["Location_1"]
+        self.target_node_times = np.arange(asset_structure["Start_Time"], 
                                            asset_structure["End_Time"], 
-                                           asset_structure["Period"])
+                                           self.period)
         self.number_of_edges = len(self.node_times)
         self.gen_profile = cp.Parameter(shape = self.number_of_edges, nonneg=True)
         self.flows = cp.Variable(nonneg = True)#size of RE asset
         return
     
+    def build_edges(self):
+        super().__init__()
+        self.build_edge_2()
+        return
+    
     def build_edge(self, edge_number):
-        node_time = self.node_times[edge_number]
+        target_node_time = self.target_node_times[edge_number]
         new_edge = Edge_STEVFNs()
         self.edges += [new_edge]
         new_edge.attach_target_node(self.network.extract_node(
-            self.node_location, self.node_type, node_time))
+            self.target_node_location, self.target_node_type, target_node_time))
         new_edge.flow = self.flows * self.gen_profile[edge_number]
+        return
+    
+    def build_edge_2(self):
+        source_node_type = "NULL"
+        source_node_location = self.source_node_location_2
+        source_node_time = 0
+        target_node_type = self.target_node_type_2
+        target_node_location = self.target_node_location_2
+        target_node_time = self.target_node_time_2
+        
+        new_edge = Edge_STEVFNs()
+        self.edges += [new_edge]
+        if source_node_type != "NULL":
+            new_edge.attach_source_node(self.network.extract_node(
+                source_node_location, source_node_type, source_node_time))
+        if target_node_type != "NULL":
+            new_edge.attach_target_node(self.network.extract_node(
+                target_node_location, target_node_type, target_node_time))
+        new_edge.flow = self.flows
+        new_edge.conversion_fun = self.conversion_fun_2
+        new_edge.conversion_fun_params = self.conversion_fun_params_2
         return
     
     def get_plot_data(self):
@@ -58,7 +97,8 @@ class RE_PV_Asset(Asset_STEVFNs):
         return
     
     def _update_parameters(self):
-        for parameter_name, parameter in self.cost_fun_params.items():
+        super()._update_parameters()
+        for parameter_name, parameter in self.conversion_fun_params_2.items():
             parameter.value = self.parameters_df[parameter_name]
         #Update cost parameters based on NPV#
         self._update_sizing_constant()
@@ -67,7 +107,7 @@ class RE_PV_Asset(Asset_STEVFNs):
     
     def _load_RE_profile(self):
         """This function reads file and updates self.gen_profile """
-        lat_lon_df = self.network.lat_lon_df.iloc[self.node_location]
+        lat_lon_df = self.network.lat_lon_df.iloc[self.target_node_location]
         lat = lat_lon_df["lat"]
         lat = np.int64(np.round((lat) / 0.5)) * 0.5
         lat = min(lat,90.0)
@@ -101,6 +141,6 @@ class RE_PV_Asset(Asset_STEVFNs):
     def get_asset_sizes(self):
         # Returns the size of the asset as a dict #
         asset_size = self.size()
-        asset_identity = self.asset_name + r"_" + self.parameters_df["RE_type"] + r"_location_" + str(self.node_location)
+        asset_identity = self.asset_name + r"_" + self.parameters_df["RE_type"] + r"_location_" + str(self.target_node_location)
         return {asset_identity: asset_size}
     
