@@ -46,13 +46,13 @@ class RE_PV_Limited_Asset(Asset_STEVFNs):
         self.target_node_times = np.arange(asset_structure["Start_Time"], 
                                            asset_structure["End_Time"], 
                                            self.period)
-        self.number_of_edges = len(self.node_times)
+        self.number_of_edges = len(self.target_node_times)
         self.gen_profile = cp.Parameter(shape = self.number_of_edges, nonneg=True)
         self.flows = cp.Variable(nonneg = True)#size of RE asset
         return
     
     def build_edges(self):
-        super().__init__()
+        super().build_edges()
         self.build_edge_2()
         return
     
