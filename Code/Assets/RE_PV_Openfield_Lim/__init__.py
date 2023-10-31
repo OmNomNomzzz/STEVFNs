@@ -13,9 +13,9 @@ from ..Base_Assets import Asset_STEVFNs
 from ...Network import Edge_STEVFNs
 
 
-class RE_PV_Limited_Asset(Asset_STEVFNs):
+class RE_PV_Openfield_Lim_Asset(Asset_STEVFNs):
     """Class of Renewable Energy Sources """
-    asset_name = "RE_PV_Limited"
+    asset_name = "RE_PV_Openfield_Lim"
     target_node_type = "EL"
     source_node_type_2 = "NULL"
     target_node_type_2 = "RE_Limit"
