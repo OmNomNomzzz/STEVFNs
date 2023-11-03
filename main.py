@@ -18,7 +18,27 @@ from Code.Results import GMPA_Results
 
 
 #### Define Input Files ####
-case_study_name = "EM_Case_Study"
+# case_study_name = "EM_Case_Study"
+
+
+###### Autarky Case Studies #########
+case_study_name = "Autarky_SG"
+# case_study_name = "Autarky_ID"
+# case_study_name = "Autarky_MY"
+
+###### Two Country Case Studies #########
+# case_study_name = "SG-ID_Autarky"
+# case_study_name = "SG-ID_Collab"
+
+# case_study_name = "SG-MY_Autarky"
+# case_study_name = "SG-MY_Collab"
+
+# case_study_name = "ID-MY_Autarky"
+# case_study_name = "ID-MY_Collab"
+
+###### Three Country Case Studies #########
+# case_study_name = "SG-ID-MY_Autarky"
+# case_study_name = "SG-ID-MY_Collab"
 
 
 base_folder = os.path.dirname(__file__)
@@ -26,8 +46,6 @@ data_folder = os.path.join(base_folder, "Data")
 case_study_folder = os.path.join(data_folder, "Case_Study", case_study_name)
 scenario_folders_list = [x[0] for x in os.walk(case_study_folder)][1:]
 network_structure_filename = os.path.join(case_study_folder, "Network_Structure.csv")
-
-
 
 
 ### Read Input Files ###
