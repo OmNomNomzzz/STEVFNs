@@ -95,7 +95,7 @@ for counter1 in range(len(scenario_folders_list)):
     
     
     # my_network.solve_problem()
-    my_network.problem.solve(solver = cp.ECOS, warm_start=True, max_iters=1000, ignore_dpp=True)
+    my_network.problem.solve(solver = cp.ECOS, warm_start=True, max_iters=10000, ignore_dpp=True, verbose=False)
     
     end_time = time.time()
     
@@ -111,7 +111,6 @@ for counter1 in range(len(scenario_folders_list)):
     
     # Export cost results to pandas dataframe
 
-    
     t_df = GMPA_Results.export_total_data(my_network, location_parameters_df, asset_parameters_df)
     if counter1 == 0:
         total_df = t_df
