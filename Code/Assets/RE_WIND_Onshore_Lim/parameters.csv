@@ -1,5 +1,11 @@
-Type,sizing_constant,sizing_constant_unit,lifespan,lifespan_unit,RE_type,set_size,set_number,maximum_size,maximum_size_unit
-0,0.858,G$/GWp,175200,h,WINDOUT,24,0,0.0024,GWp
-1,0.858,G$/GWp,175200,h,WINDOUT,24,0,665.9556,GWp
-2,0.858,G$/GWp,175200,h,WINDOUT,24,0,100.2662,GWp
-3,0.858,G$/GWp,175200,h,WINDOUT,24,0,800,GWp
+Type,sizing_constant,sizing_constant_unit,lifespan,lifespan_unit,RE_type,set_size,set_number,maximum_size,maximum_size_unit,country
+0,1.6681,G$/GWp,175200,h,WINDOUT,24,0,0.0024,GWp,SGP
+1,1.6681,G$/GWp,175200,h,WINDOUT,24,0,665.9556,GWp,IDN
+2,1.6681,G$/GWp,175200,h,WINDOUT,24,0,100.2662,GWp,MYS
+3,1.7,G$/GWp,175200,h,WINDOUT,24,0,0.2848,GWp,BRN
+4,1.7,G$/GWp,175200,h,WINDOUT,24,0,106.725,GWp,KHM
+5,1.7,G$/GWp,175200,h,WINDOUT,24,0,100,GWp,MMR
+6,1.7,G$/GWp,175200,h,WINDOUT,24,0,170.6562,GWp,PHL
+7,1.7,G$/GWp,175200,h,WINDOUT,24,0,411.8312,GWp,THA
+8,1.7,G$/GWp,175200,h,WINDOUT,24,0,208.0272,GWp,VNM
+9,1.7,G$/GWp,175200,h,WINDOUT,24,0,129.1306,GWp,LAO
