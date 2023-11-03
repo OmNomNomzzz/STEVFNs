@@ -7,6 +7,7 @@ Created on Tue Oct 31 10:49:50 2023
 """
 
 import pandas as pd
+import numpy as np
 
 
 def export_results(my_network):
@@ -79,3 +80,82 @@ def export_results(my_network):
     costs_df = pd.concat([costs_df, sizes_df], axis=1)
     
     return(costs_df)
+
+def export_total_data(my_network, location_parameters_df, asset_parameters_df):
+    ''' Function to export results, generalized for all case studies'''
+    
+    location_names = list(location_parameters_df["location_name"])
+    loc_names_set_list = list(set(asset_parameters_df["Location_1"]).union(set(asset_parameters_df["Location_2"])))
+    loc_names_list = ["NIL",]*4
+    for counter1 in range(len(loc_names_set_list)):
+        loc_names_list[counter1] = location_names[loc_names_set_list[counter1]]
+    
+    total_data_columns = ["country_1",
+                  "country_2",
+                  "country_3",
+                  "country_4",
+                  "collaboration_emissions",
+                  "technology_cost",
+                  "technology_name",]
+    total_data_df = pd.DataFrame(columns = total_data_columns)
+    
+    collaboration_emissions =  my_network.assets[0].asset_size()
+    loc_names_set = set()
+    
+    for counter1 in range(1,len(my_network.assets)):
+        asset = my_network.assets[counter1]
+        name = asset.asset_name
+        
+        ### Exceptions in formatting or extracting results per type of asset ###
+        if name == 'BESS' or name == 'NH3_Storage':
+            loc1 = asset.asset_structure["Location_1"]
+            loc_name = location_names[loc1]
+            loc_names_set.add(loc_name)
+            technology_name = name + r"_[" + loc_name + r"]"
+            technology_cost = asset.cost.value
+            
+        elif name == 'RE_PV_Rooftop_Lim' or name == 'RE_PV_Openfield_Lim' or name == 'RE_WIND_Onshore_Lim' or name == 'RE_WIND_Offshore_Lim':
+            loc1 = asset.target_node_location
+            loc_name = location_names[loc1]
+            loc_names_set.add(loc_name)
+            technology_name = name + r"_[" + loc_name + r"]"
+            technology_cost =  asset.cost.value
+
+        elif name == 'EL_Demand' or name == 'HTH_Demand':
+            loc1 = asset.node_location
+            loc_name = location_names[loc1]
+            loc_names_set.add(loc_name)
+            technology_name = name + r"_[" + loc_name + r"]"
+            technology_cost = asset.cost.value
+            
+        elif name == 'EL_Transport' or name == 'NH3_Transport':
+            loc1 = asset.asset_structure["Location_1"]
+            loc2 = asset.asset_structure["Location_2"]
+            loc_name_1 = location_names[loc1]
+            loc_name_2 = location_names[loc2]
+            loc_names_set.add(loc_name_1)
+            loc_names_set.add(loc_name_1)
+            technology_name = name + r"_[" + loc_name_1 + r"-" + loc_name_2 + r"]"
+            technology_cost = asset.cost.value
+        
+        
+        
+        ### The rest of the assets, in general ###
+        else:
+            loc1 = asset.asset_structure["Location_1"]
+            loc_name = location_names[loc1]
+            loc_names_set.add(loc_name)
+            technology_name = name + r"_[" + loc_name + r"]"
+            technology_cost = asset.cost.value
+        
+        N = np.ceil(my_network.system_parameters_df.loc["project_life", "value"]/8760) #number of years for the project
+        t_df = pd.DataFrame({"country_1": [loc_names_list[0]],
+                             "country_2": [loc_names_list[1]],
+                             "country_3": [loc_names_list[2]],
+                             "country_4": [loc_names_list[3]],
+                             "collaboration_emissions": [collaboration_emissions/N/1e3],# Number is annualized, number is converted from ktCO2e to MtCO2e
+                             "technology_cost": [technology_cost/N],# Number is annualized
+                             "technology_name": [technology_name],
+            })
+        total_data_df = pd.concat([total_data_df, t_df], ignore_index=True)
+    return total_data_df
