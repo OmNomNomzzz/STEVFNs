@@ -13,9 +13,9 @@ from ...Network import Edge_STEVFNs
 
 
 
-class PP_NGS_CCGT_CO2_Asset(Asset_STEVFNs):
+class PP_NGS_SCGT_CO2_Asset(Asset_STEVFNs):
     """Class of Conventional Generators"""
-    asset_name = "PP_NGS_CCGT_CO2"
+    asset_name = "PP_NGS_SCGT_CO2"
     source_node_type = "NULL"
     target_node_type = "EL"
     target_node_type_2 = "CO2_Budget"

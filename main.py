@@ -46,7 +46,7 @@ data_folder = os.path.join(base_folder, "Data")
 case_study_folder = os.path.join(data_folder, "Case_Study", case_study_name)
 scenario_folders_list = [x[0] for x in os.walk(case_study_folder)][1:]
 network_structure_filename = os.path.join(case_study_folder, "Network_Structure.csv")
-
+results_filename = os.path.join(case_study_folder, "total_data.csv")
 
 ### Read Input Files ###
 
