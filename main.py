@@ -22,12 +22,12 @@ from Code.Results import GMPA_Results
 
 
 ###### Autarky Case Studies #########
-case_study_name = "Autarky_SG"
+# case_study_name = "Autarky_SG"
 # case_study_name = "Autarky_ID"
 # case_study_name = "Autarky_MY"
 
 ###### Two Country Case Studies #########
-# case_study_name = "SG-ID_Autarky"
+case_study_name = "SG-ID_Autarky"
 # case_study_name = "SG-ID_Collab"
 
 # case_study_name = "SG-MY_Autarky"
@@ -64,7 +64,7 @@ my_network.build(network_structure_df)
 
 end_time = time.time()
 print("Time taken to build network = ", end_time - start_time, "s")
-
+# total_df = None
 
 for counter1 in range(len(scenario_folders_list)):
 # for counter1 in range(1):
@@ -110,7 +110,6 @@ for counter1 in range(len(scenario_folders_list)):
     # DPhil_Plotting.plot_asset_costs(my_network)
     
     # Export cost results to pandas dataframe
-
     t_df = GMPA_Results.export_total_data(my_network, location_parameters_df, asset_parameters_df)
     if counter1 == 0:
         total_df = t_df
@@ -119,7 +118,7 @@ for counter1 in range(len(scenario_folders_list)):
 
 
 
-#### Save Results
+#### Save Result
 total_df.to_csv(results_filename, index=False, header=True)
 
    

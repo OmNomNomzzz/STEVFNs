@@ -104,6 +104,13 @@ class PP_CO2_Asset(Asset_STEVFNs):
                                                         NPV_factor * simulation_factor)
         return
     
+    def _update_co2_emissions_factor(self):
+        simulation_factor = 8760/self.network.system_structure_properties["simulated_timesteps"]
+        N = np.ceil(self.network.system_parameters_df.loc["project_life", "value"]/8760)
+        self.conversion_fun_params_2["CO2_emissions_factor"].value = (self.conversion_fun_params_2["CO2_emissions_factor"].value * 
+                                                                      simulation_factor * N)
+        return
+        
     def _update_parameters(self):
         super()._update_parameters()
         for parameter_name, parameter in self.conversion_fun_params_2.items():
@@ -111,6 +118,7 @@ class PP_CO2_Asset(Asset_STEVFNs):
         #Update cost parameters based on NPV#
         self._update_sizing_constant()
         self._update_usage_constants()
+        self._update_co2_emissions_factor()
         return
     
     def get_asset_sizes(self):
