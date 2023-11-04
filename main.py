@@ -68,7 +68,7 @@ print("Time taken to build network = ", end_time - start_time, "s")
 
 for counter1 in range(len(scenario_folders_list)):
 # for counter1 in range(1):
-    ### Read Input Files ###
+    # Read Input Files ###
     scenario_folder = scenario_folders_list[-1-counter1]
     asset_parameters_filename = os.path.join(scenario_folder, "Asset_Parameters.csv")
     location_parameters_filename = os.path.join(scenario_folder, "Location_Parameters.csv")
@@ -95,16 +95,18 @@ for counter1 in range(len(scenario_folders_list)):
     
     
     # my_network.solve_problem()
-    my_network.problem.solve(solver = cp.ECOS, warm_start=True, max_iters=10000, ignore_dpp=True, verbose=False)
+    my_network.problem.solve(solver = cp.ECOS, warm_start=True, max_iters=10000, ignore_dpp=True, verbose=False,)
     
     end_time = time.time()
     
     ### Plot Results ############
+    print("Scenario: ", my_network.scenario_name)
     print("Time taken to solve problem = ", end_time - start_time, "s")
-    print("Total cost to satisfy all demand = ", my_network.problem.value, " Billion USD")
+    print(my_network.problem.solution.status)
     if my_network.problem.value == float("inf"):
         break
-    
+    print("Total cost to satisfy all demand = ", my_network.problem.value, " Billion USD")
+    print("Total emissions = ", my_network.assets[0].asset_size(), "ktCO2e")
     # DPhil_Plotting.plot_all(my_network)
     # DPhil_Plotting.plot_asset_sizes(my_network)
     # DPhil_Plotting.plot_asset_costs(my_network)
