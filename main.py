@@ -24,7 +24,7 @@ from Code.Results import GMPA_Results
 ###### Autarky Case Studies #########
 # case_study_name = "Autarky_SG"
 # case_study_name = "Autarky_ID"
-# case_study_name = "Autarky_MY"
+case_study_name = "Autarky_MY"
 
 ###### Two Country Case Studies #########
 # case_study_name = "SG-ID_Autarky"
@@ -38,7 +38,7 @@ from Code.Results import GMPA_Results
 
 ###### Three Country Case Studies #########
 # case_study_name = "SG-ID-MY_Autarky"
-case_study_name = "SG-ID-MY_Collab"
+# case_study_name = "SG-ID-MY_Collab"
 
 
 base_folder = os.path.dirname(__file__)
@@ -63,8 +63,9 @@ my_network.build(network_structure_df)
 
 
 end_time = time.time()
+print("Scenario: ", my_network.scenario_name)
 print("Time taken to build network = ", end_time - start_time, "s")
-# total_df = None
+total_df = pd.DataFrame()
 
 for counter1 in range(len(scenario_folders_list)):
 # for counter1 in range(1):
@@ -100,7 +101,7 @@ for counter1 in range(len(scenario_folders_list)):
     end_time = time.time()
     
     ### Plot Results ############
-    print("Scenario: ", my_network.scenario_name)
+    
     print("Time taken to solve problem = ", end_time - start_time, "s")
     print(my_network.problem.solution.status)
     if my_network.problem.value == float("inf"):
