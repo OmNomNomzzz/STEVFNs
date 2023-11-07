@@ -22,9 +22,14 @@ from Code.Results import GMPA_Results
 
 
 ###### Autarky Case Studies #########
-case_study_name = "Autarky_SG"
+# case_study_name = "Autarky_SG"
 # case_study_name = "Autarky_ID"
-case_study_name = "Autarky_MY"
+# case_study_name = "Autarky_MY"
+case_study_name = "Autarky_VN"
+# case_study_name = "Autarky_PH"
+# case_study_name = "Autarky_TH"
+# case_study_name = "Autarky_KH"
+# case_study_name = "Autarky_LA"
 
 ###### Two Country Case Studies #########
 # case_study_name = "SG-ID_Autarky"
@@ -63,7 +68,6 @@ my_network.build(network_structure_df)
 
 
 end_time = time.time()
-print("Scenario: ", my_network.scenario_name)
 print("Time taken to build network = ", end_time - start_time, "s")
 total_df = pd.DataFrame()
 
@@ -96,12 +100,12 @@ for counter1 in range(len(scenario_folders_list)):
     
     
     # my_network.solve_problem()
-    my_network.problem.solve(solver = cp.ECOS, warm_start=True, max_iters=10000, ignore_dpp=True, verbose=False,)
+    my_network.problem.solve(solver = cp.ECOS, warm_start=True, max_iters=10000, ignore_dpp=True, verbose=False)
     
     end_time = time.time()
     
     ### Plot Results ############
-    
+    print("Scenario: ", my_network.scenario_name)
     print("Time taken to solve problem = ", end_time - start_time, "s")
     print(my_network.problem.solution.status)
     if my_network.problem.value == float("inf"):
