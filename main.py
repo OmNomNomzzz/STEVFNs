@@ -25,7 +25,7 @@ from Code.Results import GMPA_Results
 # case_study_name = "Autarky_SG"
 # case_study_name = "Autarky_ID"
 # case_study_name = "Autarky_MY"
-case_study_name = "Autarky_VN"
+# case_study_name = "Autarky_VN"
 # case_study_name = "Autarky_PH"
 # case_study_name = "Autarky_TH"
 # case_study_name = "Autarky_KH"
@@ -45,6 +45,12 @@ case_study_name = "Autarky_VN"
 # case_study_name = "SG-ID-MY_Autarky"
 # case_study_name = "SG-ID-MY_Collab"
 
+# case_study_name = "SG-ID-PH_Autarky"
+case_study_name = "SG-ID-PH_Collab"
+
+###### Four Country Case Studies #########
+# case_study_name = "SG-ID-MY-PH_Autarky"
+# case_study_name = "SG-ID-MY-PH_Collab"
 
 base_folder = os.path.dirname(__file__)
 data_folder = os.path.join(base_folder, "Data")
@@ -125,7 +131,7 @@ for counter1 in range(len(scenario_folders_list)):
 
 
 
-#### Save Result
+# #### Save Result
 total_df.to_csv(results_filename, index=False, header=True)
 
    
