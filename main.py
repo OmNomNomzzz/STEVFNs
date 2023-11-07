@@ -22,7 +22,7 @@ from Code.Results import GMPA_Results
 
 
 ###### Autarky Case Studies #########
-# case_study_name = "Autarky_SG"
+case_study_name = "Autarky_SG"
 # case_study_name = "Autarky_ID"
 case_study_name = "Autarky_MY"
 
