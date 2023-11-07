@@ -24,7 +24,7 @@ from Code.Results import GMPA_Results
 ###### Autarky Case Studies #########
 # case_study_name = "Autarky_SG"
 # case_study_name = "Autarky_ID"
-# case_study_name = "Autarky_MY"
+case_study_name = "Autarky_MY"
 # case_study_name = "Autarky_VN"
 # case_study_name = "Autarky_PH"
 # case_study_name = "Autarky_TH"
@@ -46,7 +46,7 @@ from Code.Results import GMPA_Results
 # case_study_name = "SG-ID-MY_Collab"
 
 # case_study_name = "SG-ID-PH_Autarky"
-case_study_name = "SG-ID-PH_Collab"
+# case_study_name = "SG-ID-PH_Collab"
 
 ###### Four Country Case Studies #########
 # case_study_name = "SG-ID-MY-PH_Autarky"
