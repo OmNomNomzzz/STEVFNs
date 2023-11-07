@@ -86,7 +86,7 @@ def export_total_data(my_network, location_parameters_df, asset_parameters_df):
     
     location_names = list(location_parameters_df["location_name"])
     loc_names_set_list = list(set(asset_parameters_df["Location_1"]).union(set(asset_parameters_df["Location_2"])))
-    loc_names_list = ["NIL",]*4
+    loc_names_list = ["",]*4
     for counter1 in range(len(loc_names_set_list)):
         loc_names_list[counter1] = location_names[loc_names_set_list[counter1]]
     
