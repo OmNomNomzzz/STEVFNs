@@ -32,23 +32,35 @@ from Code.Results import GMPA_Results
 # case_study_name = "Autarky_LA"
 
 ###### Two Country Case Studies #########
-case_study_name = "SG-ID_Autarky"
+# case_study_name = "SG-ID_Autarky"
 # case_study_name = "SG-ID_Collab"
 
 # case_study_name = "SG-MY_Autarky"
 # case_study_name = "SG-MY_Collab"
 
-# case_study_name = "MY-ID_Autarky"
-# case_study_name = "MY-ID_Collab"
+# case_study_name = "SG-PH_Autarky"
+# case_study_name = "SG-PH_Collab"
+
+# case_study_name = "ID-MY_Autarky"
+# case_study_name = "ID-MY_Collab"
+
+# case_study_name = "MY-PH_Autarky"
+# case_study_name = "MY-PH_Collab"
+
+# case_study_name = "ID-PH_Autarky"
+# case_study_name = "ID-PH_Collab"
 
 ###### Three Country Case Studies #########
-# case_study_name = "SG-ID-MY_Autarky"
+case_study_name = "SG-ID-MY_Autarky"
 # case_study_name = "SG-ID-MY_Collab"
 
 # case_study_name = "SG-ID-PH_Autarky"
 # case_study_name = "SG-ID-PH_Collab"
 
 ###### Four Country Case Studies #########
+# case_study_name = "SG-ID-MY-PH_Autarky"
+# case_study_name = "SG-ID-MY-PH_Collab"
+
 # case_study_name = "SG-ID-MY-PH_Autarky"
 # case_study_name = "SG-ID-MY-PH_Collab"
 
@@ -106,8 +118,8 @@ for counter1 in range(len(scenario_folders_list)):
     
     
     # my_network.solve_problem()
-    my_network.problem.solve(solver = cp.ECOS, warm_start=True, max_iters=10000, ignore_dpp=True, verbose=False)
-    
+    my_network.problem.solve(solver = cp.ECOS, warm_start=True, max_iters=100000, ignore_dpp=True, verbose=False)
+    # my_network.problem.solve(solver = cp.SCS, warm_start=True, max_iters=100000, ignore_dpp=True, verbose=False)
     end_time = time.time()
     
     ### Plot Results ############
@@ -115,7 +127,7 @@ for counter1 in range(len(scenario_folders_list)):
     print("Time taken to solve problem = ", end_time - start_time, "s")
     print(my_network.problem.solution.status)
     if my_network.problem.value == float("inf"):
-        break
+        continue
     print("Total cost to satisfy all demand = ", my_network.problem.value, " Billion USD")
     print("Total emissions = ", my_network.assets[0].asset_size(), "ktCO2e")
     # DPhil_Plotting.plot_all(my_network)
