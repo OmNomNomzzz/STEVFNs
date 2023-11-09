@@ -45,7 +45,7 @@ from Code.Results import GMPA_Results
 # case_study_name = "ID-MY_Collab"
 
 # case_study_name = "MY-PH_Autarky"
-case_study_name = "MY-PH_Collab"
+# case_study_name = "MY-PH_Collab"
 
 # case_study_name = "ID-PH_Autarky"
 # case_study_name = "ID-PH_Collab"
@@ -61,7 +61,7 @@ case_study_name = "MY-PH_Collab"
 # case_study_name = "SG-MY-PH_Collab"
 
 # case_study_name = "ID-MY-PH_Autarky"
-# case_study_name = "ID-MY-PH_Collab"
+case_study_name = "ID-MY-PH_Collab"
 
 ###### Four Country Case Studies #########
 # case_study_name = "SG-ID-MY-PH_Autarky"
@@ -122,8 +122,8 @@ for counter1 in range(len(scenario_folders_list)):
     
     
     # my_network.solve_problem()
-    my_network.problem.solve(solver = cp.ECOS, warm_start=True, max_iters=100000, ignore_dpp=True, verbose=False)
-    # my_network.problem.solve(solver = cp.SCS, warm_start=True, max_iters=100000, ignore_dpp=True, verbose=False)
+    # my_network.problem.solve(solver = cp.ECOS, warm_start=True, max_iters=100000, ignore_dpp=True, verbose=False)
+    my_network.problem.solve(solver = cp.SCS, warm_start=True, max_iters=100000, ignore_dpp=True, verbose=False)
     end_time = time.time()
     
     ### Plot Results ############
