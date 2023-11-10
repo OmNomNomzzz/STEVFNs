@@ -25,7 +25,7 @@ import os
 
 
 ###### Two Country Case Studies #########
-case_study_name = "SG-ID_Autarky"
+# case_study_name = "SG-ID_Autarky"
 # case_study_name = "SG-ID_Collab"
 
 # case_study_name = "SG-MY_Autarky"
@@ -62,7 +62,7 @@ case_study_name = "SG-ID_Autarky"
 
 ###### Four Country Case Studies #########
 # case_study_name = "SG-ID-MY-PH_Autarky"
-# case_study_name = "SG-ID-MY-PH_Collab"
+case_study_name = "SG-ID-MY-PH_Collab"
 
 
 
@@ -70,7 +70,7 @@ base_folder = os.path.dirname(__file__)
 data_folder = os.path.join(base_folder, "Data")
 case_study_folders_list = [x[0] for x in os.walk(data_folder)][1:]
 case_study_folder = os.path.join(data_folder, "Case_Study", case_study_name)
-total_data_filename = os.path.join(case_study_folder, "total_data.csv")
+total_data_filename = os.path.join(case_study_folder, "total_data_unrounded.csv")
 
 plot_data_filename = os.path.join(case_study_folder, "mitigation_curve_data.csv")
 plot_filename = os.path.join(case_study_folder, "mitigation_curve.png")

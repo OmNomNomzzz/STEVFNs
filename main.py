@@ -33,7 +33,7 @@ from Code.Results import GMPA_Results
 
 ###### Two Country Case Studies #########
 # case_study_name = "SG-ID_Autarky"
-case_study_name = "SG-ID_Collab"
+# case_study_name = "SG-ID_Collab"
 
 # case_study_name = "SG-MY_Autarky"
 # case_study_name = "SG-MY_Collab"
@@ -65,7 +65,7 @@ case_study_name = "SG-ID_Collab"
 
 ###### Four Country Case Studies #########
 # case_study_name = "SG-ID-MY-PH_Autarky"
-# case_study_name = "SG-ID-MY-PH_Collab"
+case_study_name = "SG-ID-MY-PH_Collab"
 
 
 base_folder = os.path.dirname(__file__)
@@ -74,6 +74,7 @@ case_study_folder = os.path.join(data_folder, "Case_Study", case_study_name)
 scenario_folders_list = [x[0] for x in os.walk(case_study_folder)][1:]
 network_structure_filename = os.path.join(case_study_folder, "Network_Structure.csv")
 results_filename = os.path.join(case_study_folder, "total_data.csv")
+unrounded_results_filename = os.path.join(case_study_folder, "total_data_unrounded.csv")
 
 ### Read Input Files ###
 
@@ -92,11 +93,21 @@ my_network.build(network_structure_df)
 end_time = time.time()
 print("Time taken to build network = ", end_time - start_time, "s")
 total_df = pd.DataFrame()
+total_df_1 = pd.DataFrame()
+
+# total_cost_ls = []
+# pp_size_ls = []
+# wind_onshore = []
+# wind_offshore = []
+# pv_open = []
+# pv_roof = []
+
 
 for counter1 in range(len(scenario_folders_list)):
-# for counter1 in range(1):
+# for counter1 in range(10):
     # Read Input Files ###
     scenario_folder = scenario_folders_list[-1-counter1]
+    # scenario_folder = scenario_folders_list[0]
     asset_parameters_filename = os.path.join(scenario_folder, "Asset_Parameters.csv")
     location_parameters_filename = os.path.join(scenario_folder, "Location_Parameters.csv")
     system_parameters_filename = os.path.join(scenario_folder, "System_Parameters.csv")
@@ -122,9 +133,26 @@ for counter1 in range(len(scenario_folders_list)):
     
     
     # my_network.solve_problem()
-    # my_network.problem.solve(solver = cp.ECOS, warm_start=True, max_iters=100000, ignore_dpp=True, verbose=False)
-    my_network.problem.solve(solver = cp.SCS, warm_start=True, max_iters=100000, ignore_dpp=True, verbose=False)
+    my_network.problem.solve(solver = cp.MOSEK, warm_start=True, ignore_dpp=True, verbose=False)
+    # my_network.problem.solve(solver = cp.ECOS, warm_start=True, max_iters=10000, feastol=1e-5, reltol=1e-5, abstol=1e-5, ignore_dpp=True, verbose=True)
+    # my_network.problem.solve(solver = cp.SCS, warm_start=True, max_iters=10000, ignore_dpp=True, verbose=False)
     end_time = time.time()
+    
+    
+    # if not (my_network.problem.value in total_cost_ls):
+    #     total_cost_ls.append(my_network.problem.value)
+    # if not (my_network.assets[5].asset_size() in pp_size_ls):
+    #     pp_size_ls.append(my_network.assets[5].asset_size())
+    # if not (my_network.assets[14].asset_size() in pv_roof):
+    #     pv_roof.append(my_network.assets[14].asset_size())
+    # if not (my_network.assets[15].asset_size() in pv_open):
+    #     pv_open.append(my_network.assets[15].asset_size())
+    # if not (my_network.assets[16].asset_size() in wind_onshore):
+    #     wind_onshore.append(my_network.assets[16].asset_size())
+    # if not (my_network.assets[17].asset_size() in wind_offshore):
+    #     wind_offshore.append(my_network.assets[17].asset_size())
+    
+    
     
     ### Plot Results ############
     print("Scenario: ", my_network.scenario_name)
@@ -133,22 +161,27 @@ for counter1 in range(len(scenario_folders_list)):
     if my_network.problem.value == float("inf"):
         continue
     print("Total cost to satisfy all demand = ", my_network.problem.value, " Billion USD")
-    print("Total emissions = ", my_network.assets[0].asset_size(), "ktCO2e")
+    print("Total emissions = ", my_network.assets[0].asset_size(), "MtCO2e")
     # DPhil_Plotting.plot_all(my_network)
     # DPhil_Plotting.plot_asset_sizes(my_network)
     # DPhil_Plotting.plot_asset_costs(my_network)
     
+        
     # Export cost results to pandas dataframe
     t_df = GMPA_Results.export_total_data(my_network, location_parameters_df, asset_parameters_df)
+    t1_df = GMPA_Results.export_total_data_not_rounded(my_network, location_parameters_df, asset_parameters_df)
     if counter1 == 0:
         total_df = t_df
+        total_df_1 = t1_df
     else:
         total_df = pd.concat([total_df, t_df], ignore_index=True)
+        total_df_1 = pd.concat([total_df_1, t1_df], ignore_index=True)
 
 
 
 # #### Save Result
 total_df.to_csv(results_filename, index=False, header=True)
+total_df_1.to_csv(unrounded_results_filename, index=False, header=True)
 
-   
+
    
