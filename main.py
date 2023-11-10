@@ -33,7 +33,7 @@ from Code.Results import GMPA_Results
 
 ###### Two Country Case Studies #########
 # case_study_name = "SG-ID_Autarky"
-# case_study_name = "SG-ID_Collab"
+case_study_name = "SG-ID_Collab"
 
 # case_study_name = "SG-MY_Autarky"
 # case_study_name = "SG-MY_Collab"
@@ -61,7 +61,7 @@ from Code.Results import GMPA_Results
 # case_study_name = "SG-MY-PH_Collab"
 
 # case_study_name = "ID-MY-PH_Autarky"
-case_study_name = "ID-MY-PH_Collab"
+# case_study_name = "ID-MY-PH_Collab"
 
 ###### Four Country Case Studies #########
 # case_study_name = "SG-ID-MY-PH_Autarky"
