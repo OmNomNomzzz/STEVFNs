@@ -65,7 +65,10 @@ from Code.Results import GMPA_Results
 
 ###### Four Country Case Studies #########
 # case_study_name = "SG-ID-MY-PH_Autarky"
-case_study_name = "SG-ID-MY-PH_Collab"
+# case_study_name = "SG-ID-MY-PH_Collab"
+
+###### BAU_No_Action #######
+case_study_name = "BAU_No_Action"
 
 
 base_folder = os.path.dirname(__file__)
@@ -133,8 +136,8 @@ for counter1 in range(len(scenario_folders_list)):
     
     
     # my_network.solve_problem()
-    my_network.problem.solve(solver = cp.MOSEK, warm_start=True, ignore_dpp=True, verbose=False)
-    # my_network.problem.solve(solver = cp.ECOS, warm_start=True, max_iters=10000, feastol=1e-5, reltol=1e-5, abstol=1e-5, ignore_dpp=True, verbose=True)
+    # my_network.problem.solve(solver = cp.MOSEK, warm_start=True, ignore_dpp=True, verbose=False)
+    my_network.problem.solve(solver = cp.ECOS, warm_start=True, max_iters=10000, feastol=1e-5, reltol=1e-5, abstol=1e-5, ignore_dpp=True, verbose=False)
     # my_network.problem.solve(solver = cp.SCS, warm_start=True, max_iters=10000, ignore_dpp=True, verbose=False)
     end_time = time.time()
     
