@@ -29,7 +29,7 @@ from Code.Results import GMPA_Results
 # case_study_name = "Autarky_PH"
 # case_study_name = "Autarky_TH"
 # case_study_name = "Autarky_KH"
-case_study_name = "Autarky_LA"
+# case_study_name = "Autarky_LA"
 
 ###### Two Country Case Studies #########
 # case_study_name = "SG-ID_Autarky"
@@ -64,7 +64,7 @@ case_study_name = "Autarky_LA"
 # case_study_name = "ID-MY-PH_Collab"
 
 ###### Four Country Case Studies #########
-# case_study_name = "SG-ID-MY-PH_Autarky"
+case_study_name = "SG-ID-MY-PH_Autarky"
 # case_study_name = "SG-ID-MY-PH_Collab"
 
 ###### BAU_No_Action #######
