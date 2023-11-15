@@ -64,8 +64,13 @@ from Code.Results import GMPA_Results
 # case_study_name = "ID-MY-PH_Collab"
 
 ###### Four Country Case Studies #########
+<<<<<<< HEAD
 case_study_name = "SG-ID-MY-PH_Autarky"
 # case_study_name = "SG-ID-MY-PH_Collab"
+=======
+# case_study_name = "SG-ID-MY-PH_Autarky"
+case_study_name = "SG-ID-MY-PH_Collab"
+>>>>>>> f19a0ce7c40585cedef053cf6d9552d2dadcff07
 
 ###### BAU_No_Action #######
 # case_study_name = "BAU_No_Action"
