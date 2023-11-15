@@ -13,7 +13,7 @@ import os
 
 
 ###### Autarky Case Studies #########
-case_study_name = "Autarky_SG"
+# case_study_name = "Autarky_SG"
 # case_study_name = "Autarky_ID"
 # case_study_name = "Autarky_MY"
 # case_study_name = "Autarky_VN"
@@ -61,8 +61,8 @@ case_study_name = "Autarky_SG"
 
 
 ###### Four Country Case Studies #########
-case_study_name = "SG-ID-MY-PH_Autarky"
-# case_study_name = "SG-ID-MY-PH_Collab"
+# case_study_name = "SG-ID-MY-PH_Autarky"
+case_study_name = "SG-ID-MY-PH_Collab"
 
 
 
@@ -117,7 +117,7 @@ df.plot.area(ax=ax)
 ax.set_title(f"{case_study_name}")
 ax.set_xlabel("Collaboration Emissions (MtCO2e)")
 ax.set_ylabel("Costs (Billion USD)")
-ax.legend(bbox_to_anchor=(0.5, -1), loc='lower center', borderaxespad=0, ncols=4)
+ax.legend(bbox_to_anchor=(0.5, -1.3), loc='lower center', borderaxespad=0, ncols=4)
 fig.savefig(plot_filename, dpi=300, bbox_inches="tight")
 
 
