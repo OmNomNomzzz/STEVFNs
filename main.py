@@ -22,14 +22,14 @@ from Code.Results import GMPA_Results
 
 
 ###### Autarky Case Studies #########
-case_study_name = "Autarky_SG"
+# case_study_name = "Autarky_SG"
 # case_study_name = "Autarky_ID"
 # case_study_name = "Autarky_MY"
 # case_study_name = "Autarky_VN"
 # case_study_name = "Autarky_PH"
 # case_study_name = "Autarky_TH"
 # case_study_name = "Autarky_KH"
-# case_study_name = "Autarky_LA"
+case_study_name = "Autarky_LA"
 
 ###### Two Country Case Studies #########
 # case_study_name = "SG-ID_Autarky"
@@ -182,9 +182,9 @@ for counter1 in range(len(scenario_folders_list)):
 
 
 
-# #### Save Result
-total_df.to_csv(results_filename, index=False, header=True)
-total_df_1.to_csv(unrounded_results_filename, index=False, header=True)
+# # #### Save Result
+# total_df.to_csv(results_filename, index=False, header=True)
+# total_df_1.to_csv(unrounded_results_filename, index=False, header=True)
 
 
    
