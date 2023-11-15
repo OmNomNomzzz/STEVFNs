@@ -18,7 +18,7 @@ class RE_WIND_Offshore_Lim_Asset(Asset_STEVFNs):
     asset_name = "RE_WIND_Offshore_Lim"
     target_node_type = "EL"
     source_node_type_2 = "NULL"
-    target_node_type_2 = "RE_Limit"
+    target_node_type_2 = "RE_WIND_Offshore"
     period = 1
     transport_time = 0
     target_node_time_2 = 0
