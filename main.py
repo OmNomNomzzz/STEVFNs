@@ -183,8 +183,8 @@ for counter1 in range(len(scenario_folders_list)):
 
 
 # # #### Save Result
-# total_df.to_csv(results_filename, index=False, header=True)
-# total_df_1.to_csv(unrounded_results_filename, index=False, header=True)
+total_df.to_csv(results_filename, index=False, header=True)
+total_df_1.to_csv(unrounded_results_filename, index=False, header=True)
 
 
    

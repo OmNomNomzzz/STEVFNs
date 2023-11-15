@@ -13,14 +13,14 @@ import os
 
 
 ###### Autarky Case Studies #########
-case_study_name = "Autarky_SG"
+# case_study_name = "Autarky_SG"
 # case_study_name = "Autarky_ID"
 # case_study_name = "Autarky_MY"
 # case_study_name = "Autarky_VN"
 # case_study_name = "Autarky_PH"
 # case_study_name = "Autarky_TH"
 # case_study_name = "Autarky_KH"
-# case_study_name = "Autarky_LA"
+case_study_name = "Autarky_LA"
 
 
 
