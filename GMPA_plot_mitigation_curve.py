@@ -58,8 +58,6 @@ import os
 # case_study_name = "ID-MY-PH_Autarky"
 # case_study_name = "ID-MY-PH_Collab"
 
-
-
 ###### Four Country Case Studies #########
 # case_study_name = "SG-ID-MY-PH_Autarky"
 case_study_name = "SG-ID-MY-PH_Collab"
