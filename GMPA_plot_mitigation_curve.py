@@ -20,7 +20,7 @@ import os
 # case_study_name = "Autarky_PH"
 # case_study_name = "Autarky_TH"
 # case_study_name = "Autarky_KH"
-# case_study_name = "Autarky_LA"
+case_study_name = "Autarky_LA"
 
 
 
@@ -60,7 +60,7 @@ import os
 
 ###### Four Country Case Studies #########
 # case_study_name = "SG-ID-MY-PH_Autarky"
-case_study_name = "SG-ID-MY-PH_Collab"
+# case_study_name = "SG-ID-MY-PH_Collab"
 
 
 
@@ -68,7 +68,7 @@ base_folder = os.path.dirname(__file__)
 data_folder = os.path.join(base_folder, "Data")
 case_study_folders_list = [x[0] for x in os.walk(data_folder)][1:]
 case_study_folder = os.path.join(data_folder, "Case_Study", case_study_name)
-total_data_filename = os.path.join(case_study_folder, "total_data_unrounded.csv")
+total_data_filename = os.path.join(case_study_folder, "total_data.csv")
 
 plot_data_filename = os.path.join(case_study_folder, "mitigation_curve_data.csv")
 plot_filename = os.path.join(case_study_folder, "mitigation_curve.png")
@@ -115,8 +115,8 @@ df.plot.area(ax=ax)
 ax.set_title(f"{case_study_name}")
 ax.set_xlabel("Collaboration Emissions (MtCO2e)")
 ax.set_ylabel("Costs (Billion USD)")
-ax.legend(bbox_to_anchor=(0.5, -1.3), loc='lower center', borderaxespad=0, ncols=4)
-fig.savefig(plot_filename, dpi=300, bbox_inches="tight")
+ax.legend(bbox_to_anchor=(0.5, -0.5), loc='lower center', borderaxespad=0, ncols=4)
+# fig.savefig(plot_filename, dpi=300, bbox_inches="tight")
 
 
     

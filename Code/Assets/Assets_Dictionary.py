@@ -34,6 +34,7 @@ from .RE_WIND_Offshore_Lim import RE_WIND_Offshore_Lim_Asset
 from .PP_NGS_CCGT_CO2 import PP_NGS_CCGT_CO2_Asset
 from .PP_NGS_SCGT_CO2 import PP_NGS_SCGT_CO2_Asset
 from .PP_COAL_CO2 import PP_COAL_CO2_Asset
+from .FF_to_HTH import FF_to_HTH_Asset
 
 
 ASSET_DICT = {EL_Demand_Asset.asset_name: EL_Demand_Asset,
@@ -64,4 +65,5 @@ ASSET_DICT = {EL_Demand_Asset.asset_name: EL_Demand_Asset,
               PP_NGS_CCGT_CO2_Asset.asset_name: PP_NGS_CCGT_CO2_Asset,
               PP_NGS_SCGT_CO2_Asset.asset_name: PP_NGS_SCGT_CO2_Asset,
               PP_COAL_CO2_Asset.asset_name: PP_COAL_CO2_Asset,
+              FF_to_HTH_Asset.asset_name: FF_to_HTH_Asset,
               }

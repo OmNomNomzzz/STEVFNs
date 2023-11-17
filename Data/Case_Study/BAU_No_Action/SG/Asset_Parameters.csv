@@ -4,5 +4,6 @@ Asset_Number,Asset_Class,Location_1,Location_2,Asset_Type
 2,RE_WIND_Onshore_Lim,0,0,14
 3,PP_CO2,0,0,0
 4,EL_to_HTH,0,0,0
-5,EL_Demand,0,0,0
-6,HTH_Demand,0,0,0
+5,FF_to_HTH,0,0,0
+6,EL_Demand,0,0,0
+7,HTH_Demand,0,0,0
