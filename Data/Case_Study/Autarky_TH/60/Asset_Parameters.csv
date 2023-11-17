@@ -11,5 +11,6 @@ Asset_Number,Asset_Class,Location_1,Location_2,Asset_Type
 9,NH3_Storage,7,7,0
 10,NH3_to_EL,7,7,0
 11,NH3_to_HTH,7,7,0
-12,EL_Demand,7,7,7
-13,HTH_Demand,7,7,7
+12,FF_to_HTH,7,7,7
+13,EL_Demand,7,7,7
+14,HTH_Demand,7,7,7
