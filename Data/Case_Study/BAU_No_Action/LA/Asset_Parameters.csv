@@ -3,6 +3,6 @@ Asset_Number,Asset_Class,Location_1,Location_2,Asset_Type
 1,RE_PV_Openfield_Lim,0,0,23
 2,RE_WIND_Onshore_Lim,0,0,23
 3,PP_CO2,0,0,9
-4,EL_to_HTH,0,0,9
+4,FF_to_HTH,0,0,9
 5,EL_Demand,0,0,9
 6,HTH_Demand,0,0,9

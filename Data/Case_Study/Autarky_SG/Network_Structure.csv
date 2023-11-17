@@ -11,5 +11,6 @@ Asset_Number,Asset_Class,Location_1,Location_2,Start_Time,End_Time,Period,Transp
 9,NH3_Storage,0,0,0,720,1,0
 10,NH3_to_EL,0,0,0,720,1,0
 11,NH3_to_HTH,0,0,0,720,1,0
-12,EL_Demand,0,0,0,720,1,0
-13,HTH_Demand,0,0,0,720,1,0
+12,FF_to_HTH,0,0,0,720,1,0
+13,EL_Demand,0,0,0,720,1,0
+14,HTH_Demand,0,0,0,720,1,0
