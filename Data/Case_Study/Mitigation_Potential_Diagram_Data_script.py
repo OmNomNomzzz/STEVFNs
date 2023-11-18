@@ -293,7 +293,10 @@ def generate_heatmap_df(combined_autarky_df, combined_collaboration_df, total_no
                     maximum_potential_emissions = float(t_df_4_2["emissions"])
                     # maximum_potential_cost = float(t_df_4_2["cost"])
                     mitigation_potential = BAU_emissions - maximum_potential_emissions
-                    mitigation_cost = float(t_df_4_2["average_abatement_cost"])
+                    if float(t_df_4_2["emissions"])==0:
+                        mitigation_cost = float(t_df_4_2["average_abatement_cost"])
+                    else:
+                        mitigation_cost = ""
                     mitigation_potential_list = []
                     for marginal_cutoff in marginal_cutoffs:
                         con_5 = t_df_4["marginal_abatement_cost"] <= marginal_cutoff
@@ -334,7 +337,10 @@ def generate_heatmap_df(combined_autarky_df, combined_collaboration_df, total_no
                     maximum_potential_emissions = float(t_df_4_2a["emissions"])
                     # maximum_potential_cost = float(t_df_4_2["cost"])
                     mitigation_potential = BAU_emissions - maximum_potential_emissions
-                    mitigation_cost = float(t_df_4_2a["average_abatement_cost"])
+                    if float(t_df_4_2a["emissions"])==0:
+                        mitigation_cost = float(t_df_4_2a["average_abatement_cost"])
+                    else:
+                        mitigation_cost = ""
                     mitigation_potential_list = []
                     for marginal_cutoff in marginal_cutoffs:
                         con_5a = t_df_4a["marginal_abatement_cost"] <= marginal_cutoff
@@ -426,19 +432,21 @@ def generate_data_for_website(total_autarky_df,
                   "country_2",
                   "country_3",
                   "country_4",
+                  "BAU_Emissions(MtCO2e)",
                   "Mitigation_Potential(MtCO2e)",
                   "Mitigation_Potential_at_Average_0($/tCO2e)",
                   "Mitigation_Potential_at_Average_50($/tCO2e)",
                   "Mitigation_Potential_at_Average_100($/tCO2e)",
                   "Mitigation_Potential_at_Average_200($/tCO2e)",
-                  "BAU_Emissions(MtCO2e)",
+                  "Mitigation_Cost($/tCO2e)",
                   ]
-    columns_to_round_heatmap = ["Mitigation_Potential(MtCO2e)",
+    columns_to_round_heatmap = ["BAU_Emissions(MtCO2e)",
+    "Mitigation_Potential(MtCO2e)",
     "Mitigation_Potential_at_Average_0($/tCO2e)",
     "Mitigation_Potential_at_Average_50($/tCO2e)",
     "Mitigation_Potential_at_Average_100($/tCO2e)",
     "Mitigation_Potential_at_Average_200($/tCO2e)",
-    "BAU_Emissions(MtCO2e)",]
+    "Mitigation_Cost($/tCO2e)",]
     
     heatmap_collaboration_website_df = data_for_website(heatmap_collaboration_df, 
                                                   final_columns_heatmap,

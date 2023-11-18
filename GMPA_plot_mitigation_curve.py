@@ -68,7 +68,7 @@ base_folder = os.path.dirname(__file__)
 data_folder = os.path.join(base_folder, "Data")
 case_study_folders_list = [x[0] for x in os.walk(data_folder)][1:]
 case_study_folder = os.path.join(data_folder, "Case_Study", case_study_name)
-total_data_filename = os.path.join(case_study_folder, "total_data.csv")
+total_data_filename = os.path.join(case_study_folder, "total_data_unrounded.csv")
 
 plot_data_filename = os.path.join(case_study_folder, "mitigation_curve_data.csv")
 plot_filename = os.path.join(case_study_folder, "mitigation_curve.png")
@@ -99,8 +99,9 @@ while not total_data.empty:
     rows = rows.sort_values(by=["collaboration_emissions"])
     rows = rows.set_index("collaboration_emissions")
     col_name = rows["technology_name"].iloc[0]
-    df.index = rows.index
+    # df.index = rows.index
     df[col_name] = rows["technology_cost"]
+    df.index = rows.index
     
 
     total_data.drop(index=total_data.index[:counter], axis=0, inplace=True)
@@ -115,8 +116,9 @@ df.plot.area(ax=ax)
 ax.set_title(f"{case_study_name}")
 ax.set_xlabel("Collaboration Emissions (MtCO2e)")
 ax.set_ylabel("Costs (Billion USD)")
-ax.legend(bbox_to_anchor=(0.5, -0.5), loc='lower center', borderaxespad=0, ncols=4)
-# fig.savefig(plot_filename, dpi=300, bbox_inches="tight")
+ax.set_xlim(left=0)
+ax.legend(bbox_to_anchor=(0.5, -0.5), loc='lower center', borderaxespad=0, ncol=4)
+fig.savefig(plot_filename, dpi=300, bbox_inches="tight")
 
 
     
