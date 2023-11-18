@@ -22,7 +22,7 @@ from Code.Results import GMPA_Results
 
 
 ###### Autarky Case Studies #########
-case_study_name = "Autarky_SG"
+# case_study_name = "Autarky_SG"
 # case_study_name = "Autarky_ID"
 # case_study_name = "Autarky_MY"
 # case_study_name = "Autarky_VN"
@@ -69,7 +69,7 @@ case_study_name = "Autarky_SG"
 # case_study_name = "SG-ID-MY-PH_Collab"
 
 ###### BAU_No_Action #######
-# case_study_name = "BAU_No_Action"
+case_study_name = "BAU_No_Action"
 
 
 base_folder = os.path.dirname(__file__)
@@ -161,9 +161,9 @@ for counter1 in range(len(scenario_folders_list)):
 
 
 
-# # #### Save Result
-# total_df.to_csv(results_filename, index=False, header=True)
-# total_df_1.to_csv(unrounded_results_filename, index=False, header=True)
+# #### Save Result
+total_df.to_csv(results_filename, index=False, header=True)
+total_df_1.to_csv(unrounded_results_filename, index=False, header=True)
 
 
    
