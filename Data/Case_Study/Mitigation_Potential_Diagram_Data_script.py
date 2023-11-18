@@ -30,6 +30,7 @@ total_autarky_website_filename = os.path.join(website_folder, "total_data_autark
 total_collaboration_website_filename = os.path.join(website_folder, "total_data_collaboration.csv")
 combined_autarky_website_filename = os.path.join(website_folder, "combined_data_autarky.csv")
 combined_collaboration_website_filename = os.path.join(website_folder, "combined_data_collaboration.csv")
+heatmap_autarky_website_filename = os.path.join(website_folder, "heatmap_autarky.csv")
 heatmap_collaboration_website_filename = os.path.join(website_folder, "heatmap_collaboration.csv")
 
 
@@ -214,7 +215,7 @@ def generate_heatmap_df(combined_autarky_df, combined_collaboration_df, total_no
     heatmap_columns += marginal_columns
     average_columns = []
     for counter1 in range(len(average_cutoffs)):
-        average_columns += ["Mitigation_Potential_at_Average_" + str(marginal_cutoffs[counter1]) + "($/tCO2e)",]
+        average_columns += ["Mitigation_Potential_at_Average_" + str(average_cutoffs[counter1]) + "($/tCO2e)",]
     heatmap_columns += average_columns
     heatmap_autarky_df = pd.DataFrame(columns = heatmap_columns)
     heatmap_collaboration_df = pd.DataFrame(columns = heatmap_columns)
@@ -390,7 +391,9 @@ def generate_data_for_website(total_autarky_df,
                               total_collaboration_df,
                               combined_autarky_df,
                               combined_collaboration_df,
-                              heatmap_collaboration_df):
+                              heatmap_autarky_df,
+                              heatmap_collaboration_df,
+                              average_cutoffs = [50,100,200],):
     final_columns_total_data = ["country_1", 
                   "country_2",
                   "country_3",
@@ -428,33 +431,39 @@ def generate_data_for_website(total_autarky_df,
                                                   final_columns_combined_data,
                                                   columns_to_round_combined_data)
     
+    average_columns = []
+    for counter1 in range(len(average_cutoffs)):
+        average_columns += ["Mitigation_Potential_at_Average_" + str(average_cutoffs[counter1]) + "($/tCO2e)",]
+    
     final_columns_heatmap = ["country_1", 
                   "country_2",
                   "country_3",
                   "country_4",
+                  "Mitigation_Cost($/tCO2e)",
                   "BAU_Emissions(MtCO2e)",
                   "Mitigation_Potential(MtCO2e)",
-                  "Mitigation_Potential_at_Average_0($/tCO2e)",
-                  "Mitigation_Potential_at_Average_50($/tCO2e)",
-                  "Mitigation_Potential_at_Average_100($/tCO2e)",
-                  "Mitigation_Potential_at_Average_200($/tCO2e)",
-                  "Mitigation_Cost($/tCO2e)",
                   ]
-    columns_to_round_heatmap = ["BAU_Emissions(MtCO2e)",
+    columns_to_round_heatmap = ["Mitigation_Cost($/tCO2e)",
+    "BAU_Emissions(MtCO2e)",
     "Mitigation_Potential(MtCO2e)",
-    "Mitigation_Potential_at_Average_0($/tCO2e)",
-    "Mitigation_Potential_at_Average_50($/tCO2e)",
-    "Mitigation_Potential_at_Average_100($/tCO2e)",
-    "Mitigation_Potential_at_Average_200($/tCO2e)",
-    "Mitigation_Cost($/tCO2e)",]
+    ]
+    
+    final_columns_heatmap += average_columns
+    columns_to_round_heatmap += average_columns
+    
+    heatmap_autarky_website_df = data_for_website(heatmap_autarky_df, 
+                                                  final_columns_heatmap,
+                                                  columns_to_round_heatmap)
     
     heatmap_collaboration_website_df = data_for_website(heatmap_collaboration_df, 
                                                   final_columns_heatmap,
                                                   columns_to_round_heatmap)
+    
     return (total_autarky_website_df, 
             total_collaboration_website_df,
             combined_autarky_website_df,
             combined_collaboration_website_df,
+            heatmap_autarky_website_df,
             heatmap_collaboration_website_df)
 
 
@@ -472,7 +481,7 @@ total_collaboration_df = pd.read_csv(total_collaboration_filename, keep_default_
 
 
 marginal_cutoffs = [0, 50, 100, 200] #[0.01, 0.025, 0.05, 0.1] value in [$/tCO2e]
-average_cutoffs = [0, 50, 100, 200] #[0.01, 0.025, 0.05, 0.1] value in [$/tCO2e]
+average_cutoffs = [0, 10, 20, 50] #[0.01, 0.025, 0.05, 0.1] value in [$/tCO2e]
 
 (heatmap_autarky_df, heatmap_collaboration_df) = generate_heatmap_df(combined_autarky_df, combined_collaboration_df, 
                                                                       total_no_action_df,
@@ -482,11 +491,14 @@ average_cutoffs = [0, 50, 100, 200] #[0.01, 0.025, 0.05, 0.1] value in [$/tCO2e]
  total_collaboration_website_df,
  combined_autarky_website_df,
  combined_collaboration_website_df,
+ heatmap_autarky_website_df,
  heatmap_collaboration_website_df) = generate_data_for_website(total_autarky_df, 
                                                                total_collaboration_df,
                                                                combined_autarky_df,
                                                                combined_collaboration_df,
-                                                               heatmap_collaboration_df)
+                                                               heatmap_autarky_df,
+                                                               heatmap_collaboration_df,
+                                                               average_cutoffs)
                                                               
 
 
@@ -504,6 +516,7 @@ total_autarky_website_df.to_csv(total_autarky_website_filename, index=False)
 total_collaboration_website_df.to_csv(total_collaboration_website_filename, index=False)
 combined_autarky_website_df.to_csv(combined_autarky_website_filename, index=False)
 combined_collaboration_website_df.to_csv(combined_collaboration_website_filename, index=False)
+heatmap_autarky_website_df.to_csv(heatmap_autarky_website_filename, index=False)
 heatmap_collaboration_website_df.to_csv(heatmap_collaboration_website_filename, index=False)
 
 
