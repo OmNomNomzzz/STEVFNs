@@ -22,7 +22,7 @@ import os
 # case_study_name = "Autarky_KH"
 # case_study_name = "Autarky_LA"
 
-case_study_name = "Autarky_AU"
+# case_study_name = "Autarky_AU"
 
 
 ###### Two Country Case Studies #########
@@ -61,7 +61,7 @@ case_study_name = "Autarky_AU"
 
 ###### Four Country Case Studies #########
 # case_study_name = "SG-ID-MY-PH_Autarky"
-# case_study_name = "SG-ID-MY-PH_Collab"
+case_study_name = "SG-ID-MY-PH_Collab"
 
 
 
@@ -118,7 +118,7 @@ ax.set_title(f"{case_study_name}")
 ax.set_xlabel("Collaboration Emissions (MtCO2e)")
 ax.set_ylabel("Costs (Billion USD)")
 ax.set_xlim(left=0)
-ax.legend(bbox_to_anchor=(0.5, -0.5), loc='lower center', borderaxespad=0, ncol=4)
+ax.legend(bbox_to_anchor=(0.5, -1.35), loc='lower center', borderaxespad=0, ncol=4)
 fig.savefig(plot_filename, dpi=300, bbox_inches="tight")
 
 
