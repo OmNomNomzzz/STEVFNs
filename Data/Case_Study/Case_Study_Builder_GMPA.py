@@ -13,7 +13,7 @@ import numpy as np
 
 
 
-base_case_study = "VN-TH-LA-KH"
+base_case_study = "LA-KH"
 base_scenario_name = "BAU"
 
 
