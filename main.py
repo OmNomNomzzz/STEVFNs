@@ -22,7 +22,7 @@ from Code.Results import GMPA_Results
 
 
 ###### Autarky Case Studies #########
-case_study_name = "Autarky_SG"
+# case_study_name = "Autarky_SG"
 # case_study_name = "Autarky_ID"
 # case_study_name = "Autarky_MY"
 # case_study_name = "Autarky_VN"
@@ -93,7 +93,7 @@ case_study_name = "Autarky_SG"
 # case_study_name = "VN-TH-KH_Collab"
 
 # case_study_name = "TH-LA-KH_Autarky"
-# case_study_name = "TH-LA-KH_Collab"
+case_study_name = "TH-LA-KH_Collab"
 
 ###### Four Country Case Studies #########
 
