@@ -47,4 +47,4 @@ Asset_Number,Asset_Class,Location_1,Location_2,Start_Time,End_Time,Period,Transp
 45,NH3_Transport,7,4,0,720,96,108
 46,EL_Transport,7,4,0,720,1,0
 47,NH3_Transport,9,4,0,720,96,108
-48,EL_Transport,9,9,0,720,1,0
+48,EL_Transport,9,4,0,720,1,0
