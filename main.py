@@ -95,8 +95,8 @@ from Code.Results import GMPA_Results
 # case_study_name = "TH-LA-KH_Autarky"
 # case_study_name = "TH-LA-KH_Collab"
 
-case_study_name = "VN-LA-KH_Autarky"
-# case_study_name = "VN-LA-KH_Collab"
+# case_study_name = "VN-LA-KH_Autarky"
+case_study_name = "VN-LA-KH_Collab"
 
 ###### Four Country Case Studies #########
 
