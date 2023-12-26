@@ -25,7 +25,7 @@ tech_names = ["Rooftop PV", "Openfield PV", "Offshore wind", "Onshore wind", "Fo
               "Electric High Temp. Heating", "Electricity to Ammonia", "Ammonia storage", "Ammonia to electricity", "Ammonia High Temp. Heating",
               "Fossil High Temp. Heating", "HVDC Cables", "Ammonia Transport"]
 
-country_id = ["ID", "SG", "LA", "TH", "MY", "KH", "VN", "PH"]
+country_id = ["ID", "SG", "LA", "TH", "MY", "KH", "VN", "PH", "BN"]
 collab_id = ["SG-ID", "SG-MY", "SG-PH", "ID-MY", "ID-PH", "MY-PH", "TH-LA", "TH-KH", "LA-KH",
              "VN-KH", "VN-LA", "VN-TH"]
 
