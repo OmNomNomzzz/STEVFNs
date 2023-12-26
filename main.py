@@ -31,7 +31,7 @@ from Code.Results import GMPA_Results
 # case_study_name = "Autarky_TH"
 # case_study_name = "Autarky_KH"
 # case_study_name = "Autarky_LA"
-# case_study_name = "Autarky_BN"
+case_study_name = "Autarky_BN"
 
 # case_study_name = "Autarky_AU"
 # case_study_name = "Autarky_IN"
@@ -106,7 +106,7 @@ from Code.Results import GMPA_Results
 # case_study_name = "VN-TH-LA-KH_Collab"
 
 ###### BAU_No_Action #######
-case_study_name = "BAU_No_Action"
+# case_study_name = "BAU_No_Action"
 
 
 base_folder = os.path.dirname(__file__)
