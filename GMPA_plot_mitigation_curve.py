@@ -22,8 +22,6 @@ import os
 # case_study_name = "Autarky_KH"
 # case_study_name = "Autarky_LA"
 
-case_study_name = "Autarky_AU"
-
 
 ###### Two Country Case Studies #########
 # case_study_name = "SG-ID_Autarky"
@@ -44,7 +42,23 @@ case_study_name = "Autarky_AU"
 # case_study_name = "ID-PH_Autarky"
 # case_study_name = "ID-PH_Collab"
 
+# case_study_name = "VN-TH_Autarky"
+# case_study_name = "VN-TH_Collab"
 
+# case_study_name = "VN-LA_Autarky"
+# case_study_name = "VN-LA_Collab"
+
+# case_study_name = "VN-KH_Autarky"
+# case_study_name = "VN-KH_Collab"
+
+# case_study_name = "TH-LA_Autarky"
+# case_study_name = "TH-LA_Collab"
+
+# case_study_name = "TH-KH_Autarky"
+# case_study_name = "TH-KH_Collab"
+
+# case_study_name = "LA-KH_Autarky"
+# case_study_name = "LA-KH_Collab"
 
 ###### Three Country Case Studies #########
 # case_study_name = "SG-ID-MY_Autarky"
@@ -59,10 +73,24 @@ case_study_name = "Autarky_AU"
 # case_study_name = "ID-MY-PH_Autarky"
 # case_study_name = "ID-MY-PH_Collab"
 
+# case_study_name = "VN-TH-LA_Autarky"
+# case_study_name = "VN-TH-LA_Collab"
+
+# case_study_name = "VN-TH-KH_Autarky"
+# case_study_name = "VN-TH-KH_Collab"
+
+# case_study_name = "TH-LA-KH_Autarky"
+# case_study_name = "TH-LA-KH_Collab"
+
+# case_study_name = "VN-LA-KH_Autarky"
+case_study_name = "VN-LA-KH_Collab"
+
 ###### Four Country Case Studies #########
 # case_study_name = "SG-ID-MY-PH_Autarky"
 # case_study_name = "SG-ID-MY-PH_Collab"
 
+# case_study_name = "VN-TH-LA-KH_Autarky"
+# case_study_name = "VN-TH-LA-KH_Collab"
 
 
 base_folder = os.path.dirname(__file__)
@@ -118,7 +146,7 @@ ax.set_title(f"{case_study_name}")
 ax.set_xlabel("Collaboration Emissions (MtCO2e)")
 ax.set_ylabel("Costs (Billion USD)")
 ax.set_xlim(left=0)
-ax.legend(bbox_to_anchor=(0.5, -0.5), loc='lower center', borderaxespad=0, ncol=4)
+ax.legend(bbox_to_anchor=(0.5, -1.35), loc='lower center', borderaxespad=0, ncol=4)
 fig.savefig(plot_filename, dpi=300, bbox_inches="tight")
 
 
