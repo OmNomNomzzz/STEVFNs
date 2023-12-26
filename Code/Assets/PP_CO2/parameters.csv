@@ -2,7 +2,7 @@ Type,sizing_constant,sizing_constant_unit,usage_constant_1,usage_constant_1_unit
 0,1.214,G$/GWp,7.51E-05,G$/GWh,0,G$/(GWh^2),219000,h,0.0004057,MtCO2e/GWh,SG
 1,1.04,G$/GWp,5.38E-05,G$/GWh,0,G$/(GWh^2),219000,h,0.000651,MtCO2e/GWh,ID
 2,1.04,G$/GWp,5.38E-05,G$/GWh,0,G$/(GWh^2),219000,h,0.0007251,MtCO2e/GWh,MY
-3,1.04,G$/GWp,5.38E-05,G$/GWh,0,G$/(GWh^2),219000,h,0.000753,MtCO2e/GWh,BR
+3,1.04,G$/GWp,5.38E-05,G$/GWh,0,G$/(GWh^2),219000,h,0.000753,MtCO2e/GWh,BN
 4,1.04,G$/GWp,5.38E-05,G$/GWh,0,G$/(GWh^2),219000,h,0.000516,MtCO2e/GWh,KH
 5,1.04,G$/GWp,5.38E-05,G$/GWh,0,G$/(GWh^2),219000,h,0.000433,MtCO2e/GWh,MM
 6,1.04,G$/GWp,5.38E-05,G$/GWh,0,G$/(GWh^2),219000,h,0.000746,MtCO2e/GWh,PH
