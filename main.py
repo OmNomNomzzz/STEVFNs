@@ -19,98 +19,6 @@ from Code.Results import GMPA_Results
 
 #### Define Input Files ####
 case_study_name = "SG_Case_Study"
-# case_study_name = "EM_Case_Study"
-# case_study_name = "SG_Case_Study"
-
-
-###### Autarky Case Studies #########
-# case_study_name = "Autarky_SG"
-# case_study_name = "Autarky_ID"
-# case_study_name = "Autarky_MY"
-# case_study_name = "Autarky_VN"
-# case_study_name = "Autarky_PH"
-# case_study_name = "Autarky_TH"
-# case_study_name = "Autarky_KH"
-# case_study_name = "Autarky_LA"
-# case_study_name = "Autarky_BN"
-
-# case_study_name = "Autarky_AU"
-# case_study_name = "Autarky_IN"
-# case_study_name = "Autarky_SA"
-# case_study_name = "Autarky_AE"
-
-###### Two Country Case Studies #########
-# case_study_name = "SG-ID_Autarky"
-# case_study_name = "SG-ID_Collab"
-
-# case_study_name = "SG-MY_Autarky"
-# case_study_name = "SG-MY_Collab"
-
-# case_study_name = "SG-PH_Autarky"
-# case_study_name = "SG-PH_Collab"
-
-# case_study_name = "ID-MY_Autarky"
-# case_study_name = "ID-MY_Collab"
-
-# case_study_name = "MY-PH_Autarky"
-# case_study_name = "MY-PH_Collab"
-
-# case_study_name = "ID-PH_Autarky"
-# case_study_name = "ID-PH_Collab"
-
-# case_study_name = "VN-TH_Autarky"
-# case_study_name = "VN-TH_Collab"
-
-# case_study_name = "VN-LA_Autarky"
-# case_study_name = "VN-LA_Collab"
-
-# case_study_name = "VN-KH_Autarky"
-# case_study_name = "VN-KH_Collab"
-
-# case_study_name = "TH-LA_Autarky"
-# case_study_name = "TH-LA_Collab"
-
-# case_study_name = "TH-KH_Autarky"
-# case_study_name = "TH-KH_Collab"
-
-# case_study_name = "LA-KH_Autarky"
-# case_study_name = "LA-KH_Collab"
-
-###### Three Country Case Studies #########
-# case_study_name = "SG-ID-MY_Autarky"
-# case_study_name = "SG-ID-MY_Collab"
-
-# case_study_name = "SG-ID-PH_Autarky"
-# case_study_name = "SG-ID-PH_Collab"
-# 
-# case_study_name = "SG-MY-PH_Autarky"
-# case_study_name = "SG-MY-PH_Collab"
-
-# case_study_name = "ID-MY-PH_Autarky"
-# case_study_name = "ID-MY-PH_Collab"
-
-# case_study_name = "VN-TH-LA_Autarky"
-# case_study_name = "VN-TH-LA_Collab"
-
-# case_study_name = "VN-TH-KH_Autarky"
-# case_study_name = "VN-TH-KH_Collab"
-
-# case_study_name = "TH-LA-KH_Autarky"
-# case_study_name = "TH-LA-KH_Collab"
-
-# case_study_name = "VN-LA-KH_Autarky"
-# case_study_name = "VN-LA-KH_Collab"
-
-###### Four Country Case Studies #########
-
-# case_study_name = "SG-ID-MY-PH_Autarky"
-# case_study_name = "SG-ID-MY-PH_Collab"
-
-# case_study_name = "VN-TH-LA-KH_Autarky"
-# case_study_name = "VN-TH-LA-KH_Collab"
-
-###### BAU_No_Action #######
-# case_study_name = "BAU_No_Action"
 
 
 base_folder = os.path.dirname(__file__)
@@ -193,21 +101,5 @@ for counter1 in range(len(scenario_folders_list)):
     DPhil_Plotting.plot_asset_costs(my_network)
     
         
-    # # Export cost results to pandas dataframe
-    # t_df = GMPA_Results.export_total_data(my_network, location_parameters_df, asset_parameters_df)
-    # t1_df = GMPA_Results.export_total_data_not_rounded(my_network, location_parameters_df, asset_parameters_df)
-    # if counter1 == 0:
-    #     total_df = t_df
-    #     total_df_1 = t1_df
-    # else:
-    #     total_df = pd.concat([total_df, t_df], ignore_index=True)
-    #     total_df_1 = pd.concat([total_df_1, t1_df], ignore_index=True)
-
-
-
-
-# #### Save Result
-# total_df.to_csv(results_filename, index=False, header=True)
-# total_df_1.to_csv(unrounded_results_filename, index=False, header=True)
 
    
