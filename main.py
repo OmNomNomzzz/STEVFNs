@@ -17,6 +17,7 @@ from Code.Plotting import DPhil_Plotting
 from Code.Results import GMPA_Results
 
 
+
 #### Define Input Files ####
 # case_study_name = "EM_Case_Study"
 # case_study_name = "SG_Case_Study"
@@ -120,6 +121,8 @@ network_structure_filename = os.path.join(case_study_folder, "Network_Structure.
 results_filename = os.path.join(case_study_folder, "total_data.csv")
 unrounded_results_filename = os.path.join(case_study_folder, "total_data_unrounded.csv")
 
+
+
 ### Read Input Files ###
 
 network_structure_df = pd.read_csv(network_structure_filename)
@@ -174,7 +177,6 @@ for counter1 in range(len(scenario_folders_list)):
                               ignore_dpp=True,# Uncomment to disable DPP. DPP will make the first scenario run slower, but subsequent scenarios will run significantly faster.
                              )
 
-
     end_time = time.time()
 
     
@@ -185,22 +187,15 @@ for counter1 in range(len(scenario_folders_list)):
     if my_network.problem.value == float("inf"):
         continue
     print("Total cost to satisfy all demand = ", my_network.problem.value, " Billion USD")
-    print("Total emissions = ", my_network.assets[0].asset_size(), "MtCO2e")
     # DPhil_Plotting.plot_all(my_network)
-    # DPhil_Plotting.plot_asset_sizes(my_network)
+    DPhil_Plotting.plot_asset_sizes(my_network)
     DPhil_Plotting.plot_asset_costs(my_network)
     
-        
-    # Export cost results to pandas dataframe
-    t_df = GMPA_Results.export_total_data(my_network, location_parameters_df, asset_parameters_df)
-    t1_df = GMPA_Results.export_total_data_not_rounded(my_network, location_parameters_df, asset_parameters_df)
-    if counter1 == 0:
-        total_df = t_df
-        total_df_1 = t1_df
-    else:
-        total_df = pd.concat([total_df, t_df], ignore_index=True)
-        total_df_1 = pd.concat([total_df_1, t1_df], ignore_index=True)
-
+# ##### Plot flows for BAU scenario ######
+# DPhil_Plotting.plot_SG_EL_input_flows_BAU(my_network)
+# DPhil_Plotting.plot_SG_EL_output_flows_BAU(my_network)
+# DPhil_Plotting.plot_RE_EL_input_flows_BAU(my_network)
+# DPhil_Plotting.plot_RE_EL_output_flows_BAU(my_network)
 
 
 #### Save Result
