@@ -1,0 +1,14 @@
+Asset_Number,Asset_Class,Location_1,Location_2,Start_Time,End_Time,Period,Transport_Time
+0,CO2_Budget,12,12,0,720,1,0
+1,RE_PV_Openfield_Lim,12,12,0,720,1,0
+2,RE_WIND_Onshore_Lim,12,12,0,720,1,0
+3,PP_CO2,12,12,0,720,1,0
+4,BESS,12,12,0,720,1,0
+5,EL_to_HTH,12,12,0,720,1,0
+6,EL_to_NH3,12,12,0,720,1,0
+7,NH3_Storage,12,12,0,720,1,0
+8,NH3_to_EL,12,12,0,720,1,0
+9,NH3_to_HTH,12,12,0,720,1,0
+10,FF_to_HTH,12,12,0,720,1,0
+11,EL_Demand,12,12,0,720,1,0
+12,HTH_Demand,12,12,0,720,1,0
