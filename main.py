@@ -16,7 +16,6 @@ from Code.Network.Network import Network_STEVFNs
 from Code.Plotting import DPhil_Plotting
 
 
-
 #### Define Input Files ####
 case_study_name = "SG_Case_Study"
 
@@ -26,8 +25,6 @@ data_folder = os.path.join(base_folder, "Data")
 case_study_folder = os.path.join(data_folder, "Case_Study", case_study_name)
 scenario_folders_list = [x[0] for x in os.walk(case_study_folder)][1:]
 network_structure_filename = os.path.join(case_study_folder, "Network_Structure.csv")
-
-
 
 
 ### Read Input Files ###
@@ -77,22 +74,20 @@ for counter1 in range(len(scenario_folders_list)):
     
     
     # my_network.solve_problem()
-    my_network.problem.solve(solver = cp.ECOS, warm_start=True, max_iters=1000, ignore_dpp=False)
-    
+    my_network.problem.solve(solver = cp.ECOS, warm_start=True, max_iters=10000, verbose=False,
+                              ignore_dpp=True,# Uncomment to disable DPP. DPP will make the first scenario run slower, but subsequent scenarios will run significantly faster.
+                             )
+
     end_time = time.time()
     
     ### Plot Results ############
     print("Time taken to solve problem = ", end_time - start_time, "s")
     print("Total cost to satisfy all demand = ", my_network.problem.value, " Billion USD")
-    # DPhil_Plotting.plot_all(my_network)
+    # DPhil_Plotting.plot_all(my_network) # Uncomment to plot all flows. Only works for SG_Case_Study at the moment. Will not work if network structure is changed.
     DPhil_Plotting.plot_asset_sizes(my_network)
     DPhil_Plotting.plot_asset_costs(my_network)
     
-# ##### Plot flows for BAU scenario ######
-# DPhil_Plotting.plot_SG_EL_input_flows_BAU(my_network)
-# DPhil_Plotting.plot_SG_EL_output_flows_BAU(my_network)
-# DPhil_Plotting.plot_RE_EL_input_flows_BAU(my_network)
-# DPhil_Plotting.plot_RE_EL_output_flows_BAU(my_network)
+
 
 # DPhil_Plotting.plot_SG_NH3_input_flows_BAU(my_network)
 # DPhil_Plotting.plot_SG_NH3_output_flows_BAU(my_network)
