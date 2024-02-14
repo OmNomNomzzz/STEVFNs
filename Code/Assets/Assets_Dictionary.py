@@ -25,17 +25,6 @@ from .EL_Demand_UM import EL_Demand_UM_Asset
 from .EL_Demand_Constant import EL_Demand_Constant_Asset
 from .RE_PV_Constant import RE_PV_Constant_Asset
 from .RE_WIND_Constant import RE_WIND_Constant_Asset
-from .CO2_Budget import CO2_Budget_Asset
-from .PP_CO2 import PP_CO2_Asset
-from .RE_PV_Rooftop_Lim import RE_PV_Rooftop_Lim_Asset
-from .RE_PV_Openfield_Lim import RE_PV_Openfield_Lim_Asset
-from .RE_WIND_Onshore_Lim import RE_WIND_Onshore_Lim_Asset
-from .RE_WIND_Offshore_Lim import RE_WIND_Offshore_Lim_Asset
-from .PP_NGS_CCGT_CO2 import PP_NGS_CCGT_CO2_Asset
-from .PP_NGS_SCGT_CO2 import PP_NGS_SCGT_CO2_Asset
-from .PP_COAL_CO2 import PP_COAL_CO2_Asset
-from .FF_to_HTH import FF_to_HTH_Asset
-
 
 ASSET_DICT = {EL_Demand_Asset.asset_name: EL_Demand_Asset,
               HTH_Demand_Asset.asset_name: HTH_Demand_Asset,
@@ -56,14 +45,4 @@ ASSET_DICT = {EL_Demand_Asset.asset_name: EL_Demand_Asset,
               EL_Demand_Constant_Asset.asset_name: EL_Demand_Constant_Asset,
               RE_PV_Constant_Asset.asset_name: RE_PV_Constant_Asset,
               RE_WIND_Constant_Asset.asset_name: RE_WIND_Constant_Asset,
-              CO2_Budget_Asset.asset_name: CO2_Budget_Asset,
-              PP_CO2_Asset.asset_name: PP_CO2_Asset,
-              RE_PV_Openfield_Lim_Asset.asset_name: RE_PV_Openfield_Lim_Asset,
-              RE_PV_Rooftop_Lim_Asset.asset_name: RE_PV_Rooftop_Lim_Asset,
-              RE_WIND_Onshore_Lim_Asset.asset_name: RE_WIND_Onshore_Lim_Asset,
-              RE_WIND_Offshore_Lim_Asset.asset_name: RE_WIND_Offshore_Lim_Asset,
-              PP_NGS_CCGT_CO2_Asset.asset_name: PP_NGS_CCGT_CO2_Asset,
-              PP_NGS_SCGT_CO2_Asset.asset_name: PP_NGS_SCGT_CO2_Asset,
-              PP_COAL_CO2_Asset.asset_name: PP_COAL_CO2_Asset,
-              FF_to_HTH_Asset.asset_name: FF_to_HTH_Asset,
               }
