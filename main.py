@@ -78,7 +78,6 @@ for counter1 in range(len(scenario_folders_list)):
                               ignore_dpp=True,# Uncomment to disable DPP. DPP will make the first scenario run slower, but subsequent scenarios will run significantly faster.
                              )
 
-
     end_time = time.time()
     
     ### Plot Results ############
@@ -88,6 +87,7 @@ for counter1 in range(len(scenario_folders_list)):
     DPhil_Plotting.plot_asset_sizes(my_network)
     DPhil_Plotting.plot_asset_costs(my_network)
     
+
 
 # DPhil_Plotting.plot_SG_NH3_input_flows_BAU(my_network)
 # DPhil_Plotting.plot_SG_NH3_output_flows_BAU(my_network)
