@@ -122,7 +122,6 @@ results_filename = os.path.join(case_study_folder, "total_data.csv")
 unrounded_results_filename = os.path.join(case_study_folder, "total_data_unrounded.csv")
 
 
-
 ### Read Input Files ###
 
 network_structure_df = pd.read_csv(network_structure_filename)
@@ -176,7 +175,6 @@ for counter1 in range(len(scenario_folders_list)):
     my_network.problem.solve(solver = cp.ECOS, warm_start=True, max_iters=10000, verbose=False,
                               ignore_dpp=True,# Uncomment to disable DPP. DPP will make the first scenario run slower, but subsequent scenarios will run significantly faster.
                              )
-
     end_time = time.time()
 
     
@@ -196,12 +194,6 @@ for counter1 in range(len(scenario_folders_list)):
 # DPhil_Plotting.plot_SG_EL_output_flows_BAU(my_network)
 # DPhil_Plotting.plot_RE_EL_input_flows_BAU(my_network)
 # DPhil_Plotting.plot_RE_EL_output_flows_BAU(my_network)
-
-
-#### Save Result
-total_df.to_csv(results_filename, index=False, header=True)
-total_df_1.to_csv(unrounded_results_filename, index=False, header=True)
-
 
 
    
