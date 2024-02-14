@@ -1,4 +1,0 @@
-parameter,value,unit
-timestep,1,h
-discount_rate,0.05,unitless
-project_life,262800,timestep
