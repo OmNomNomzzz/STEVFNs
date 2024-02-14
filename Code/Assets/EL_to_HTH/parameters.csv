@@ -1,2 +1,15 @@
-Type,sizing_constant,sizing_constant_unit,usage_constant_1,usage_constant_1_unit,conversion_factor,lifespan,lifespan_units
-0,0.05,G$/GWp,1.00E-06,G$/GWh,1,262800,h
+Type,sizing_constant,sizing_constant_unit,usage_constant_1,usage_constant_1_unit,conversion_factor,lifespan,lifespan_units,location_name
+0,0.227,G$/GWp,0.00E+00,G$/GWh,1,131400,h,SG
+1,0.227,G$/GWp,0.00E+00,G$/GWh,1,131400,h,ID
+2,0.227,G$/GWp,0.00E+00,G$/GWh,1,131400,h,MY
+3,0.227,G$/GWp,0.00E+00,G$/GWh,1,131400,h,BN
+4,0.227,G$/GWp,0.00E+00,G$/GWh,1,131400,h,KH
+5,0.227,G$/GWp,0.00E+00,G$/GWh,1,131400,h,MM
+6,0.227,G$/GWp,0.00E+00,G$/GWh,1,131400,h,PH
+7,0.227,G$/GWp,0.00E+00,G$/GWh,1,131400,h,TH
+8,0.227,G$/GWp,0.00E+00,G$/GWh,1,131400,h,VN
+9,0.227,G$/GWp,0.00E+00,G$/GWh,1,131400,h,LA
+10,0.227,G$/GWp,0.00E+00,G$/GWh,1,131400,h,AU
+11,0.227,G$/GWp,0.00E+00,G$/GWh,1,131400,h,SA
+12,0.227,G$/GWp,0.00E+00,G$/GWh,1,131400,h,IN
+13,0.227,G$/GWp,0.00E+00,G$/GWh,1,131400,h,AE
