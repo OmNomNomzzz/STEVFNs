@@ -196,11 +196,11 @@ def update_scenarios_collab(base_case_study):
 
 # =============================================================================
 # TO-DO: Edit single and/or multiple country case study to the names required
-# Leave base_scenario_name as "BAU
+# Leave base_scenario_name as "BAU"
 # =============================================================================
 
 single_country_case_study = "XX"
-multiple_country_case_study = "XX-YY"
+multiple_country_case_study = "XX-YY"  # Can be of all combinations e.g. XX-YY-ZZ or WW-XX-YY-ZZ
 
 base_scenario_name = "BAU"
 update_scenarios_collab(multiple_country_case_study)
