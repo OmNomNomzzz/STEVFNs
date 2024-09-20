@@ -1,0 +1,16 @@
+Asset_Number,Asset_Class,Location_1,Location_2,Asset_Type
+0,CO2_Budget,18,18,7
+1,RE_PV_Openfield_Lim,18,18,18
+2,RE_PV_Rooftop_Lim,18,18,18
+3,RE_WIND_Onshore_Lim,18,18,18
+4,RE_WIND_Offshore_Lim,18,18,18
+5,PP_CO2,18,18,18
+6,BESS,18,18,0
+7,EL_to_HTH,18,18,18
+8,EL_to_NH3,18,18,0
+9,NH3_Storage,18,18,0
+10,NH3_to_EL,18,18,0
+11,NH3_to_HTH,18,18,0
+12,FF_to_HTH,18,18,18
+13,EL_Demand,18,18,18
+14,HTH_Demand,18,18,18
