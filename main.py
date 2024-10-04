@@ -18,7 +18,7 @@ from Code.Results import GMPA_Results
 
 
 #### Define Input Files ####
-case_study_name = "SG_Case_Study"
+case_study_name = "SG-ID_Collab"
 
 
 base_folder = os.path.dirname(__file__)
@@ -97,8 +97,22 @@ for counter1 in range(len(scenario_folders_list)):
     print("Total cost to satisfy all demand = ", my_network.problem.value, " Billion USD")
     print("Total emissions = ", my_network.assets[0].asset_size(), "MtCO2e")
     # DPhil_Plotting.plot_all(my_network)
-    # DPhil_Plotting.plot_asset_sizes(my_network)
+    DPhil_Plotting.plot_asset_sizes(my_network)
     DPhil_Plotting.plot_asset_costs(my_network)
+    
+    
+    ### Export cost results to pandas dataframe
+#     t_df = GMPA_Results.export_total_data(my_network, location_parameters_df, asset_parameters_df)
+#     t1_df = GMPA_Results.export_total_data_not_rounded(my_network, location_parameters_df, asset_parameters_df)
+#     if counter1 == 0:
+#         total_df = t_df
+#         total_df_1 = t1_df
+#     else:
+#         total_df = pd.concat([total_df, t_df], ignore_index=True)
+#         total_df_1 = pd.concat([total_df_1, t1_df], ignore_index=True)
+# # #### Save Result
+# total_df.to_csv(results_filename, index=False, header=True)
+# total_df_1.to_csv(unrounded_results_filename, index=False, header=True)
     
         
 
