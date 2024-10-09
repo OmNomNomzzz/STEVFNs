@@ -9,6 +9,7 @@ Created on Thu Nov  4 17:38:43 2021
 import pandas as pd
 import time
 import os
+from os.path import normpath, basename
 import cvxpy as cp
 
 
@@ -18,7 +19,7 @@ from Code.Results import GMPA_Results
 
 
 #### Define Input Files ####
-case_study_name = "SG-ID_Collab"
+case_study_name = "Autarky_VN"
 
 
 base_folder = os.path.dirname(__file__)
@@ -48,6 +49,7 @@ end_time = time.time()
 print("Time taken to build network = ", end_time - start_time, "s")
 total_df = pd.DataFrame()
 total_df_1 = pd.DataFrame()
+
 
 
 
@@ -82,7 +84,7 @@ for counter1 in range(len(scenario_folders_list)):
     # my_network.solve_problem()
     my_network.problem.solve(solver = cp.ECOS, warm_start=True, max_iters=10000, verbose=False,
                               ignore_dpp=True,# Uncomment to disable DPP. DPP will make the first scenario run slower, but subsequent scenarios will run significantly faster.
-                             )
+                              )
     # my_network.problem.solve(solver = cp.ECOS, warm_start=True, max_iters=10000, feastol=1e-5, reltol=1e-5, abstol=1e-5, ignore_dpp=True, verbose=False)
     # my_network.problem.solve(solver = cp.SCS, warm_start=True, max_iters=10000, ignore_dpp=True, verbose=False)
     end_time = time.time()
@@ -99,7 +101,7 @@ for counter1 in range(len(scenario_folders_list)):
     # DPhil_Plotting.plot_all(my_network)
     DPhil_Plotting.plot_asset_sizes(my_network)
     DPhil_Plotting.plot_asset_costs(my_network)
-    
+
     
     ### Export cost results to pandas dataframe
 #     t_df = GMPA_Results.export_total_data(my_network, location_parameters_df, asset_parameters_df)
