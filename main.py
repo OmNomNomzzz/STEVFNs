@@ -18,7 +18,7 @@ from Code.Results import GMPA_Results
 
 
 #### Define Input Files ####
-case_study_name = "SG-ID_Collab"
+case_study_name = "Autarky_CO"
 
 
 base_folder = os.path.dirname(__file__)
