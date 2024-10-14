@@ -21,7 +21,7 @@ Methodology:
     1. In Box, go to Modelling > res_analysis and download the folders named for the countries
     that need STEVFNs-formatted renewable energy profiles
     2. Save those folders (named by three-letter ISO abbreviation per country) into the
-    raw_from_Box folder in STEVFNs repo
+    raw_from_Box > res_analysis folder in STEVFNs repo
     3. Edit the list defined after the functions in this script to include those countries
     4. Run both of the functions
     
