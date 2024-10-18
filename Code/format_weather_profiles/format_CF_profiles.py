@@ -241,14 +241,25 @@ def get_wind_inputs(countries):
         # WindOffshore_CF_df['MeanProfile'] =(WindOffshore_CF_df['F'] + WindOffshore_CF_df['G'])/2
         
         # 2024 Phase 2 countries res_analysis formats
-        WindOffshore_CF_df['A'] = (WindOffshore_CF_df[1] + WindOffshore_CF_df[2])/2
-        WindOffshore_CF_df['B'] = (WindOffshore_CF_df[3] + WindOffshore_CF_df[4])/2
-        WindOffshore_CF_df['C'] = (WindOffshore_CF_df[5] + WindOffshore_CF_df[6])/2
-        WindOffshore_CF_df['D'] = (WindOffshore_CF_df[7] + WindOffshore_CF_df[8])/2
-        WindOffshore_CF_df['E'] = (WindOffshore_CF_df[9] + WindOffshore_CF_df[10])/2
-        WindOffshore_CF_df['F'] = (WindOffshore_CF_df['A'] + WindOffshore_CF_df['B'])/2
-        WindOffshore_CF_df['G'] = (WindOffshore_CF_df['C'] + WindOffshore_CF_df['D']+ WindOffshore_CF_df['E'])/3
-        WindOffshore_CF_df['MeanProfile'] =(WindOffshore_CF_df['F'] + WindOffshore_CF_df['G'])/2
+        if country == 'BRA' or country == 'ZAF':
+            
+            WindOffshore_CF_df['A'] = (WindOffshore_CF_df[1] + WindOffshore_CF_df[2])/2
+            WindOffshore_CF_df['B'] = (WindOffshore_CF_df[3] + WindOffshore_CF_df[4])/2
+            WindOffshore_CF_df['C'] = (WindOffshore_CF_df[5] + WindOffshore_CF_df[6])/2
+            WindOffshore_CF_df['D'] = (WindOffshore_CF_df['A'] + WindOffshore_CF_df['B'])/2
+            WindOffshore_CF_df['MeanProfile'] = (WindOffshore_CF_df['C'] + WindOffshore_CF_df['D'])/2
+            
+        else: 
+            WindOffshore_CF_df['A'] = (WindOffshore_CF_df[1] + WindOffshore_CF_df[2])/2
+            WindOffshore_CF_df['B'] = (WindOffshore_CF_df[3] + WindOffshore_CF_df[4])/2
+            WindOffshore_CF_df['C'] = (WindOffshore_CF_df[5] + WindOffshore_CF_df[6])/2
+            WindOffshore_CF_df['D'] = (WindOffshore_CF_df[7] + WindOffshore_CF_df[8])/2
+            WindOffshore_CF_df['E'] = (WindOffshore_CF_df[9] + WindOffshore_CF_df[10])/2
+            WindOffshore_CF_df['F'] = (WindOffshore_CF_df['A'] + WindOffshore_CF_df['B'])/2
+            WindOffshore_CF_df['G'] = (WindOffshore_CF_df['C'] + WindOffshore_CF_df['D']+ WindOffshore_CF_df['E'])/3
+            WindOffshore_CF_df['MeanProfile'] =(WindOffshore_CF_df['F'] + WindOffshore_CF_df['G'])/2
+        
+         
         
         avg_wind_off_CF_df = pd.DataFrame(data=WindOffshore_CF_df['MeanProfile'])
         
@@ -264,12 +275,8 @@ def get_wind_inputs(countries):
 
 
 #%%
-countries = ['MAR', 'EGY', 'NGA', 'KOR', 'BRA', 'COL', 'PER', 'CHL', 'ZAF', 'KEN']
-
+countries = ['MAR', 'KEN', 'NGA', 'PER', 'KOR', 'EGY', 'COL', 'CHL', 'ZAF', 'BRA']
 
 
 get_pv_inputs(countries)
 get_wind_inputs(countries)
-
-
-
