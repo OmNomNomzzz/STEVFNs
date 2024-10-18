@@ -17,7 +17,7 @@ import os
 # case_study_name = "Autarky_ID"
 # case_study_name = "Autarky_MY"
 # case_study_name = "Autarky_VN"
-# case_study_name = "Autarky_PH"
+case_study_name = "Autarky_PH"
 # case_study_name = "Autarky_TH"
 # case_study_name = "Autarky_KH"
 # case_study_name = "Autarky_LA"
@@ -83,7 +83,7 @@ import os
 # case_study_name = "TH-LA-KH_Collab"
 
 # case_study_name = "VN-LA-KH_Autarky"
-case_study_name = "VN-LA-KH_Collab"
+# case_study_name = "VN-LA-KH_Collab"
 
 ###### Four Country Case Studies #########
 # case_study_name = "SG-ID-MY-PH_Autarky"

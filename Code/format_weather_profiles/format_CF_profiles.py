@@ -100,8 +100,8 @@ def get_pv_inputs(countries):
         PVopen_CF_df = pd.read_csv(os.path.join(raw_data_folder, 'res_analysis',
                                                 f'{country}', 'pvopenfield', 'capacity_factor_binned.csv'))
         PVopen_CF_df = PVopen_CF_df.T
-        PVopen_CF_df = PVopen_CF_df.drop([0, 1], axis=1)
-        PVopen_CF_df = PVopen_CF_df.drop('Unnamed: 0', axis=0)
+        # PVopen_CF_df = PVopen_CF_df.drop([0, 1], axis=1)
+        # PVopen_CF_df = PVopen_CF_df.drop('Unnamed: 0', axis=0)
         
         # Find/create directory for openfield PV profiles
         pv_of_dir = os.path.join(openfield_pv_folder, f'lat{lat}')
@@ -126,8 +126,8 @@ def get_pv_inputs(countries):
         PVroof_CF_df = pd.read_csv(os.path.join(raw_data_folder, 'res_analysis',
                                                 f'{country}', 'pvrooftop', 'capacity_factor_binned.csv'))
         PVroof_CF_df = PVroof_CF_df.T
-        PVroof_CF_df = PVroof_CF_df.drop([0, 1], axis=1)
-        PVroof_CF_df = PVroof_CF_df.drop('Unnamed: 0', axis=0)
+        # PVroof_CF_df = PVroof_CF_df.drop([0, 1], axis=1)
+        # PVroof_CF_df = PVroof_CF_df.drop('Unnamed: 0', axis=0)
         
         # Find/create directory for openfield PV profiles
         pv_rt_dir = os.path.join(rooftop_pv_folder, f'lat{lat}')
@@ -175,16 +175,28 @@ def get_wind_inputs(countries):
         # Extract CF profile for Onshore wind
         WindOnshore_CF_df = pd.read_csv(os.path.join(raw_data_folder, 'res_analysis',
                                                 f'{country}', 'windonshore', 'capacity_factor_binned.csv'), header=None)
-        WindOnshore_CF_df = WindOnshore_CF_df.drop([0,1], axis=1)
-        WindOnshore_CF_df = WindOnshore_CF_df.drop([0,1,2], axis=0)
+        WindOnshore_CF_df = WindOnshore_CF_df.drop([0,1], axis=1) # remove region and group columns
+        # WindOnshore_CF_df = WindOnshore_CF_df.drop([0,1,2], axis=0) # removes extra metadata from pilot phase formats
+        WindOnshore_CF_df = WindOnshore_CF_df.drop([0], axis=0) # remove only datetime row
         WindOnshore_CF_df = WindOnshore_CF_df.T
         WindOnshore_CF_df = WindOnshore_CF_df.astype(float)
         
-        WindOnshore_CF_df['A'] = (WindOnshore_CF_df[3] + WindOnshore_CF_df[4])/2
-        WindOnshore_CF_df['B'] = (WindOnshore_CF_df[5] + WindOnshore_CF_df[6])/2
-        WindOnshore_CF_df['C'] = (WindOnshore_CF_df[7] + WindOnshore_CF_df[8])/2
-        WindOnshore_CF_df['D'] = (WindOnshore_CF_df[9] + WindOnshore_CF_df[10])/2
-        WindOnshore_CF_df['E'] = (WindOnshore_CF_df[11] + WindOnshore_CF_df[12])/2
+        # 2023 Pilot phase ASEAN countries res_analysis formats
+        # WindOnshore_CF_df['A'] = (WindOnshore_CF_df[3] + WindOnshore_CF_df[4])/2
+        # WindOnshore_CF_df['B'] = (WindOnshore_CF_df[5] + WindOnshore_CF_df[6])/2
+        # WindOnshore_CF_df['C'] = (WindOnshore_CF_df[7] + WindOnshore_CF_df[8])/2
+        # WindOnshore_CF_df['D'] = (WindOnshore_CF_df[9] + WindOnshore_CF_df[10])/2
+        # WindOnshore_CF_df['E'] = (WindOnshore_CF_df[11] + WindOnshore_CF_df[12])/2
+        # WindOnshore_CF_df['F'] = (WindOnshore_CF_df['A'] + WindOnshore_CF_df['B'])/2
+        # WindOnshore_CF_df['G'] = (WindOnshore_CF_df['C'] + WindOnshore_CF_df['D']+ WindOnshore_CF_df['E'])/3
+        # WindOnshore_CF_df['MeanProfile'] =(WindOnshore_CF_df['F'] + WindOnshore_CF_df['G'])/2
+        
+        # 2024 Phase 2 res_analysis formats
+        WindOnshore_CF_df['A'] = (WindOnshore_CF_df[1] + WindOnshore_CF_df[2])/2
+        WindOnshore_CF_df['B'] = (WindOnshore_CF_df[3] + WindOnshore_CF_df[4])/2
+        WindOnshore_CF_df['C'] = (WindOnshore_CF_df[5] + WindOnshore_CF_df[6])/2
+        WindOnshore_CF_df['D'] = (WindOnshore_CF_df[7] + WindOnshore_CF_df[8])/2
+        WindOnshore_CF_df['E'] = (WindOnshore_CF_df[9] + WindOnshore_CF_df[10])/2
         WindOnshore_CF_df['F'] = (WindOnshore_CF_df['A'] + WindOnshore_CF_df['B'])/2
         WindOnshore_CF_df['G'] = (WindOnshore_CF_df['C'] + WindOnshore_CF_df['D']+ WindOnshore_CF_df['E'])/3
         WindOnshore_CF_df['MeanProfile'] =(WindOnshore_CF_df['F'] + WindOnshore_CF_df['G'])/2
@@ -192,7 +204,7 @@ def get_wind_inputs(countries):
         avg_wind_on_CF_df = pd.DataFrame(data=WindOnshore_CF_df['MeanProfile'])
         
         # Find/create directory for onshore wind profiles in STEVFNs
-        wind_on_dir = os.path.join(onshore_wind_folder, 'WINDOUT', f'lat{lat}')
+        wind_on_dir = os.path.join(onshore_wind_folder, f'lat{lat}')
         if not os.path.exists(wind_on_dir):
             os.makedirs(wind_on_dir)
         wind_on_filename = os.path.join(wind_on_dir, f'WINDOUT_lat{lat}_lon{lon}.csv')
@@ -213,16 +225,27 @@ def get_wind_inputs(countries):
         # Extract CF profile for Offshore wind
         WindOffshore_CF_df = pd.read_csv(os.path.join(raw_data_folder, 'res_analysis',
                                                 f'{country}', 'windoffshore', 'capacity_factor_binned.csv'), header=None)
-        WindOffshore_CF_df = WindOffshore_CF_df.drop([0,1], axis=1)
-        WindOffshore_CF_df = WindOffshore_CF_df.drop([0,1,2], axis=0)
+        WindOffshore_CF_df = WindOffshore_CF_df.drop([0,1], axis=1) # remove region and group columns
+        # WindOffshore_CF_df = WindOffshore_CF_df.drop([0,1,2], axis=0) # removes extra metadata from pilot phase res_analysisformats
+        WindOffshore_CF_df = WindOffshore_CF_df.drop([0], axis=0)  # remove only datetime row
         WindOffshore_CF_df = WindOffshore_CF_df.T
         WindOffshore_CF_df = WindOffshore_CF_df.astype(float)
         
-        WindOffshore_CF_df['A'] = (WindOffshore_CF_df[3] + WindOffshore_CF_df[4])/2
-        WindOffshore_CF_df['B'] = (WindOffshore_CF_df[5] + WindOffshore_CF_df[6])/2
-        WindOffshore_CF_df['C'] = (WindOffshore_CF_df[7] + WindOffshore_CF_df[8])/2
-        WindOffshore_CF_df['D'] = (WindOffshore_CF_df[9] + WindOffshore_CF_df[10])/2
-        WindOffshore_CF_df['E'] = (WindOffshore_CF_df[11] + WindOffshore_CF_df[12])/2
+        # WindOffshore_CF_df['A'] = (WindOffshore_CF_df[3] + WindOffshore_CF_df[4])/2
+        # WindOffshore_CF_df['B'] = (WindOffshore_CF_df[5] + WindOffshore_CF_df[6])/2
+        # WindOffshore_CF_df['C'] = (WindOffshore_CF_df[7] + WindOffshore_CF_df[8])/2
+        # WindOffshore_CF_df['D'] = (WindOffshore_CF_df[9] + WindOffshore_CF_df[10])/2
+        # WindOffshore_CF_df['E'] = (WindOffshore_CF_df[11] + WindOffshore_CF_df[12])/2
+        # WindOffshore_CF_df['F'] = (WindOffshore_CF_df['A'] + WindOffshore_CF_df['B'])/2
+        # WindOffshore_CF_df['G'] = (WindOffshore_CF_df['C'] + WindOffshore_CF_df['D']+ WindOffshore_CF_df['E'])/3
+        # WindOffshore_CF_df['MeanProfile'] =(WindOffshore_CF_df['F'] + WindOffshore_CF_df['G'])/2
+        
+        # 2024 Phase 2 countries res_analysis formats
+        WindOffshore_CF_df['A'] = (WindOffshore_CF_df[1] + WindOffshore_CF_df[2])/2
+        WindOffshore_CF_df['B'] = (WindOffshore_CF_df[3] + WindOffshore_CF_df[4])/2
+        WindOffshore_CF_df['C'] = (WindOffshore_CF_df[5] + WindOffshore_CF_df[6])/2
+        WindOffshore_CF_df['D'] = (WindOffshore_CF_df[7] + WindOffshore_CF_df[8])/2
+        WindOffshore_CF_df['E'] = (WindOffshore_CF_df[9] + WindOffshore_CF_df[10])/2
         WindOffshore_CF_df['F'] = (WindOffshore_CF_df['A'] + WindOffshore_CF_df['B'])/2
         WindOffshore_CF_df['G'] = (WindOffshore_CF_df['C'] + WindOffshore_CF_df['D']+ WindOffshore_CF_df['E'])/3
         WindOffshore_CF_df['MeanProfile'] =(WindOffshore_CF_df['F'] + WindOffshore_CF_df['G'])/2
@@ -230,9 +253,9 @@ def get_wind_inputs(countries):
         avg_wind_off_CF_df = pd.DataFrame(data=WindOffshore_CF_df['MeanProfile'])
         
         # Find/create directory for onshore wind profiles in STEVFNs
-        wind_off_dir = os.path.join(offshore_wind_folder, 'WINDOUT', f'lat{lat}')
-        if not os.path.exists(wind_on_dir):
-            os.makedirs(wind_on_dir)
+        wind_off_dir = os.path.join(offshore_wind_folder, f'lat{lat}')
+        if not os.path.exists(wind_off_dir):
+            os.makedirs(wind_off_dir)
         wind_off_filename = os.path.join(wind_off_dir, f'WINDOUT_lat{lat}_lon{lon}.csv')
         
         avg_wind_off_CF_df.to_csv(wind_off_filename, index=False, header=False)
@@ -241,7 +264,9 @@ def get_wind_inputs(countries):
 
 
 #%%
-countries = ['XXX']
+countries = ['MAR', 'EGY', 'NGA', 'KOR', 'BRA', 'COL', 'PER', 'CHL', 'ZAF', 'KEN']
+
+
 
 get_pv_inputs(countries)
 get_wind_inputs(countries)
