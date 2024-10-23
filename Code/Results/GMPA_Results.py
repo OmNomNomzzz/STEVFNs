@@ -194,7 +194,7 @@ def export_total_data_not_rounded(my_network, location_parameters_df, asset_para
             technology_name = name + r"_[" + loc_name + r"]"
             technology_cost = asset.cost.value
             
-        elif name == 'RE_PV_Rooftop_Lim' or name == 'RE_PV_Openfield_Lim' or name == 'RE_WIND_Onshore_Lim' or name == 'RE_WIND_Offshore_Lim':
+        elif name == 'RE_PV_Rooftop_Lim' or name == 'RE_PV_Openfield_Lim' or name == 'RE_WIND_Onshore_Lim' or name == 'RE_WIND_Offshore_Lim' or name == 'RE_WIND_Onshore_BAU' or name == 'RE_PV_Openfield_BAU':
             loc1 = asset.target_node_location
             loc_name = location_names[loc1]
             loc_names_set.add(loc_name)
