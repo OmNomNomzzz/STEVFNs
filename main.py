@@ -19,7 +19,7 @@ from Code.Results import GMPA_Results
 
 
 #### Define Input Files ####
-case_study_name = "BAU_No_Action"
+case_study_name = "Least_Cost_Emissions"
 
 
 base_folder = os.path.dirname(__file__)
