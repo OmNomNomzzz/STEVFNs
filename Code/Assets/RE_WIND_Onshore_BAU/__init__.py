@@ -39,6 +39,7 @@ class RE_WIND_Onshore_BAU_Asset(Asset_STEVFNs):
         
     
     def define_structure(self, asset_structure):
+        self.asset_structure = asset_structure
         self.source_node_location = "NULL"
         self.target_node_location = asset_structure["Location_1"]
         self.source_node_location_2 = "NULL"

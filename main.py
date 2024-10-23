@@ -18,7 +18,7 @@ from Code.Results import GMPA_Results
 
 
 #### Define Input Files ####
-case_study_name = "Autarky_CL"
+case_study_name = "BAU_No_Action"
 
 
 base_folder = os.path.dirname(__file__)
@@ -55,6 +55,7 @@ for counter1 in range(len(scenario_folders_list)):
 # for counter1 in range(1):
     # Read Input Files ###
     scenario_folder = scenario_folders_list[-1-counter1]
+    print("SCENARIO:", scenario_folder)
     asset_parameters_filename = os.path.join(scenario_folder, "Asset_Parameters.csv")
     location_parameters_filename = os.path.join(scenario_folder, "Location_Parameters.csv")
     system_parameters_filename = os.path.join(scenario_folder, "System_Parameters.csv")
@@ -80,11 +81,12 @@ for counter1 in range(len(scenario_folders_list)):
     
     
     # my_network.solve_problem()
-    my_network.problem.solve(solver = cp.ECOS, warm_start=True, max_iters=10000, verbose=False,
+    my_network.problem.solve(solver = cp.ECOS, warm_start=True, max_iters=100000, verbose=False,
                               ignore_dpp=True,# Uncomment to disable DPP. DPP will make the first scenario run slower, but subsequent scenarios will run significantly faster.
-                             )
-    # my_network.problem.solve(solver = cp.ECOS, warm_start=True, max_iters=10000, feastol=1e-5, reltol=1e-5, abstol=1e-5, ignore_dpp=True, verbose=False)
-    # my_network.problem.solve(solver = cp.SCS, warm_start=True, max_iters=10000, ignore_dpp=True, verbose=False)
+                              )
+    # my_network.problem.solve(solver = cp.ECOS, warm_start=True, max_iters=10000, feastol=1e-4, reltol=1e-4, abstol=1e-4, ignore_dpp=True, verbose=False)
+    # my_network.problem.solve(solver = cp.SCS, warm_start=True, max_iters=100000, ignore_dpp=True, verbose=False)
+    # my_network.problem.solve(solver = cp.MOSEK)
     end_time = time.time()
 
     
@@ -111,6 +113,7 @@ for counter1 in range(len(scenario_folders_list)):
         total_df = pd.concat([total_df, t_df], ignore_index=True)
         total_df_1 = pd.concat([total_df_1, t1_df], ignore_index=True)
 # #### Save Result
+
 total_df.to_csv(results_filename, index=False, header=True)
 total_df_1.to_csv(unrounded_results_filename, index=False, header=True)
     
