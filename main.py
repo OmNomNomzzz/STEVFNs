@@ -19,7 +19,7 @@ from Code.Results import GMPA_Results
 
 
 #### Define Input Files ####
-case_study_name = "Autarky_VN"
+case_study_name = "BAU_No_Action"
 
 
 base_folder = os.path.dirname(__file__)
@@ -82,11 +82,12 @@ for counter1 in range(len(scenario_folders_list)):
     
     
     # my_network.solve_problem()
-    my_network.problem.solve(solver = cp.ECOS, warm_start=True, max_iters=10000, verbose=False,
-                              ignore_dpp=True,# Uncomment to disable DPP. DPP will make the first scenario run slower, but subsequent scenarios will run significantly faster.
-                              )
+    # my_network.problem.solve(solver = cp.ECOS, warm_start=True, max_iters=10000, verbose=False,
+    #                           ignore_dpp=True,# Uncomment to disable DPP. DPP will make the first scenario run slower, but subsequent scenarios will run significantly faster.
+    #                           )
     # my_network.problem.solve(solver = cp.ECOS, warm_start=True, max_iters=10000, feastol=1e-5, reltol=1e-5, abstol=1e-5, ignore_dpp=True, verbose=False)
     # my_network.problem.solve(solver = cp.SCS, warm_start=True, max_iters=10000, ignore_dpp=True, verbose=False)
+    my_network.problem.solve(solver = cp.MOSEK)
     end_time = time.time()
 
     
