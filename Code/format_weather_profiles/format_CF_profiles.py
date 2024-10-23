@@ -100,6 +100,9 @@ def get_pv_inputs(countries):
         PVopen_CF_df = pd.read_csv(os.path.join(raw_data_folder, 'res_analysis',
                                                 f'{country}', 'pvopenfield', 'capacity_factor_binned.csv'))
         PVopen_CF_df = PVopen_CF_df.T
+        PVopen_CF_df = PVopen_CF_df.drop('region', axis=0)
+        
+        # The below works for the formats in Pilot Phase
         # PVopen_CF_df = PVopen_CF_df.drop([0, 1], axis=1)
         # PVopen_CF_df = PVopen_CF_df.drop('Unnamed: 0', axis=0)
         
@@ -126,6 +129,7 @@ def get_pv_inputs(countries):
         PVroof_CF_df = pd.read_csv(os.path.join(raw_data_folder, 'res_analysis',
                                                 f'{country}', 'pvrooftop', 'capacity_factor_binned.csv'))
         PVroof_CF_df = PVroof_CF_df.T
+        PVroof_CF_df = PVroof_CF_df.drop('region', axis=0)
         # PVroof_CF_df = PVroof_CF_df.drop([0, 1], axis=1)
         # PVroof_CF_df = PVroof_CF_df.drop('Unnamed: 0', axis=0)
         
