@@ -29,7 +29,8 @@ import os
 # case_study_name = "Autarky_NG"
 # case_study_name = "Autarky_BR"
 # case_study_name = "Autarky_CO"
-case_study_name = "Autarky_PE"
+# case_study_name = "Autarky_PE"
+case_study_name = "Autarky_CL"
 
 
 ###### Two Country Case Studies #########
