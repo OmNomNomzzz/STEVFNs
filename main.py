@@ -102,17 +102,17 @@ for counter1 in range(len(scenario_folders_list)):
     
     
     ### Export cost results to pandas dataframe
-#     t_df = GMPA_Results.export_total_data(my_network, location_parameters_df, asset_parameters_df)
-#     t1_df = GMPA_Results.export_total_data_not_rounded(my_network, location_parameters_df, asset_parameters_df)
-#     if counter1 == 0:
-#         total_df = t_df
-#         total_df_1 = t1_df
-#     else:
-#         total_df = pd.concat([total_df, t_df], ignore_index=True)
-#         total_df_1 = pd.concat([total_df_1, t1_df], ignore_index=True)
-# # #### Save Result
-# total_df.to_csv(results_filename, index=False, header=True)
-# total_df_1.to_csv(unrounded_results_filename, index=False, header=True)
+    t_df = GMPA_Results.export_total_data(my_network, location_parameters_df, asset_parameters_df)
+    t1_df = GMPA_Results.export_total_data_not_rounded(my_network, location_parameters_df, asset_parameters_df)
+    if counter1 == 0:
+        total_df = t_df
+        total_df_1 = t1_df
+    else:
+        total_df = pd.concat([total_df, t_df], ignore_index=True)
+        total_df_1 = pd.concat([total_df_1, t1_df], ignore_index=True)
+# #### Save Result
+total_df.to_csv(results_filename, index=False, header=True)
+total_df_1.to_csv(unrounded_results_filename, index=False, header=True)
     
         
 
