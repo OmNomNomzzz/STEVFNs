@@ -30,7 +30,7 @@ import os
 # case_study_name = "Autarky_BR"
 # case_study_name = "Autarky_CO"
 # case_study_name = "Autarky_PE"
-case_study_name = "Autarky_CL"
+# case_study_name = "Autarky_CL"
 
 
 ###### Two Country Case Studies #########
@@ -67,8 +67,17 @@ case_study_name = "Autarky_CL"
 # case_study_name = "TH-KH_Autarky"
 # case_study_name = "TH-KH_Collab"
 
+# case_study_name = "BR-CL_Autarky"
+# case_study_name = "BR-CL_Collab"
+
 # case_study_name = "LA-KH_Autarky"
 # case_study_name = "LA-KH_Collab"
+
+# case_study_name = "BR-CO_Autarky"
+# case_study_name = "BR-CO_Collab"
+
+# case_study_name = "BR-PE_Autarky"
+# case_study_name = "BR-PE_Collab"
 
 ###### Three Country Case Studies #########
 # case_study_name = "SG-ID-MY_Autarky"
@@ -95,12 +104,24 @@ case_study_name = "Autarky_CL"
 # case_study_name = "VN-LA-KH_Autarky"
 # case_study_name = "VN-LA-KH_Collab"
 
+# case_study_name = "BR-CO-CL_Autarky"
+# case_study_name = "BR-CO-CL_Collab"
+
+# case_study_name = "BR-CO-PE_Autarky"
+# case_study_name = "BR-CO-PE_Collab"
+
+# case_study_name = "BR-PE-CL_Autarky"
+case_study_name = "BR-PE-CL_Collab"
+
 ###### Four Country Case Studies #########
 # case_study_name = "SG-ID-MY-PH_Autarky"
 # case_study_name = "SG-ID-MY-PH_Collab"
 
 # case_study_name = "VN-TH-LA-KH_Autarky"
 # case_study_name = "VN-TH-LA-KH_Collab"
+
+# case_study_name = "BR-CO-PE-CL_Autarky"
+# case_study_name = "BR-CO-PE-CL_Collab"
 
 
 base_folder = os.path.dirname(__file__)
