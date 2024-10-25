@@ -14,83 +14,18 @@ import os
 
 ###### Autarky Case Studies #########
 # case_study_name = "Autarky_SG"
-# case_study_name = "Autarky_ID"
-# case_study_name = "Autarky_MY"
-# case_study_name = "Autarky_VN"
-case_study_name = "Autarky_PH"
-# case_study_name = "Autarky_TH"
-# case_study_name = "Autarky_KH"
-# case_study_name = "Autarky_LA"
-
 
 ###### Two Country Case Studies #########
 # case_study_name = "SG-ID_Autarky"
 # case_study_name = "SG-ID_Collab"
 
-# case_study_name = "SG-MY_Autarky"
-# case_study_name = "SG-MY_Collab"
-
-# case_study_name = "SG-PH_Autarky"
-# case_study_name = "SG-PH_Collab"
-
-# case_study_name = "ID-MY_Autarky"
-# case_study_name = "ID-MY_Collab"
-
-# case_study_name = "MY-PH_Autarky"
-# case_study_name = "MY-PH_Collab"
-
-# case_study_name = "ID-PH_Autarky"
-# case_study_name = "ID-PH_Collab"
-
-# case_study_name = "VN-TH_Autarky"
-# case_study_name = "VN-TH_Collab"
-
-# case_study_name = "VN-LA_Autarky"
-# case_study_name = "VN-LA_Collab"
-
-# case_study_name = "VN-KH_Autarky"
-# case_study_name = "VN-KH_Collab"
-
-# case_study_name = "TH-LA_Autarky"
-# case_study_name = "TH-LA_Collab"
-
-# case_study_name = "TH-KH_Autarky"
-# case_study_name = "TH-KH_Collab"
-
-# case_study_name = "LA-KH_Autarky"
-# case_study_name = "LA-KH_Collab"
-
 ###### Three Country Case Studies #########
-# case_study_name = "SG-ID-MY_Autarky"
-# case_study_name = "SG-ID-MY_Collab"
-
-# case_study_name = "SG-ID-PH_Autarky"
-# case_study_name = "SG-ID-PH_Collab"
-
-# case_study_name = "SG-MY-PH_Autarky"
-# case_study_name = "SG-MY-PH_Collab"
-
-# case_study_name = "ID-MY-PH_Autarky"
-# case_study_name = "ID-MY-PH_Collab"
-
-# case_study_name = "VN-TH-LA_Autarky"
-# case_study_name = "VN-TH-LA_Collab"
-
-# case_study_name = "VN-TH-KH_Autarky"
-# case_study_name = "VN-TH-KH_Collab"
-
-# case_study_name = "TH-LA-KH_Autarky"
-# case_study_name = "TH-LA-KH_Collab"
-
-# case_study_name = "VN-LA-KH_Autarky"
-# case_study_name = "VN-LA-KH_Collab"
+case_study_name = "KE-EG-NG_Autarky"
+# case_study_name = "KE-EG-NG_Collab"
 
 ###### Four Country Case Studies #########
 # case_study_name = "SG-ID-MY-PH_Autarky"
 # case_study_name = "SG-ID-MY-PH_Collab"
-
-# case_study_name = "VN-TH-LA-KH_Autarky"
-# case_study_name = "VN-TH-LA-KH_Collab"
 
 
 base_folder = os.path.dirname(__file__)
