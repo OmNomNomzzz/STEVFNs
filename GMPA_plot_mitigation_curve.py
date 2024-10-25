@@ -20,8 +20,8 @@ import os
 # case_study_name = "SG-ID_Collab"
 
 ###### Three Country Case Studies #########
-case_study_name = "KE-EG-NG_Autarky"
-# case_study_name = "KE-EG-NG_Collab"
+# case_study_name = "KE-EG-NG_Autarky"
+case_study_name = "KE-EG-NG_Collab"
 
 ###### Four Country Case Studies #########
 # case_study_name = "SG-ID-MY-PH_Autarky"
