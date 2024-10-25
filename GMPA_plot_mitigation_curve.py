@@ -92,7 +92,7 @@ import os
 # case_study_name = "VN-TH-LA-KH_Autarky"
 # case_study_name = "VN-TH-LA-KH_Collab"
 
-case_study_name = "MA-KE-EG-NG_Collab"
+case_study_name = "KE-EG_Collab"
 
 
 base_folder = os.path.dirname(__file__)
