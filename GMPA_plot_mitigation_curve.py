@@ -79,6 +79,12 @@ import os
 # case_study_name = "BR-PE_Autarky"
 # case_study_name = "BR-PE_Collab"
 
+# case_study_name = "CO-CL_Autarky"
+# case_study_name = "CO-CL_Collab"
+
+# case_study_name = "CO-PE_Autarky"
+# case_study_name = "CO-PE_Collab"
+
 ###### Three Country Case Studies #########
 # case_study_name = "SG-ID-MY_Autarky"
 # case_study_name = "SG-ID-MY_Collab"
@@ -111,7 +117,10 @@ import os
 # case_study_name = "BR-CO-PE_Collab"
 
 # case_study_name = "BR-PE-CL_Autarky"
-case_study_name = "BR-PE-CL_Collab"
+# case_study_name = "BR-PE-CL_Collab"
+
+# case_study_name = "CO-PE-CL_Autarky"
+case_study_name = "CO-PE-CL_Collab"
 
 ###### Four Country Case Studies #########
 # case_study_name = "SG-ID-MY-PH_Autarky"
