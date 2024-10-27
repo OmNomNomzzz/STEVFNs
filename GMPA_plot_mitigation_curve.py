@@ -22,7 +22,7 @@ import os
 # case_study_name = "Autarky_KH"
 # case_study_name = "Autarky_LA"
 
-
+# 
 ###### Two Country Case Studies #########
 # case_study_name = "SG-ID_Autarky"
 # case_study_name = "SG-ID_Collab"
@@ -92,7 +92,7 @@ import os
 # case_study_name = "VN-TH-LA-KH_Autarky"
 # case_study_name = "VN-TH-LA-KH_Collab"
 
-case_study_name = "KE-EG_Collab"
+case_study_name = "ZA-KE_Autarky"
 
 
 base_folder = os.path.dirname(__file__)
