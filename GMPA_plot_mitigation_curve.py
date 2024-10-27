@@ -13,15 +13,18 @@ import os
 
 
 ###### Autarky Case Studies #########
-# case_study_name = "Autarky_SG"
+# case_study_name = "Autarky_BN"
 
 ###### Two Country Case Studies #########
 # case_study_name = "SG-ID_Autarky"
 # case_study_name = "SG-ID_Collab"
 
 ###### Three Country Case Studies #########
-# case_study_name = "KE-EG-NG_Autarky"
-case_study_name = "KE-EG-NG_Collab"
+# case_study_name = "BN-SG-TH_Autarky"
+# case_study_name = "BN-SG-TH_Collab"
+
+# case_study_name = "BN-ID-TH_Autarky"
+case_study_name = "BN-ID-TH_Collab"
 
 ###### Four Country Case Studies #########
 # case_study_name = "SG-ID-MY-PH_Autarky"
@@ -52,6 +55,7 @@ while not total_data.empty:
     while name == checker:
         row = total_data.iloc[counter:counter+1]
         rows = pd.concat([rows, row], ignore_index=True)
+
         
         counter += 1
         if counter != num_rows:
