@@ -158,6 +158,7 @@ def export_total_data(my_network, location_parameters_df, asset_parameters_df):
                              "technology_name": [technology_name],
             })
         total_data_df = pd.concat([total_data_df, t_df], ignore_index=True)
+    
     return total_data_df
 
 

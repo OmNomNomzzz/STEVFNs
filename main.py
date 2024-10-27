@@ -116,7 +116,7 @@ for counter1 in range(len(scenario_folders_list)):
         total_df = pd.concat([total_df, t_df], ignore_index=True)
         total_df_1 = pd.concat([total_df_1, t1_df], ignore_index=True)
 # #### Save Result
-total_df.to_csv(results_filename, index=False, header=True)
+# total_df.to_csv(results_filename, index=False, header=True)
 total_df_1.to_csv(unrounded_results_filename, index=False, header=True)
     
         
