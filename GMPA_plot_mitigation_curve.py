@@ -147,8 +147,8 @@ import os
 # case_study_name = "BR-CO-PE-CL_Autarky"
 # case_study_name = "BR-CO-PE-CL_Collab"
 
-# case_study_name = "KR-TH-VN-LA_Autarky"
-case_study_name = "KR-TH-VN-LA_Collab"
+# case_study_name = "KR-VN-LA_Autarky"
+case_study_name = "KR-VN-LA_Collab"
 
 
 base_folder = os.path.dirname(__file__)
