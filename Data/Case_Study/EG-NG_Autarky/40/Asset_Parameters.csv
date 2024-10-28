@@ -13,7 +13,7 @@ Asset_Number,Asset_Class,Location_1,Location_2,Asset_Type
 11,NH3_to_HTH,18,18,18
 12,FF_to_HTH,18,18,18
 13,EL_Demand,18,18,18
-14,HTH_Demand,18,18,15
+14,HTH_Demand,18,18,18
 15,RE_PV_Rooftop_Lim,19,19,19
 16,RE_PV_Openfield_Lim,19,19,19
 17,RE_WIND_Onshore_Lim,19,19,19

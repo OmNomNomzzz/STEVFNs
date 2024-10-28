@@ -13,11 +13,11 @@ import os
 
 
 ###### Autarky Case Studies #########
-case_study_name = "Autarky_CL"
+# case_study_name = "Autarky_CL"
 
 ###### Two Country Case Studies #########
-# case_study_name = "BN-TH_Autarky"
-# case_study_name = "BN-TH_Collab"
+case_study_name = "EG-NG_Autarky"
+# case_study_name = "BN-ID_Collab"
 
 ###### Three Country Case Studies #########
 # case_study_name = "BN-SG-TH_Autarky"
