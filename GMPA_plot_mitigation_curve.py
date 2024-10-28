@@ -85,6 +85,15 @@ import os
 # case_study_name = "CO-PE_Autarky"
 # case_study_name = "CO-PE_Collab"
 
+# case_study_name = "KR-LA_Autarky"
+# case_study_name = "KR-LA_Collab"
+
+# case_study_name = "KR-PE_Autarky"
+# case_study_name = "KR-PE_Collab"
+
+# case_study_name = "KR-TH_Autarky"
+# case_study_name = "KR-TH_Collab"
+
 ###### Three Country Case Studies #########
 # case_study_name = "SG-ID-MY_Autarky"
 # case_study_name = "SG-ID-MY_Collab"
@@ -120,7 +129,13 @@ import os
 # case_study_name = "BR-PE-CL_Collab"
 
 # case_study_name = "CO-PE-CL_Autarky"
-case_study_name = "CO-PE-CL_Collab"
+# case_study_name = "CO-PE-CL_Collab"
+
+# case_study_name = "KR-TH-LA_Autarky"
+# case_study_name = "KR-TH-LA_Collab"
+
+# case_study_name = "KR-TH-VN_Autarky"
+# case_study_name = "KR-TH-VN_Collab"
 
 ###### Four Country Case Studies #########
 # case_study_name = "SG-ID-MY-PH_Autarky"
@@ -131,6 +146,9 @@ case_study_name = "CO-PE-CL_Collab"
 
 # case_study_name = "BR-CO-PE-CL_Autarky"
 # case_study_name = "BR-CO-PE-CL_Collab"
+
+# case_study_name = "KR-TH-VN-LA_Autarky"
+case_study_name = "KR-TH-VN-LA_Collab"
 
 
 base_folder = os.path.dirname(__file__)

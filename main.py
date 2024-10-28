@@ -18,7 +18,7 @@ from Code.Results import GMPA_Results
 
 
 #### Define Input Files ####
-case_study_name = "CO-PE-CL_Collab"
+case_study_name = "KR-TH-VN-LA_Collab"
 
 
 base_folder = os.path.dirname(__file__)
@@ -81,11 +81,11 @@ for counter1 in range(len(scenario_folders_list)):
     
     
     # my_network.solve_problem()
-    my_network.problem.solve(solver = cp.ECOS, warm_start=True, max_iters=100000, verbose=False,
-                              ignore_dpp=True,# Uncomment to disable DPP. DPP will make the first scenario run slower, but subsequent scenarios will run significantly faster.
-                              )
-    # my_network.problem.solve(solver = cp.ECOS, warm_start=True, max_iters=10000, feastol=1e-4, reltol=1e-4, abstol=1e-4, ignore_dpp=True, verbose=False)
-    # my_network.problem.solve(solver = cp.SCS, warm_start=True, max_iters=100000, ignore_dpp=True, verbose=False)
+    # my_network.problem.solve(solver = cp.ECOS, warm_start=True, max_iters=100000, verbose=False,
+    #                           ignore_dpp=True,# Uncomment to disable DPP. DPP will make the first scenario run slower, but subsequent scenarios will run significantly faster.
+    #                           )
+    # # my_network.problem.solve(solver = cp.ECOS, warm_start=True, max_iters=10000, feastol=1e-4, reltol=1e-4, abstol=1e-4, ignore_dpp=True, verbose=False)
+    my_network.problem.solve(solver = cp.SCS, warm_start=True, max_iters=100000, ignore_dpp=True, verbose=False)
     # my_network.problem.solve(solver = cp.MOSEK)
     end_time = time.time()
 
