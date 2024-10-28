@@ -19,7 +19,7 @@ from Code.Results import GMPA_Results
 
 
 #### Define Input Files ####
-case_study_name = "EG-NG_Autarky"
+case_study_name = "KR-EG-KE_Autarky"
 # case_study_name = "BN-ID_Collab"
 
 
