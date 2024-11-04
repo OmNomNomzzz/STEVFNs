@@ -17,10 +17,11 @@ import os
 
 ###### Two Country Case Studies #########
 # case_study_name = "EG-NG_Autarky"
-# case_study_name = "BN-ID_Collab"
+# case_study_name = "ZA-NG_Collab"
+
 
 ###### Three Country Case Studies #########
-case_study_name = "KR-EG-KE_Autarky"
+# case_study_name = "KR-EG-KE_Autarky"
 # case_study_name = "BN-SG-TH_Collab"
 
 # case_study_name = "BN-ID-TH_Autarky"
@@ -28,7 +29,7 @@ case_study_name = "KR-EG-KE_Autarky"
 
 ###### Four Country Case Studies #########
 # case_study_name = "SG-ID-MY-PH_Autarky"
-# case_study_name = "SG-ID-MY-PH_Collab"
+case_study_name = "SG-ID-MY-PH_Collab"
 
 
 base_folder = os.path.dirname(__file__)
