@@ -19,9 +19,9 @@ from Code.Results import GMPA_Results
 
 
 #### Define Input Files ####
-# case_study_name = "ZA-NG_Collab"
-case_study_name = "ZA-KE_Autarky"
-
+# case_study_name = "Autarky_KE"
+# case_study_name = "CO-PE_Autarky"
+case_study_name = "CO-PE_Collab"
 
 base_folder = os.path.dirname(__file__)
 data_folder = os.path.join(base_folder, "Data")
@@ -30,6 +30,7 @@ scenario_folders_list = [x[0] for x in os.walk(case_study_folder)][1:]
 network_structure_filename = os.path.join(case_study_folder, "Network_Structure.csv")
 results_filename = os.path.join(case_study_folder, "total_data.csv")
 unrounded_results_filename = os.path.join(case_study_folder, "total_data_unrounded.csv")
+capacities_filename = os.path.join(case_study_folder, "capacities_total_data.csv")
 
 
 ### Read Input Files ###
@@ -106,17 +107,21 @@ for counter1 in range(len(scenario_folders_list)):
 
     
     ### Export cost results to pandas dataframe
-    t_df = GMPA_Results.export_total_data(my_network, location_parameters_df, asset_parameters_df)
-    t1_df = GMPA_Results.export_total_data_not_rounded(my_network, location_parameters_df, asset_parameters_df)
+    # t_df = GMPA_Results.export_total_data(my_network, location_parameters_df, asset_parameters_df)
+    # t1_df = GMPA_Results.export_total_data_not_rounded(my_network, location_parameters_df, asset_parameters_df)
+    capacities_df = GMPA_Results.export_total_data_capacities(my_network, location_parameters_df, asset_parameters_df)
     if counter1 == 0:
-        total_df = t_df
-        total_df_1 = t1_df
+        # total_df = t_df
+        # total_df_1 = t1_df
+        total_cap_df = capacities_df
     else:
-        total_df = pd.concat([total_df, t_df], ignore_index=True)
-        total_df_1 = pd.concat([total_df_1, t1_df], ignore_index=True)
+        # total_df = pd.concat([total_df, t_df], ignore_index=True)
+        # total_df_1 = pd.concat([total_df_1, t1_df], ignore_index=True)
+        total_cap_df = pd.concat([total_cap_df, capacities_df], ignore_index=True)
 # #### Save Result
 # total_df.to_csv(results_filename, index=False, header=True)
-total_df_1.to_csv(unrounded_results_filename, index=False, header=True)
+# total_df_1.to_csv(unrounded_results_filename, index=False, header=True)
+total_cap_df.to_csv(capacities_filename, index=False, header=True)
     
         
 
