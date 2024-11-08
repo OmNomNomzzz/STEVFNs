@@ -28,5 +28,5 @@ Asset_Number,Asset_Class,Location_1,Location_2,Asset_Type
 26,FF_to_HTH,1,1,1
 27,EL_Demand,1,1,1
 28,HTH_Demand,1,1,1
-29,NH3_Transport,0,1,0
-30,EL_Transport,0,1,0
+29,NH3_Transport,17,1,0
+30,EL_Transport,17,1,0
