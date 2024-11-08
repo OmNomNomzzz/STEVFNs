@@ -20,9 +20,9 @@ from Code.Results import GMPA_Results
 
 #### Define Input Files ####
 # case_study_name = "BAU_No_Action"
-case_study_name = "Autarky_KR"
-# case_study_name = "CO-PE_Autarky"
-# case_study_name = "CO-PE_Collab"
+# case_study_name = "Autarky_KR"
+case_study_name = "KE-NG_Autarky"
+# case_study_name = "KE-NG_Collab"
 
 base_folder = os.path.dirname(__file__)
 data_folder = os.path.join(base_folder, "Data")
