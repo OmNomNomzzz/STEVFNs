@@ -229,11 +229,11 @@ def dpacc_subplots(total_data_filename, capacities_data_filename, plot_filename,
 
 #%%
 ###### Autarky Case Studies #########
-# case_study_name = "Autarky_NG"
+case_study_name = "Autarky_KR"
 
 ###### Two Country Case Studies #########
 # case_study_name = "CO-PE_Autarky"
-case_study_name = "CO-PE_Collab"
+# case_study_name = "CO-PE_Collab"
 
 ###### Three Country Case Studies #########
 # case_study_name = "KR-EG-KE_Autarky"
@@ -255,11 +255,11 @@ total_data_filename = os.path.join(case_study_folder, "total_data_unrounded.csv"
 capacities_data_filename = os.path.join(case_study_folder, "capacities_total_data.csv")
 
 # Plot a single stacked plot for D-PACC in terms of costs
-# cost_plot_filename = os.path.join(case_study_folder, "mitigation_curve.png")
-# mitigation_curve(total_data_filename,
-#                  cost_plot_filename,
-#                  case_study_name,
-#                  countries=["EG", "NG"])
+cost_plot_filename = os.path.join(case_study_folder, "mitigation_curve.png")
+mitigation_curve(total_data_filename,
+                  cost_plot_filename,
+                  case_study_name,
+                  countries=["KR"])
 
 # Plot subplots for costs and capacity installed, currently only coded for Autarky
 subplotsplot_filename = os.path.join(case_study_folder, "d-pacc_subplots.png")
@@ -268,4 +268,5 @@ dpacc_subplots(total_data_filename,
             capacities_data_filename,
             subplotsplot_filename,
             case_study_name,
-            countries=["CO", "PE"])
+            countries=["KR"])
+
