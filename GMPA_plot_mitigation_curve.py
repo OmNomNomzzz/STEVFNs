@@ -259,14 +259,14 @@ cost_plot_filename = os.path.join(case_study_folder, "mitigation_curve.png")
 mitigation_curve(total_data_filename,
                   cost_plot_filename,
                   case_study_name,
-                  countries=["KE", "NG", "CO", "PE"])
+                  countries=["KE", "NG", "CO", "PE", "KR"])
 
-# Plot subplots for costs and capacity installed, currently only coded for Autarky
+# Plot subplots for costs and capacity installed
 subplotsplot_filename = os.path.join(case_study_folder, "d-pacc_subplots.png")
 
 dpacc_subplots(total_data_filename,
             capacities_data_filename,
             subplotsplot_filename,
             case_study_name,
-            countries=["KE", "NG", "CO", "PE"])
+            countries=["KE", "NG", "CO", "PE", "KR"])
 

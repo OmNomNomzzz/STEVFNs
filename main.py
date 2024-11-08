@@ -89,8 +89,8 @@ for counter1 in range(len(scenario_folders_list)):
     #                           ignore_dpp=True,# Uncomment to disable DPP. DPP will make the first scenario run slower, but subsequent scenarios will run significantly faster.
     #                           )
     # my_network.problem.solve(solver = cp.ECOS, warm_start=True, max_iters=10000, feastol=1e-5, reltol=1e-5, abstol=1e-5, ignore_dpp=True, verbose=False)
-    # my_network.problem.solve(solver = cp.SCS, warm_start=True, max_iters=10000, ignore_dpp=True, verbose=False)
-    my_network.problem.solve(solver = cp.MOSEK)
+    my_network.problem.solve(solver = cp.SCS, warm_start=True, max_iters=10000, ignore_dpp=True, verbose=False)
+    # my_network.problem.solve(solver = cp.MOSEK)
     end_time = time.time()
 
     
