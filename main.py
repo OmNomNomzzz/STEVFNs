@@ -21,10 +21,10 @@ from Code.Results import GMPA_Results
 #### Define Input Files ####
 # case_study_name = "BAU_No_Action"
 # case_study_name = "Autarky_KR"
-case_study_name = "KR-PH_Autarky"
+# case_study_name = "KR-PH_Autarky"
 # case_study_name = "KR-PH_Collab"
 # case_study_name = "KR-TH-VN-LA_Autarky"
-# case_study_name = "KR-TH-VN-LA_Collab"
+case_study_name = "KR-TH-VN-LA_Collab"
 
 base_folder = os.path.dirname(__file__)
 data_folder = os.path.join(base_folder, "Data")
@@ -43,7 +43,7 @@ network_structure_df = pd.read_csv(network_structure_filename)
 
 
 ### Build Network ###
-start_time = time.time()
+start_time0 = time.time()
 
 
 my_network = Network_STEVFNs()
@@ -51,7 +51,7 @@ my_network.build(network_structure_df)
 
 
 end_time = time.time()
-print("Time taken to build network = ", end_time - start_time, "s")
+print("Time taken to build network = ", end_time - start_time0, "s")
 total_df = pd.DataFrame()
 total_df_1 = pd.DataFrame()
 
@@ -102,11 +102,11 @@ for counter1 in range(len(scenario_folders_list)):
     print(my_network.problem.solution.status)
     if my_network.problem.value == float("inf"):
         continue
-    print("Total cost to satisfy all demand = ", my_network.problem.value, " Billion USD")
-    print("Total emissions = ", my_network.assets[0].asset_size(), "MtCO2e")
+    # print("Total cost to satisfy all demand = ", my_network.problem.value, " Billion USD")
+    # print("Total emissions = ", my_network.assets[0].asset_size(), "MtCO2e")
     # DPhil_Plotting.plot_all(my_network)
-    DPhil_Plotting.plot_asset_sizes(my_network)
-    DPhil_Plotting.plot_asset_costs(my_network)
+    # DPhil_Plotting.plot_asset_sizes(my_network)
+    # DPhil_Plotting.plot_asset_costs(my_network)
 
     
     ### Export cost results to pandas dataframe per scenario and concat all scenarios
@@ -128,5 +128,6 @@ total_df_1.to_csv(unrounded_results_filename, index=False, header=True)
 total_cap_df.to_csv(capacities_filename, index=False, header=True)
     
         
-
+final_time = time.time()
+print("Time to build network, run all scenarios, and export data", (final_time - start_time0)/60, "min")
    
