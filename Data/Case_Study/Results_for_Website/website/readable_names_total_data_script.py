@@ -25,9 +25,27 @@ tech_names = ["Rooftop PV", "Openfield PV", "Offshore wind", "Onshore wind", "Fo
               "Electric High Temp. Heating", "Electricity to Ammonia", "Ammonia storage", "Ammonia to electricity", "Ammonia High Temp. Heating",
               "Fossil High Temp. Heating", "HVDC Cables", "Ammonia Transport"]
 
-country_id = ["ID", "SG", "LA", "TH", "MY", "KH", "VN", "PH", "BN"]
-collab_id = ["SG-ID", "SG-MY", "SG-PH", "ID-MY", "ID-PH", "MY-PH", "TH-LA", "TH-KH", "LA-KH",
-             "VN-KH", "VN-LA", "VN-TH"]
+country_id = ["ID", "SG", "LA", "TH", "MY", "KH", "VN", "PH", "BN", "BR", "CO",
+              "PE", "CL", "KR", "EG", "MA", "NG", "KE", "ZA"]
+
+collab_id = ["BN-ID", "BN-SG", "BN-TH",
+             "BR-CO", "BR-CL", "BR-PE",
+             "CO-CL", "CO-PE",
+             "EG-NG", "EG-PE", "EG-KE",
+             "ID-MY", "ID-PH", "ID-TH",
+             "KE-NG", "KE-PE", "KE-EG",
+             "KR-PE", "KR-KE","KR-EG", "KR-LA", "KR-VN", "KR-TH", "KR-CL", "KR-TH",
+             "KR-ID", "KR-PH", "KR-MY",
+             "LA-KH",
+             "MA-EG", "MA-NG", "MA-KE",
+             "MY-PH",
+             "PE-CL",
+             "PH-MY",
+             "SG-ID", "SG-MY", "SG-PH", "SG-TH",
+             "TH-LA", "TH-KH", "TH-VN",
+             "VN-TH", "VN-LA", "VN-KH",
+             "ZA-NG", "ZA-EG", "ZA-KE"
+             ]
 
 
 
