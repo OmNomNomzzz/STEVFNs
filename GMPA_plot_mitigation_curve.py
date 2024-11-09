@@ -213,9 +213,9 @@ def dpacc_subplots(total_data_filename, capacities_data_filename, plot_filename,
     # Autarky 1 country legend location for plot
     # fig.legend(handles, labels, bbox_to_anchor=(0.5, -0.1), loc='lower center', borderaxespad=0, ncol=6)
     # Collabs 2-country legend location
-    fig.legend(handles, labels, bbox_to_anchor=(0.5, -0.17), loc='lower center', borderaxespad=0, ncol=6)
+    # fig.legend(handles, labels, bbox_to_anchor=(0.5, -0.17), loc='lower center', borderaxespad=0, ncol=6)
     # Collabs 3-country legend location
-    # fig.legend(handles, labels, bbox_to_anchor=(0.5, -0.25), loc='lower center', borderaxespad=0, ncol=6)
+    fig.legend(handles, labels, bbox_to_anchor=(0.5, -0.25), loc='lower center', borderaxespad=0, ncol=6)
     # Collabs 4-country legend location
     # fig.legend(handles, labels, bbox_to_anchor=(0.5, -0.35), loc='lower center', borderaxespad=0, ncol=6)
     
@@ -232,18 +232,18 @@ def dpacc_subplots(total_data_filename, capacities_data_filename, plot_filename,
 # case_study_name = "Autarky_KR"
 
 ###### Two Country Case Studies #########
-case_study_name = "KR-VN_Autarky"
-# case_study_name = "KE-NG_Collab"
+# case_study_name = "KR-VN_Autarky"
+# case_study_name = "KR-VN_Collab"
 
 ###### Three Country Case Studies #########
-# case_study_name = "KR-EG-KE_Autarky"
-# case_study_name = "BN-SG-TH_Collab"
+case_study_name = "KR-PH_Autarky"
+# case_study_name = "KR-PH_Collab"
 
 # case_study_name = "BN-ID-TH_Autarky"
 # case_study_name = "BN-ID-TH_Collab"
 
 ###### Four Country Case Studies #########
-# case_study_name = "SG-ID-MY-PH_Autarky"
+# case_study_name = "KR-TH-VN-LA_Autarky"
 # case_study_name = "SG-ID-MY-PH_Collab"
 
 
