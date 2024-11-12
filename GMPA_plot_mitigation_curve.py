@@ -213,11 +213,11 @@ def dpacc_subplots(total_data_filename, capacities_data_filename, plot_filename,
     # Autarky 1 country legend location for plot
     # fig.legend(handles, labels, bbox_to_anchor=(0.5, -0.1), loc='lower center', borderaxespad=0, ncol=6)
     # Collabs 2-country legend location
-    # fig.legend(handles, labels, bbox_to_anchor=(0.5, -0.17), loc='lower center', borderaxespad=0, ncol=6)
+    fig.legend(handles, labels, bbox_to_anchor=(0.5, -0.17), loc='lower center', borderaxespad=0, ncol=6)
     # Collabs 3-country legend location
     # fig.legend(handles, labels, bbox_to_anchor=(0.5, -0.25), loc='lower center', borderaxespad=0, ncol=6)
     # Collabs 4-country legend location
-    fig.legend(handles, labels, bbox_to_anchor=(0.5, -0.35), loc='lower center', borderaxespad=0, ncol=6)
+    # fig.legend(handles, labels, bbox_to_anchor=(0.5, -0.35), loc='lower center', borderaxespad=0, ncol=6)
     
     # Save the figure
     fig.tight_layout()
@@ -232,8 +232,8 @@ def dpacc_subplots(total_data_filename, capacities_data_filename, plot_filename,
 # case_study_name = "Autarky_KR"
 
 ###### Two Country Case Studies #########
-# case_study_name = "KR-VN_Autarky"
-# case_study_name = "KR-VN_Collab"
+# case_study_name = "KR-LA_Autarky"
+case_study_name = "KR-LA_Collab"
 
 ###### Three Country Case Studies #########
 # case_study_name = "KR-PH-MY_Autarky"
@@ -244,7 +244,7 @@ def dpacc_subplots(total_data_filename, capacities_data_filename, plot_filename,
 
 ###### Four Country Case Studies #########
 # case_study_name = "KR-ID-PH-MY_Autarky"
-case_study_name = "KR-ID-PH-MY_Collab"
+# case_study_name = "KR-ID-PH-MY_Collab"
 
 
 base_folder = os.path.dirname(__file__)
