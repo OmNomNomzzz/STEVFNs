@@ -20,8 +20,8 @@ from Code.Results import GMPA_Results
 
 #### Define Input Files ####
 # case_study_name = "BAU_No_Action"
-case_study_name = "Autarky_KR"
-# case_study_name = "KR-PH-MY_Autarky"
+# case_study_name = "Autarky_KR"
+case_study_name = "BN-ID_Autarky"
 # case_study_name = "KR-PH-MY_Collab"
 # case_study_name = "KR-ID-PH-MY_Autarky"
 # case_study_name = "KR-ID-PH-MY_Collab"
