@@ -23,3 +23,4 @@ Type,sizing_constant,sizing_constant_unit,lifespan,lifespan_unit,RE_type,set_siz
 21,2.377676775,G$/GWp,219000,h,WINDOUT,24,0,157,GWp,CO
 22,2.377676775,G$/GWp,219000,h,WINDOUT,24,0,337,GWp,PE
 23,1.79296,G$/GWp,219000,h,WINDOUT,24,0,799,GWp,CL
+24,,G$/GWp,219000,h,WINDOUT,24,0,,GWp,MZ
