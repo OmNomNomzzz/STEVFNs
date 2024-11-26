@@ -23,3 +23,4 @@ Type,storage_sizing_constant,storage_sizing_constant_units,storage_usage_constan
 21,0.271,G$/GWh,0,G$/GWh,1.00E+00,0.542,G$/GW,2.71E-05,G$/GWh,0.975,2.71E-01,G$/GW,2.71E-05,G$/GWh,9.75E-01,87600,h,CO
 22,0.271,G$/GWh,0,G$/GWh,1.00E+00,0.542,G$/GW,2.71E-05,G$/GWh,0.975,2.71E-01,G$/GW,2.71E-05,G$/GWh,9.75E-01,87600,h,PE
 23,0.271,G$/GWh,0,G$/GWh,1.00E+00,0.542,G$/GW,2.71E-05,G$/GWh,0.975,2.71E-01,G$/GW,2.71E-05,G$/GWh,9.75E-01,87600,h,CL
+24,0.271,G$/GWh,0,G$/GWh,1.00E+00,0.542,G$/GW,2.71E-05,G$/GWh,0.975,2.71E-01,G$/GW,2.71E-05,G$/GWh,9.75E-01,87600,h,MZ
