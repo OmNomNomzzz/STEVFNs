@@ -196,14 +196,17 @@ def get_wind_inputs(countries):
         # WindOnshore_CF_df['MeanProfile'] =(WindOnshore_CF_df['F'] + WindOnshore_CF_df['G'])/2
         
         # 2024 Phase 2 res_analysis formats
-        WindOnshore_CF_df['A'] = (WindOnshore_CF_df[1] + WindOnshore_CF_df[2])/2
-        WindOnshore_CF_df['B'] = (WindOnshore_CF_df[3] + WindOnshore_CF_df[4])/2
-        WindOnshore_CF_df['C'] = (WindOnshore_CF_df[5] + WindOnshore_CF_df[6])/2
-        WindOnshore_CF_df['D'] = (WindOnshore_CF_df[7] + WindOnshore_CF_df[8])/2
-        WindOnshore_CF_df['E'] = (WindOnshore_CF_df[9] + WindOnshore_CF_df[10])/2
-        WindOnshore_CF_df['F'] = (WindOnshore_CF_df['A'] + WindOnshore_CF_df['B'])/2
-        WindOnshore_CF_df['G'] = (WindOnshore_CF_df['C'] + WindOnshore_CF_df['D']+ WindOnshore_CF_df['E'])/3
-        WindOnshore_CF_df['MeanProfile'] =(WindOnshore_CF_df['F'] + WindOnshore_CF_df['G'])/2
+        # WindOnshore_CF_df['A'] = (WindOnshore_CF_df[1] + WindOnshore_CF_df[2])/2
+        # WindOnshore_CF_df['B'] = (WindOnshore_CF_df[3] + WindOnshore_CF_df[4])/2
+        # WindOnshore_CF_df['C'] = (WindOnshore_CF_df[5] + WindOnshore_CF_df[6])/2
+        # WindOnshore_CF_df['D'] = (WindOnshore_CF_df[7] + WindOnshore_CF_df[8])/2
+        # WindOnshore_CF_df['E'] = (WindOnshore_CF_df[9] + WindOnshore_CF_df[10])/2
+        # WindOnshore_CF_df['F'] = (WindOnshore_CF_df['A'] + WindOnshore_CF_df['B'])/2
+        # WindOnshore_CF_df['G'] = (WindOnshore_CF_df['C'] + WindOnshore_CF_df['D']+ WindOnshore_CF_df['E'])/3
+        # WindOnshore_CF_df['MeanProfile'] =(WindOnshore_CF_df['F'] + WindOnshore_CF_df['G'])/2
+        
+        # Get the mean of only best two bins of wind instead of averaging over 6 or 10 bins
+        WindOnshore_CF_df['MeanProfile'] = (WindOnshore_CF_df[1] + WindOnshore_CF_df[2])/2
         
         avg_wind_on_CF_df = pd.DataFrame(data=WindOnshore_CF_df['MeanProfile'])
         
@@ -235,6 +238,7 @@ def get_wind_inputs(countries):
         WindOffshore_CF_df = WindOffshore_CF_df.T
         WindOffshore_CF_df = WindOffshore_CF_df.astype(float)
         
+        # 2023 Pilot phase ASEAN countries res_analysis formats
         # WindOffshore_CF_df['A'] = (WindOffshore_CF_df[3] + WindOffshore_CF_df[4])/2
         # WindOffshore_CF_df['B'] = (WindOffshore_CF_df[5] + WindOffshore_CF_df[6])/2
         # WindOffshore_CF_df['C'] = (WindOffshore_CF_df[7] + WindOffshore_CF_df[8])/2
@@ -243,6 +247,8 @@ def get_wind_inputs(countries):
         # WindOffshore_CF_df['F'] = (WindOffshore_CF_df['A'] + WindOffshore_CF_df['B'])/2
         # WindOffshore_CF_df['G'] = (WindOffshore_CF_df['C'] + WindOffshore_CF_df['D']+ WindOffshore_CF_df['E'])/3
         # WindOffshore_CF_df['MeanProfile'] =(WindOffshore_CF_df['F'] + WindOffshore_CF_df['G'])/2
+        
+        
         
         # 2024 Phase 2 countries res_analysis formats
         if country == 'BRA' or country == 'ZAF':
@@ -263,8 +269,11 @@ def get_wind_inputs(countries):
             WindOffshore_CF_df['G'] = (WindOffshore_CF_df['C'] + WindOffshore_CF_df['D']+ WindOffshore_CF_df['E'])/3
             WindOffshore_CF_df['MeanProfile'] =(WindOffshore_CF_df['F'] + WindOffshore_CF_df['G'])/2
         
-         
         
+        
+        # Get the mean of only best two bins of wind instead of averaging over 6 or 10 bins
+        # WindOffshore_CF_df['MeanProfile'] = (WindOffshore_CF_df[1] + WindOffshore_CF_df[2])/2
+
         avg_wind_off_CF_df = pd.DataFrame(data=WindOffshore_CF_df['MeanProfile'])
         
         # Find/create directory for onshore wind profiles in STEVFNs
