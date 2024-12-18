@@ -21,8 +21,8 @@ from Code.Results import GMPA_Results
 #### Define Input Files ####
 # case_study_name = "BAU_No_Action"
 # case_study_name = "Autarky_ZA"
-case_study_name = "BR-PE_Collab"
-# case_study_name = "BR-CO-PE_Collab"
+case_study_name = "KE-EG_Collab"
+# case_study_name = "CO-PE-CL_Collab"
 # case_study_name = "BR-CO-PE-CL_Autarky"
 # case_study_name = "BR-CO-PE-CL_Collab"
 

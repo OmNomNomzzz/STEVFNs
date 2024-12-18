@@ -232,13 +232,13 @@ def dpacc_subplots(total_data_filename, capacities_data_filename, plot_filename,
 # case_study_name = "Autarky_ZA"
 
 ###### Two Country Case Studies #########
-# case_study_name = "BR-PE_Autarky"
-case_study_name = "BR-PE_Collab"
-
+# case_study_name = "KE-EG_Autarky"
+case_study_name = "KE-EG_Collab"
+# 
 ###### Three Country Case Studies #########
-# case_study_name = "BR-CO-PE_Autarky"
-# case_study_name = "BR-CO-PE_Collab"
-
+# case_study_name = "CO-PE-CL_Autarky"
+# case_study_name = "CO-PE-CL_Collab"
+# 
 # case_study_name = "BN-ID-TH_Autarky"
 # case_study_name = "BN-ID-TH_Collab"
 
