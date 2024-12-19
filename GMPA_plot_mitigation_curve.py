@@ -237,14 +237,14 @@ def dpacc_subplots(total_data_filename, capacities_data_filename, plot_filename,
 # 
 ###### Three Country Case Studies #########
 # case_study_name = "MA-KE-EG_Autarky"
-case_study_name = "MA-KE-EG_Collab"
+# case_study_name = "MA-KE-EG_Collab"
 # 
 # case_study_name = "BN-ID-TH_Autarky"
 # case_study_name = "BN-ID-TH_Collab"
 
 ###### Four Country Case Studies #########
 # case_study_name = "BR-CO-PE-CL_Autarky"
-# case_study_name = "BR-CO-PE-CL_Collab"
+case_study_name = "MA-KE-EG-NG_Collab"
 
 
 base_folder = os.path.dirname(__file__)
