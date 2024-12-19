@@ -232,20 +232,20 @@ def dpacc_subplots(total_data_filename, capacities_data_filename, plot_filename,
 # case_study_name = "Autarky_ZA"
 
 ###### Two Country Case Studies #########
-# case_study_name = "MA-KE_Autarky"
-# case_study_name = "MA-KE_Collab"
+# case_study_name = "ZA-NG_Autarky"
+case_study_name = "ZA-NG_Collab"
 # 
 ###### Three Country Case Studies #########
-# case_study_name = "MA-KE-EG_Autarky"
-# case_study_name = "MA-KE-EG_Collab"
+# case_study_name = "ZA-KE-EG_Autarky"
+# case_study_name = "ZA-KE-EG_Collab"
 # 
-# case_study_name = "BN-ID-TH_Autarky"
-# case_study_name = "BN-ID-TH_Collab"
+# case_study_name = "ZA-KE-NG_Autarky"
+# case_study_name = "ZA-KE-NG_Collab"
 
 ###### Four Country Case Studies #########
-# case_study_name = "BR-CO-PE-CL_Autarky"
-case_study_name = "MA-KE-EG-NG_Collab"
-
+# case_study_name = "ZA-KE-EG-NG_Autarky"
+# case_study_name = "ZA-KE-EG-NG_Collab"
+# 
 
 base_folder = os.path.dirname(__file__)
 data_folder = os.path.join(base_folder, "Data")
