@@ -19,10 +19,10 @@ from Code.Results import GMPA_Results
 
 
 #### Define Input Files ####
-# case_study_name = "BAU_No_Action"
-# case_study_name = "Autarky_KR"
+# case_study_name = "Least_Cost_Emissions"
+case_study_name = "Autarky_KE"
 # case_study_name = "KR-VN_Collab"
-case_study_name = "KR-VN-LA_Collab"
+# case_study_name = "KR-VN-LA_Collab"
 # case_study_name = "KR-TH-VN-LA_Autarky"
 # case_study_name = "KR-TH-VN-LA_Collab"
 
