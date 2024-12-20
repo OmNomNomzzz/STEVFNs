@@ -19,12 +19,12 @@ from Code.Results import GMPA_Results
 
 
 #### Define Input Files ####
-# case_study_name = "Least_Cost_Emissions"
-case_study_name = "Autarky_KE"
-# case_study_name = "KR-VN_Collab"
-# case_study_name = "KR-VN-LA_Collab"
-# case_study_name = "KR-TH-VN-LA_Autarky"
-# case_study_name = "KR-TH-VN-LA_Collab"
+# case_study_name = "BAU_No_Action"
+# case_study_name = "Autarky_KR"
+# case_study_name = "MA-KE_Collab"
+case_study_name = "MA-KE-EG_Collab"
+# case_study_name = "BR-CO-PE-CL_Autarky"
+# case_study_name = "BR-CO-PE-CL_Collab"
 
 base_folder = os.path.dirname(__file__)
 data_folder = os.path.join(base_folder, "Data")
