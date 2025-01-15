@@ -10,9 +10,6 @@ The following installation uses git for version control, if you do not have git,
 
 The conda package manager is recommended and used within installation instructions below. To install the Anaconda distribution in your OS, you may find installers directly on the [Anaconda website](https://www.anaconda.com/download/success).
 
-The environment file provided includes an installation of the Spyder IDE to write and run the code, but other alternative IDEs may be used if preferred.
-
-
 1. Clone the repository to your desired local path (which should not have any spaces)
 ```
 (base) base_path % cd your_path/your_folder_name
@@ -55,8 +52,6 @@ conda install pandas
 ```
 conda install matplotlib
 ```
-
-
 
 ## Tutorials
 A seminar series on the STEVFNs tool is available on Aniq's YouTube channel:
@@ -111,7 +106,7 @@ To run the base example, run the **main.py** file in your IDE of choice. This ru
 1. Duplicate a case study folder, e.g. the Data/Case_Study/SG_Case_Study folder in the Data/Case_Study folder, as the existing files are already formatted as needed.
 2. Make relevant changes to the case study, e.g. change Network_Structure.csv, remove unnecessary scenario folders.
 3. Make relevant changes to scenarios to follow your network structure and specific requirements.
-4. Open main.py
+4. Open main.py in your IDE of preference, using VSCode is suggested.
 5. Replace case_study_name from "SG_Case_Study" to the name of the name of the new case study folder.
 6. e.g. if the new case study folder is "Aniq_Case_Study", replace the line:
 ```
