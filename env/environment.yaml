@@ -3,16 +3,11 @@
 name: stevfns
 
 channels:
-  - defaults
   - conda-forge
 
-
 dependencies:
-  - python=3.9
-
+  - python
   - matplotlib
   - pandas
-  
-  - cvxpy=1.2.1
-  - numpy=1.23.3
-  - spyder=5.3.3
+  - cvxpy
+  - numpy

@@ -8,8 +8,10 @@ Please cite all the references in "CITATIONS.bib" file.
 
 ## Installation
 The following installation uses git for version control, if you do not have git, follow [these instructions](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
-A conda package manager, such as Anaconda is recommended. 
-The environment file provided includes an installation of the IDE Spyder to write and run the code, but other alternative IDEs may be used if preferred.
+
+The conda package manager is recommended and used within installation instructions below. To install the Anaconda distribution in your OS, you may find installers directly on the [Anaconda website](https://www.anaconda.com/download/success).
+
+The environment file provided includes an installation of the Spyder IDE to write and run the code, but other alternative IDEs may be used if preferred.
 
 
 1. Clone the repository to your desired local path (which should not have any spaces)
@@ -23,10 +25,10 @@ and either:
 2. Create an environment from the environment.yaml file through the command:
 ```
 (base) .../your_folder_name % cd STEVFNs
-(base) .../your_folder_name/STEVFNs % conda env create -f envs/environment.yaml
+(base) .../your_folder_name/STEVFNs % conda env create -f env/environment.yaml
 ```
 
-Or
+Or install dependencies individually in a new environment
 
 3. Create a new environment
 ```
@@ -40,7 +42,7 @@ and the command line should change from (base) to (stevfns), as:
 ```
 (stevfns) .../your_folder_name/STEVFNs %
 ``` 
-5. Once the environment is created, install the following required dependencies individually into your working environment:
+5. Once the environment is created, install the following required dependencies individually into your new working environment:
 
 (a) cvxpy
 ```
@@ -87,7 +89,7 @@ To run the base example, run the **main.py** file in your IDE of choice. This ru
 
 ### To make a new scenario:
 
-1. Duplicate (copy and paste) a scenario folder, e.g. the Data/Case_Study/SG_Case_Study/scenario_0 folder in the Data/Case_Study/SG_Case_Study folder
+1. Duplicate an existing scenario folder, e.g. the Data/Case_Study/SG_Case_Study/scenario_0 folder in the Data/Case_Study/SG_Case_Study folder
 2. Make relevant changes to the scenario.
 
 ### To check and add a new brand type for an asset:
@@ -107,9 +109,9 @@ To run the base example, run the **main.py** file in your IDE of choice. This ru
 
 ### To make a new case study:
 
-1. Duplicate (copy and paste) a case study folder, e.g. the Data/Case_Study/SG_Case_Study folder in the Data/Case_Study folder
-2. Make relevant changes to the case study.
-3. Make relevant changes to scenarios.
+1. Duplicate a case study folder, e.g. the Data/Case_Study/SG_Case_Study folder in the Data/Case_Study folder, as the existing files are already formatted as needed.
+2. Make relevant changes to the case study, e.g. change Network_Structure.csv, remove unnecessary scenario folders.
+3. Make relevant changes to scenarios to follow your network structure and specific requirements.
 4. Open main.py
 5. Replace case_study_name from "SG_Case_Study" to the name of the name of the new case study folder.
 6. e.g. if the new case study folder is "Aniq_Case_Study", replace the line:
