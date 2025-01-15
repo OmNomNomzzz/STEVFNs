@@ -3,7 +3,7 @@ STEVFNs (pronounced 'STEVENS') stands for the Space Time Energy Vector Flow Netw
 
 ## Referencing
 
-Please cite all the references in "CITATIONS.bib" file when using the software.
+Please cite all the references in [CITATIONS.bib](https://github.com/OmNomNomzzz/STEVFNs/blob/repo_update/CITATIONS.bib) file when using the software.
 
 ## Installation
 The following installation uses git for version control, if you do not have git, follow [these instructions](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
