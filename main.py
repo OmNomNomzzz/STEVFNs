@@ -77,7 +77,7 @@ for counter1 in range(len(scenario_folders_list)):
     
     
     # my_network.solve_problem()
-    my_network.problem.solve(solver = cp.ECOS, warm_start=True, max_iters=1000, ignore_dpp=False)
+    my_network.problem.solve(solver = cp.CLARABEL, max_iter=10000, ignore_dpp=False)
     
     end_time = time.time()
     
