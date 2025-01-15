@@ -1,10 +1,6 @@
 # Environment file for STEVFNs
-#
-# Authors: Aniq Ahsan
-
 
 name: stevfns
-
 
 channels:
   - defaults
@@ -20,4 +16,3 @@ dependencies:
   - cvxpy=1.2.1
   - numpy=1.23.3
   - spyder=5.3.3
-
