@@ -1,0 +1,13 @@
+# Environment file for STEVFNs
+
+name: stevfns
+
+channels:
+  - conda-forge
+
+dependencies:
+  - python
+  - matplotlib
+  - pandas
+  - cvxpy
+  - numpy
