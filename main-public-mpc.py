@@ -17,7 +17,7 @@ from Code.Plotting import DPhil_Plotting
 from Code.Results import GMPA_Results
 
 #### Define Input Files ####
-case_study_name = "Autarky_IN_TRIAL_MPC"
+case_study_name = "Autarky_ID_TRIAL_MPC_Wind"
 
 ### Define Input Data Paths ###
 base_folder = os.path.dirname(__name__) #prev: __file__
@@ -110,7 +110,7 @@ for counter1 in range(len(scenario_folders_list)):
         rows = []
         for asset in my_network.assets:
             print("-----", asset.asset_name, "-----")
-            print("Size:", asset.asset_size(), "Cost:", asset.cost.value )
+            print("Size:", asset.asset_size(), "Cost:", asset.cost.value)
             rows.append({
                     "Scenario": my_network.scenario_name,
                     "Start Time": t,
