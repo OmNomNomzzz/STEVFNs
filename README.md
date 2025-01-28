@@ -1,9 +1,9 @@
 # STEVFNs
-STEVFNs (pronounced 'STEVENS') stands for the Space Time Energy Vector Flow Networks model generator. It links system design, asset modeling and optimization to co-optimize the sizing, location and operation of energy assets in a given system structure. Details on the theory behind the model can be found in the thesis [Generalized Spatio-Temporal Model for the Optimal Sizing, Operation, and Location of Energy System Assets](https://ora.ox.ac.uk/objects/uuid:fc64231e-524e-433f-9b32-b9ffe5b5f974). Additional tutorials can be found in the [#Tutorials](https://github.com/OmNomNomzzz/STEVFNs/blob/repo_update/README.md#tutorials) section.
+STEVFNs (pronounced 'STEVENS') stands for the Space Time Energy Vector Flow Networks model generator. It links system design, asset modeling and optimization to co-optimize the sizing, location and operation of energy assets in a given system structure. Details on the theory behind the model can be found in the thesis [Generalized Spatio-Temporal Model for the Optimal Sizing, Operation, and Location of Energy System Assets](https://ora.ox.ac.uk/objects/uuid:fc64231e-524e-433f-9b32-b9ffe5b5f974). Additional tutorials can be found in the [#Tutorials](https://github.com/OmNomNomzzz/STEVFNs/blob/main/README.md#tutorials) section.
 
 ## Referencing
 
-Please cite all the references in [CITATIONS.bib](https://github.com/OmNomNomzzz/STEVFNs/blob/repo_update/CITATIONS.bib) file when using the software.
+Please cite all the references in [CITATIONS.bib](https://github.com/OmNomNomzzz/STEVFNs/blob/main/CITATIONS.bib) file when using the software.
 
 ## Installation
 The following installation uses git for version control, if you do not have git, follow [these instructions](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
