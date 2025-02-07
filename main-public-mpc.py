@@ -17,7 +17,7 @@ from Code.Plotting import DPhil_Plotting
 from Code.Results import GMPA_Results
 
 #### Define Input Files ####
-case_study_name = "Autarky_ID_TRIAL_MPC_Wind"
+case_study_name = "Autarky_IN_TRIAL_MPC"
 
 ### Define Input Data Paths ###
 base_folder = os.path.dirname(__name__) #prev: __file__
