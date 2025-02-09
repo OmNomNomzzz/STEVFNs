@@ -102,7 +102,7 @@ class Network_STEVFNs:
     def solve_problem(self):
         # self.problem.solve()
         # self.problem.solve(warm_start=True)# This can sometimes use OSQP solver that sometimes gives errors.
-        self.problem.solve(solver = cp.ECOS, warm_start=True, max_iters=1000)
+        self.problem.solve(solver = cp.CLARABEL, max_iter=1000)
         # self.problem.solve(solver = cp.OSQP, warm_start=True)
         # self.problem.solve(solver = cp.CVXOPT, warm_start=True)
         # self.problem.solve(solver = cp.SCS, warm_start=True)
@@ -128,7 +128,7 @@ class Network_STEVFNs:
         #Generate Assets#
         for counter1 in range(len(network_structure_df)):
             self.generate_asset(network_structure_df.iloc[counter1])
-        #Build Problem#
+        #Add properties, costs, constraints, objective and build problem#
         self.build_problem()
         return
     
