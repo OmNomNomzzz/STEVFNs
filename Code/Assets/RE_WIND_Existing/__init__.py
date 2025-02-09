@@ -24,7 +24,7 @@ class RE_WIND_Existing_Asset(Asset_STEVFNs):
     
     @staticmethod
     def cost_fun(flows, params):
-        return params["costs"] @ flows # element wise dot product
+        return params["sizing_constant"] @ flows # element wise dot product
         
     def __init__(self):
         super().__init__()
@@ -36,7 +36,7 @@ class RE_WIND_Existing_Asset(Asset_STEVFNs):
         self.num_years = 2
         
         # EDITED: Parameter shape to fit control horizon in length, and initialize cost projection list
-        self.cost_fun_params = {"costs": cp.Parameter(shape=(self.num_years,), nonneg=True) }
+        self.cost_fun_params = {"sizing_constant": cp.Parameter(shape=(self.num_years,), nonneg=True) }
         self.cost_projections = []
         return
     
@@ -95,7 +95,7 @@ class RE_WIND_Existing_Asset(Asset_STEVFNs):
         # TO-DO: Needs exception for single-year modeling to use one value alone
         # TO-DO: Needs NPV factor update per year as it advances.
         for counter in range(self.num_years):
-            self.cost_fun_params["costs"].value[counter] = self.cost_projections[counter] * NPV_factor
+            self.cost_fun_params["sizing_constant"].value[counter] = self.cost_projections[counter] * NPV_factor
 
         return
     
