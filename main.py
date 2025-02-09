@@ -18,7 +18,7 @@ from Code.Results import GMPA_Results
 
 
 #### Define Input Files ####
-case_study_name = "SG_Case_Study"
+case_study_name = "test_RE_WIND_multi_year"
 
 
 base_folder = os.path.dirname(__file__)
@@ -54,6 +54,7 @@ total_df_1 = pd.DataFrame()
 for counter1 in range(len(scenario_folders_list)):
 # for counter1 in range(1):
     # Read Input Files ###
+    print(counter1)
     scenario_folder = scenario_folders_list[-1-counter1]
     asset_parameters_filename = os.path.join(scenario_folder, "Asset_Parameters.csv")
     location_parameters_filename = os.path.join(scenario_folder, "Location_Parameters.csv")
