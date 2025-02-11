@@ -2,3 +2,4 @@ parameter,value,unit
 timestep,1,h
 discount_rate,0.05,unitless
 project_life,17520,timestep
+scenario_start,2025,year
