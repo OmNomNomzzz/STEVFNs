@@ -200,7 +200,7 @@ def update_scenarios_collab(base_case_study):
 # =============================================================================
 
 # single_country_case_study = "ZA"
-multiple_country_case_study = "KH-ID"  # Can be of all combinations e.g. XX-YY-ZZ or WW-XX-YY-ZZ
+multiple_country_case_study = "VN-ID"  # Can be of all combinations e.g. XX-YY-ZZ or WW-XX-YY-ZZ
 
 base_scenario_name = "BAU"
 update_scenarios_collab(multiple_country_case_study)
