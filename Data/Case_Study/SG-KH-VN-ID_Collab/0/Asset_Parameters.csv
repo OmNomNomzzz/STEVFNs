@@ -63,7 +63,7 @@ Asset_Number,Asset_Class,Location_1,Location_2,Asset_Type
 61,NH3_Transport,0,1,0
 62,EL_Transport,0,1,0
 63,NH3_Transport,4,8,0
-64,EL_Transport,4,7,0
+64,EL_Transport,4,8,0
 65,NH3_Transport,4,1,0
 66,EL_Transport,4,1,0
 67,NH3_Transport,8,1,0
