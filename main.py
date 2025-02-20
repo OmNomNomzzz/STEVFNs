@@ -21,12 +21,12 @@ from Code.Results import GMPA_Results
 #### Define Input Files ####
 # case_study_name = "BAU_No_Action"
 # case_study_name = "Autarky_CL"
-# case_study_name = "CO-CL_Autarky"
-# case_study_name = "CO-CL_Collab"
-# case_study_name = "CO-PE-CL_Autarky"
-case_study_name = "CO-PE-CL_Collab"
-# case_study_name = "BR-CO-PE-CL_Autarky"
-# case_study_name = "BR-CO-PE-CL_Collab"
+# case_study_name = "ID-LA_Autarky"
+# case_study_name = "ID-LA_Collab"
+# case_study_name = "KH-VN-ID_Autarky"
+# case_study_name = "KH-VN-ID_Collab"
+case_study_name = "SG-KH-VN-ID_Autarky"
+# case_study_name = "SG-KH-VN-ID_Collab"
 
 base_folder = os.path.dirname(__file__)
 data_folder = os.path.join(base_folder, "Data")
@@ -90,8 +90,8 @@ for counter1 in range(len(scenario_folders_list)):
     
     # my_network.solve_problem()
     # my_network.problem.solve(solver = cp.ECOS, warm_start=True, max_iters=100000000, verbose=True,
-    #                           ignore_dpp=True,# Uncomment to disable DPP. DPP will make the first scenario run slower, but subsequent scenarios will run significantly faster.
-    #                           )
+                              # ignore_dpp=True,# Uncomment to disable DPP. DPP will make the first scenario run slower, but subsequent scenarios will run significantly faster.
+                              # )
     my_network.problem.solve(solver = cp.CLARABEL, max_iter=10000)
     # my_network.problem.solve(solver = cp.SCS, warm_start=True, max_iters=100000, ignore_dpp=True, verbose=False)
     # my_network.problem.solve(solver = cp.MOSEK)
