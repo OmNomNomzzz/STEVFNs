@@ -21,12 +21,12 @@ from Code.Results import GMPA_Results
 #### Define Input Files ####
 # case_study_name = "BAU_No_Action"
 # case_study_name = "Autarky_CL"
-# case_study_name = "KH-BN_Autarky"
+case_study_name = "TH-PH_Collab"
 # case_study_name = "KH-BN_Collab"
 # case_study_name = "MY-LA-SG_Autarky"
 # case_study_name = "MY-LA-SG_Collab"
 # case_study_name = "VN-MY-LA-SG_Autarky"
-case_study_name = "VN-MY-LA-SG_Collab"
+# case_study_name = "VN-MY-LA-SG_Collab"
 
 base_folder = os.path.dirname(__file__)
 data_folder = os.path.join(base_folder, "Data")
