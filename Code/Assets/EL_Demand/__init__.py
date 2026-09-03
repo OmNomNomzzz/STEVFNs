@@ -55,7 +55,6 @@ class EL_Demand_Asset(Asset_STEVFNs):
         n_sets = int(np.ceil(self.number_of_edges/set_size))
         gap = int(len(full_profile) / (n_sets * set_size)) * set_size
         offset = set_size * set_number
-        print("Got gap and offset, creating new profile:", n_sets, set_size)
         new_profile = np.zeros(n_sets * set_size)
         for counter1 in range(n_sets):
             old_loc_0 = offset + gap*counter1
