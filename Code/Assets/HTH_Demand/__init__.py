@@ -49,8 +49,8 @@ class HTH_Demand_Asset(Asset_STEVFNs):
         profile_filename = os.path.join(self.parameters_folder, "profiles", profile_filename)
         profile_df = pd.read_csv(profile_filename)
         full_profile = np.array(profile_df["Demand"])
-        set_size = self.parameters_df["set_size"]
-        set_number = self.parameters_df["set_number"]
+        set_size = int(self.parameters_df["set_size"])
+        set_number = int(self.parameters_df["set_number"])
         n_sets = int(np.ceil(self.number_of_edges/set_size))
         gap = int(len(full_profile) / (n_sets * set_size)) * set_size
         offset = set_size * set_number

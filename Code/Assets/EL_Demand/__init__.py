@@ -24,10 +24,10 @@ class EL_Demand_Asset(Asset_STEVFNs):
     
     def define_structure(self, asset_structure):
         self.node_location = asset_structure["Location_1"]
-        self.node_times = np.arange(asset_structure["Start_Time"], 
-                                           asset_structure["End_Time"], 
+        self.node_times = np.arange(int(asset_structure["Start_Time"]), 
+                                           int(asset_structure["End_Time"]), 
                                            asset_structure["Period"])
-        self.number_of_edges = len(self.node_times)
+        self.number_of_edges = int(len(self.node_times))
         self.flows = cp.Parameter(shape = self.number_of_edges, nonneg=True)
         return
     
@@ -50,11 +50,12 @@ class EL_Demand_Asset(Asset_STEVFNs):
         profile_filename = os.path.join(self.parameters_folder, "profiles", profile_filename)
         profile_df = pd.read_csv(profile_filename)
         full_profile = np.array(profile_df["Demand"])
-        set_size = self.parameters_df["set_size"]
-        set_number = self.parameters_df["set_number"]
+        set_size = int(self.parameters_df["set_size"])
+        set_number = int(self.parameters_df["set_number"])
         n_sets = int(np.ceil(self.number_of_edges/set_size))
         gap = int(len(full_profile) / (n_sets * set_size)) * set_size
         offset = set_size * set_number
+        print("Got gap and offset, creating new profile:", n_sets, set_size)
         new_profile = np.zeros(n_sets * set_size)
         for counter1 in range(n_sets):
             old_loc_0 = offset + gap*counter1
