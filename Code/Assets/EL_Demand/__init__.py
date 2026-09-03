@@ -24,8 +24,8 @@ class EL_Demand_Asset(Asset_STEVFNs):
     
     def define_structure(self, asset_structure):
         self.node_location = asset_structure["Location_1"]
-        self.node_times = np.arange(int(asset_structure["Start_Time"]), 
-                                           int(asset_structure["End_Time"]), 
+        self.node_times = np.arange(asset_structure["Start_Time"], 
+                                           asset_structure["End_Time"], 
                                            asset_structure["Period"])
         self.number_of_edges = int(len(self.node_times))
         self.flows = cp.Parameter(shape = self.number_of_edges, nonneg=True)
